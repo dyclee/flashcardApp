@@ -1,4 +1,4 @@
-# Sport Betting App
+# Quizlet App
 
 **Developer** David Lee
 
