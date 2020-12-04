@@ -13,18 +13,30 @@ const HomeDisplay = () => {
         (async () => {
             const res = await fetch(`api/sets`)
             const setObjs = await res.json();
-            console.log("ALL SETS", setObjs);
+            console.log("SET OBJS", setObjs);
             dispatch(getSets(setObjs))
             return;
         })()
     }, [])
-
-    console.log("DOM SETS", allSets);
+    console.log("ALL SETS", allSets)
     if (!allSets) return null;
 
 
-    return (
-        <h1>ALL THE SETS LEGGO</h1>
+    return (<>
+            <article>
+                <h1>All Sets</h1>
+                <div>
+                    {allSets.map(set => {
+                        return (<>
+                        <ul>
+                            <li>{set.title}</li>
+                            <li>{set.description}</li>
+                        </ul>
+                        </>)
+                    })}
+                </div>
+            </article>
+        </>
     )
 
 }
