@@ -4,7 +4,8 @@ export default function setReducer(state = {}, action) {
     const newState = {...state}
     switch(action.type) {
         case GET_SETS:
-            return action.sets
+            newState.allSets = action.sets
+            return newState
         case GET_USER_SETS:
             return action.sets
         case CREATE_SET:

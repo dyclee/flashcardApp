@@ -7,19 +7,19 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
-import UserContext from './context/UserContext';
+import HomeDisplay from './components/HomeDisplay';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
-        setUser(user);
+        // setUser(user);
       }
       setLoaded(true);
     })();
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user }}>
+      {/* <UserContext.Provider value={{ user }}> */}
 
         <NavBar setAuthenticated={setAuthenticated} />
         <Route path="/login" exact={true}>
@@ -50,9 +50,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <HomeDisplay />
         </ProtectedRoute>
-      </UserContext.Provider>
+      {/* </UserContext.Provider> */}
     </BrowserRouter>
   );
 }
