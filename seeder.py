@@ -208,29 +208,30 @@ with app.app_context():
     db.session.commit()
 
     friendship = friendships.insert().values(friender=1, friended=2, pending=False)
+    friendship2 = friendships.insert().values(friender=1, friended=3, pending=False)
+    friendship3 = friendships.insert().values(friender=4, friended=1, pending=True)
+    friendship4 = friendships.insert().values(friender=2, friended=3, pending=False)
+    friendship5 = friendships.insert().values(friender=3, friended=4, pending=False)
     db.engine.execute(friendship)
-    # friendship1 = friendships(
-    #     friender=1,
-    #     friended=2,
-    #     pending=False,
-    # )
-    # friendship2 = friendships(
-    #     friender=3,
-    #     friended=1,
-    #     pending=False,
-    # )
-    # friendship3 = friendships(
-    #     friender=4,
-    #     friended=1,
-    #     pending=True,
-    # )
-    # friendship4 = friendships(
-    #     friender=2,
-    #     friended=3,
-    #     pending=False,
-    # )
-    # friendship5 = friendships(
-    #     friender=3,
-    #     friended=4,
-    #     pending=False,
-    # )
+    db.engine.execute(friendship2)
+    db.engine.execute(friendship3)
+    db.engine.execute(friendship4)
+    db.engine.execute(friendship5)
+
+    recommendation = recommendations.insert().values(sender=3, to=1, received=True, set_id=1)
+    recommendation1 = recommendations.insert().values(sender=2, to=1, received=False, set_id=2)
+    recommendation2 = recommendations.insert().values(sender=1, to=2, received=False, set_id=3)
+    recommendation3 = recommendations.insert().values(sender=3, to=1, received=False, set_id=3)
+    db.engine.execute(recommendation)
+    db.engine.execute(recommendation1)
+    db.engine.execute(recommendation2)
+    db.engine.execute(recommendation3)
+
+    message = messages.insert().values(sender=3, to=1, received=True, created_at=datetime( 2020, 11, 20), message="hey!!")
+    message1 = messages.insert().values(sender=2, to=1, received=True, created_at=datetime(2020, 10, 25), message="did you see my rec?")
+    message2 = messages.insert().values(sender=3, to=1, received=False, created_at=datetime.now(), message="how's studying been going?")
+    message3 = messages.insert().values(sender=1, to=3, received=True, created_at=datetime(2020, 11, 30), message="heyyy its been a while")
+    db.engine.execute(message)
+    db.engine.execute(message1)
+    db.engine.execute(message2)
+    db.engine.execute(message3)

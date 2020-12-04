@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSets } from '../store/actions/sets';
+import SetListItem from './SetListItem';
 
 
 const HomeDisplay = () => {
@@ -28,10 +29,8 @@ const HomeDisplay = () => {
                 <div>
                     {allSets.map(set => {
                         return (<>
-                        <ul>
-                            <li>{set.title}</li>
-                            <li>{set.description}</li>
-                        </ul>
+
+                            <SetListItem set={set}></SetListItem>
                         </>)
                     })}
                 </div>

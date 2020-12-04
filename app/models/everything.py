@@ -14,12 +14,14 @@ messages = db.Table('messages',
   db.Column('sender', db.Integer, db.ForeignKey('users.id'), nullable=False),
   db.Column('to', db.Integer, db.ForeignKey('users.id'), nullable=False),
   db.Column('received', db.Boolean, nullable=False, default=False),
+  db.Column('message', db.Text, nullable=False),
   db.Column('created_at', db.DateTime, nullable = False, default=datetime.now())
 )
 recommendations = db.Table('recommendations',
   db.Column('id', db.Integer, primary_key=True),
   db.Column('sender', db.Integer, db.ForeignKey('users.id'), nullable=False),
   db.Column('to', db.Integer, db.ForeignKey('users.id'), nullable=False),
+  db.Column('set_id', db.Integer, db.ForeignKey('sets.id'), nullable=False),
   db.Column('received', db.Boolean, nullable=False, default=False),
 )
 
