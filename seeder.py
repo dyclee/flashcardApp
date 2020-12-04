@@ -207,28 +207,30 @@ with app.app_context():
         db.session.add(favorite)
     db.session.commit()
 
-    friendship1 = friendships(
-        friender=1,
-        friended=2,
-        pending=False,
-    )
-    friendship2 = friendships(
-        friender=3,
-        friended=1,
-        pending=False,
-    )
-    friendship3 = friendships(
-        friender=4,
-        friended=1,
-        pending=True,
-    )
-    friendship4 = friendships(
-        friender=2,
-        friended=3,
-        pending=False,
-    )
-    friendship5 = friendships(
-        friender=3,
-        friended=4,
-        pending=False,
-    )
+    friendship = friendships.insert().values(friender=1, friended=2, pending=False)
+    db.engine.execute(friendship)
+    # friendship1 = friendships(
+    #     friender=1,
+    #     friended=2,
+    #     pending=False,
+    # )
+    # friendship2 = friendships(
+    #     friender=3,
+    #     friended=1,
+    #     pending=False,
+    # )
+    # friendship3 = friendships(
+    #     friender=4,
+    #     friended=1,
+    #     pending=True,
+    # )
+    # friendship4 = friendships(
+    #     friender=2,
+    #     friended=3,
+    #     pending=False,
+    # )
+    # friendship5 = friendships(
+    #     friender=3,
+    #     friended=4,
+    #     pending=False,
+    # )
