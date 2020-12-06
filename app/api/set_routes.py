@@ -35,7 +35,7 @@ def createSet():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
-        print("FORM DATA", form.data)
+        # print("FORM DATA", form.data)
         title = form.data['title']
         subject = form.data['subject']
         description = form.data['description']
@@ -54,7 +54,7 @@ def createSet():
             return jsonify(createdSet)
 
         checkSubject = Subject.query.filter(Subject.name == subject).all()
-        print("CHECK SUBJECT", checkSubject)
+        # print("CHECK SUBJECT", checkSubject)
         if len(checkSubject) == 0:
             newSubject = Subject(
                 name=subject
@@ -78,3 +78,11 @@ def createSet():
             createdSet = set_schema.dump(newSet)
             return jsonify(createdSet)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@set_routes.route('/delete/<int:setId>', methods=["DELETE"])
+def deleteSet(setId):
+    deleteSet = Set.query.get(setId)
+    db.session.delete(deleteSet)
+    db.session.commit()
+    return "Removed set"
