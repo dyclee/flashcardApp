@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import db, Set, User, Subject
 from app.schemas import user_schema, set_schema, subject_schema, card_schema, like_schema, favorite_schema
 from app.forms import SetForm
+from sqlalchemy.orm import joinedload
 
 
 set_routes = Blueprint('sets', __name__)
@@ -18,6 +19,16 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+def dump_data_list(instances, schema):
+    """Deserialize a list of model instances into jsonify-able objects."""
+    data = []
+    for instance in instances:
+        # print("instance", instance)
+        data.append(schema.dump(instance))
+    # print("\nDUMPING data list", data)
+    return data
+
+
 @set_routes.route('/')
 # @login_required
 def getAllSets():
@@ -26,6 +37,22 @@ def getAllSets():
 
     print("SETS", sets)
     return jsonify(sets)
+
+
+@set_routes.route('/<int:setId>')
+def getOneSet(setId):
+    selectedSet = Set.query.filter(Set.id == setId).options( \
+        joinedload(Set.card), \
+        joinedload(Set.like), \
+        joinedload(Set.favorite)) \
+        .one()
+    # print("SELECTEDSET" , selectedSet)
+    setObj = set_schema.dump(selectedSet)
+    setObj["card"] = [card for card in dump_data_list(selectedSet.card, card_schema)]
+    setObj["like"] = [like for like in dump_data_list(selectedSet.like, like_schema)]
+    setObj["favorite"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]
+    # print("SET OBJ" , setObj)
+    return jsonify(setObj)
 
 
 @set_routes.route('/create', methods=["POST"])

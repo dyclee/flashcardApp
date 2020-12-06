@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getSets } from '../store/actions/sets';
 import SetListItem from './SetListItem';
 
@@ -14,12 +14,12 @@ const HomeDisplay = () => {
         (async () => {
             const res = await fetch(`api/sets`)
             const setObjs = await res.json();
-            console.log("SET OBJS", setObjs);
+            // console.log("SET OBJS", setObjs);
             dispatch(getSets(setObjs))
             return;
         })()
     }, [])
-    console.log("ALL SETS", allSets)
+    // console.log("ALL SETS", allSets)
     if (!allSets) return null;
 
 
@@ -29,8 +29,9 @@ const HomeDisplay = () => {
                 <div>
                     {allSets.map(set => {
                         return (<>
-
-                            <SetListItem set={set}></SetListItem>
+                            <Link to={`/set/${set.id}`}>
+                                <SetListItem set={set}></SetListItem>
+                            </Link>
                         </>)
                     })}
                 </div>

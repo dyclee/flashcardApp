@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 import HomeDisplay from './components/HomeDisplay';
+import SetDisplay from './components/SetDisplay';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -44,6 +45,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
+        <ProtectedRoute path="/set/:setId" exact={true} authenticated={authenticated}>
+          <SetDisplay />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList/>
         </ProtectedRoute>
