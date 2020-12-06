@@ -18,6 +18,7 @@ function App() {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
+        console.log("AT APP, USER:,", user)
         setAuthenticated(true);
         // setUser(user);
       }
