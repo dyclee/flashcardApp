@@ -4,7 +4,8 @@ export default function userReducer(state = {}, action) {
     const newState = {...state }
     switch(action.type) {
         case GET_USER:
-            return action.user
+            newState.user = action.user
+            return newState
         case REMOVE_USER:
             return {}
         default:

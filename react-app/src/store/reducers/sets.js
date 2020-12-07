@@ -15,7 +15,7 @@ export default function setReducer(state = {}, action) {
             return newState
         case DELETE_SET:
             delete newState.allSets[action.set.id]
-            delete newState.userSets[action.set.id]
+            // delete newState.userSets[action.set.id]
             return newState
         case EDIT_SET:
             newState.allSets[action.set.id] = action.set

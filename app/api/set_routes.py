@@ -107,15 +107,16 @@ def createSet():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
-@set_routes.route('/delete/<int:setId>', methods=["DELETE"])
+@set_routes.route('/<int:setId>/delete', methods=["DELETE"])
 def deleteSet(setId):
     deleteSet = Set.query.get(setId)
+    selectedSet = set_schema.dump(deleteSet)
     db.session.delete(deleteSet)
     db.session.commit()
-    return "Removed set"
+    return jsonify(selectedSet)
 
 
-@set_routes.route('/edit/<int:setId>', methods=["PATCH"])
+@set_routes.route('/<int:setId>/edit', methods=["PATCH"])
 def editSet(setId):
     form = SetForm()
     form['csrf_token'].data = request.cookies['csrf_token']

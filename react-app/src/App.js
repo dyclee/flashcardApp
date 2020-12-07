@@ -9,11 +9,14 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
+import { getUser } from './store/actions/users';
+import { useDispatch } from 'react-redux';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   // const [user, setUser] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async() => {
@@ -21,7 +24,7 @@ function App() {
       if (!user.errors) {
         console.log("AT APP, USER:,", user)
         setAuthenticated(true);
-        // setUser(user);
+        dispatch(getUser(user))
       }
       setLoaded(true);
     })();
