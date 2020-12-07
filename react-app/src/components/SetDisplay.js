@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
-import { deleteSet } from '../store/actions/sets';
+import SetHeader from './SetHeader';
 
 
-export default function SetDisplay({set}) {
+export default function SetDisplay() {
     const { setId } = useParams()
+
+    const [set, setSet] = useState()
     const [cards, setCards] = useState([])
     const [likes, setLikes] = useState([])
     const [favorites, setFavorites] = useState([])
@@ -28,6 +30,7 @@ export default function SetDisplay({set}) {
             if (resObj.createdBy === user.id) {
                 setHidden(false)
             }
+            setSet(resObj)
             setCards(resObj.card)
             setLikes(resObj.like)
             setFavorites(resObj.favorite)
@@ -53,7 +56,9 @@ export default function SetDisplay({set}) {
     // if
     return (<>
         <h1>Set Display Page</h1>
+        <SetHeader set={set} />
         <button hidden={hidden} onClick={onDelete}>DELETE SET</button>
+
             <h4>Number of cards: {cards.length}</h4>
             <h4>Number of likes: {likes.length}</h4>
             <h4>Number of favorites: {favorites.length}</h4>

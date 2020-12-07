@@ -41,17 +41,20 @@ def getAllSets():
 
 @set_routes.route('/<int:setId>')
 def getOneSet(setId):
+
     selectedSet = Set.query.filter(Set.id == setId).options( \
+        joinedload(Set.createdBy), \
         joinedload(Set.card), \
         joinedload(Set.like), \
         joinedload(Set.favorite)) \
         .one()
     # print("SELECTEDSET" , selectedSet)
     setObj = set_schema.dump(selectedSet)
+    setObj["createdBy"] = user_schema.dump(selectedSet.createdBy)
     setObj["card"] = [card for card in dump_data_list(selectedSet.card, card_schema)]
     setObj["like"] = [like for like in dump_data_list(selectedSet.like, like_schema)]
     setObj["favorite"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]
-    # print("SET OBJ" , setObj)
+    print("SET OBJ" , setObj)
     return jsonify(setObj)
 
 
