@@ -19,13 +19,17 @@ const HomeDisplay = () => {
             return;
         })()
     }, [])
-    // console.log("ALL SETS", allSets)
-    if (!allSets) return null;
 
+    const onCreate = async () => {
+
+    }
+
+    if (!allSets) return null;
 
     return (<>
             <article>
                 <h1>All Sets</h1>
+                <button onClick={onCreate}>CREATE SET</button>
                 <div>
                     {allSets.map(set => {
                         return (<>
