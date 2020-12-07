@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import SetHeader from './SetHeader';
+import CardListItem from './CardListItem';
 
 
 export default function SetDisplay() {
@@ -27,7 +28,7 @@ export default function SetDisplay() {
             const res = await fetch(`/api/sets/${setId}`)
             const resObj = await res.json()
             console.log("RES ", resObj)
-            if (resObj.createdBy === user.id) {
+            if (resObj.createdBy.id === user.id) {
                 setHidden(false)
             }
             setSet(resObj)
@@ -63,12 +64,8 @@ export default function SetDisplay() {
             <h4>Number of likes: {likes.length}</h4>
             <h4>Number of favorites: {favorites.length}</h4>
             {cards.map((card) => (<>
-                <ul>
-                    <li>ID: {card.id}</li>
-                    <li>Q: {card.question}</li>
-                    <li>A: {card.answer}</li>
-                </ul>
-                <button hidden={hidden}>DELETE</button>
+                <CardListItem card={card} hidden={hidden} />
+                {/* <button hidden={hidden}>DELETE</button> */}
             </>))}
 
     </>)
