@@ -2,20 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSet } from '../store/actions/sets';
 
+import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
 
-const CreateSetForm = () => {
+export const CreateSetForm = () => {
     const user = useSelector(state => state.userReducer.user)
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState()
-    const [subject, setSubject] = useState()
+    const [subject, setSubject] = useState("")
+    const [subjectOptions, setSubjectOptions] = useState()
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState([])
+    const [open, setOpen] = useState(false)
 
     const handleOpen = (e) => setOpen(true)
     const handleClose = (e) => setOpen(false)
+
+    useEffect(() => {
+        (async() => {
+            const res = await fetch('/api/subjects');
+            const subjectArray = await res.json();
+            setSubjectOptions(subjectArray)
+            return;
+        })()
+    }, [])
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -30,8 +42,24 @@ const CreateSetForm = () => {
             })
         })
         if (res.ok) {
-            console.log("SUCCESSFUL RES", res)
-            dispatch(createSet(res))
+            const resObj = await res.json()
+            console.log("SUCCESSFUL RES", resObj)
+            dispatch(createSet(resObj))
+            handleClose()
         }
     }
+
+    return (<>
+        <button onClick={handleOpen}>Create Set</button>
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle id="setForm-dialog-title">Create a new set</DialogTitle>
+
+            <DialogContent>
+                <AddTitle title={title} setTitle={setTitle} />
+                <AddDescription description={description} setDescription={setDescription} />
+                <AddSubject subjects={subjectOptions} subject={subject} setSubject={setSubject} />
+                <ActionAndCancelButtons handleClose={handleClose} onAction={onCreate} actionName={"Create"} />
+            </DialogContent>
+        </Dialog>
+    </>)
 }

@@ -4,6 +4,7 @@ from app.models import db, Set, User, Subject
 from app.schemas import user_schema, set_schema, subject_schema, card_schema, like_schema, favorite_schema
 from app.forms import SetForm
 from sqlalchemy.orm import joinedload
+from app.utils import dump_data_list
 
 
 set_routes = Blueprint('sets', __name__)
@@ -19,14 +20,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-def dump_data_list(instances, schema):
-    """Deserialize a list of model instances into jsonify-able objects."""
-    data = []
-    for instance in instances:
-        # print("instance", instance)
-        data.append(schema.dump(instance))
-    # print("\nDUMPING data list", data)
-    return data
 
 
 @set_routes.route('/')
@@ -65,13 +58,13 @@ def createSet():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
-        # print("FORM DATA", form.data)
+        print("FORM DATA", form.data)
         title = form.data['title']
         subject = form.data['subject']
         description = form.data['description']
         created_by = request.json['created_by']
 
-        if subject == "":
+        if subject == "None":
             newSet = Set(
                 title=title,
                 description=description,
@@ -85,28 +78,22 @@ def createSet():
 
         checkSubject = Subject.query.filter(Subject.name == subject).all()
         # print("CHECK SUBJECT", checkSubject)
-        if len(checkSubject) == 0:
-            newSubject = Subject(
-                name=subject
-            )
-            db.session.add(newSubject)
-            db.session.commit()
-            # create new set with new subject
-            findSubject = Subject.query.filter(Subject.name == newSubject.name).one()
-            print("FIND SUBJECT", findSubject)
-            foundSubject = subject_schema.dump(findSubject)
-            subject_id = foundSubject["id"]
-            newSet = Set(
-                title=title,
-                subject_id=subject_id,
-                description=description,
-                created_by=created_by
-            )
-            db.session.add(newSet)
-            db.session.commit()
-            newSet = Set.query.get(newSet.id)
-            createdSet = set_schema.dump(newSet)
-            return jsonify(createdSet)
+
+        findSubject = Subject.query.filter(Subject.name == subject).one()
+        print("FIND SUBJECT", findSubject)
+        foundSubject = subject_schema.dump(findSubject)
+        subject_id = foundSubject["id"]
+        newSet = Set(
+            title=title,
+            subject_id=subject_id,
+            description=description,
+            created_by=created_by
+        )
+        db.session.add(newSet)
+        db.session.commit()
+        newSet = Set.query.get(newSet.id)
+        createdSet = set_schema.dump(newSet)
+        return jsonify(createdSet)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 

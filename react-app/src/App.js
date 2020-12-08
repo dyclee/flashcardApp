@@ -10,6 +10,7 @@ import { authenticate } from "./services/auth";
 import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
 import { getUser } from './store/actions/users';
+import { getSets } from './store/actions/sets';
 import { useDispatch } from 'react-redux';
 
 function App() {
@@ -29,6 +30,17 @@ function App() {
       setLoaded(true);
     })();
   }, []);
+
+
+  useEffect(() => {
+      (async () => {
+          const res = await fetch(`api/sets`)
+          const setObjs = await res.json();
+          // console.log("SET OBJS", setObjs);
+          dispatch(getSets(setObjs))
+          return;
+      })()
+  }, [])
 
   if (!loaded) {
     return null;

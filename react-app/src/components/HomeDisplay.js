@@ -3,33 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getSets } from '../store/actions/sets';
 import SetListItem from './SetListItem';
+import { CreateSetForm } from './SetForm';
 
 
 const HomeDisplay = () => {
     const allSets = useSelector(state => state.setReducer.allSets);
 
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        (async () => {
-            const res = await fetch(`api/sets`)
-            const setObjs = await res.json();
-            // console.log("SET OBJS", setObjs);
-            dispatch(getSets(setObjs))
-            return;
-        })()
-    }, [])
-
-    const onCreate = async () => {
-
-    }
 
     if (!allSets) return null;
 
     return (<>
             <article>
                 <h1>All Sets</h1>
-                <button onClick={onCreate}>CREATE SET</button>
+                <CreateSetForm />
                 <div>
                     {allSets.map(set => {
                         return (<>
