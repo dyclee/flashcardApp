@@ -28,14 +28,14 @@ function App() {
         dispatch(getUser(user))
         setUser(user)
       }
-      const res = await fetch(`api/sets`)
+      const res = await fetch(`/api/sets`)
       const setObjs = await res.json();
-      console.log("SET OBJS", setObjs);
+      // console.log("SET OBJS", setObjs);
       dispatch(getSets(setObjs))
 
-      const userRes = await fetch(`api/users/${user.id}/sets`)
+      const userRes = await fetch(`/api/users/${user.id}/sets`)
       const setUserObjs = await userRes.json();
-      console.log("USER SETS", setUserObjs)
+      // console.log("USER SETS", setUserObjs)
       dispatch(getUserSets(setUserObjs))
       setLoaded(true);
     })();

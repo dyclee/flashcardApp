@@ -113,9 +113,9 @@ class Subject(db.Model):
 class Card(db.Model):
   __tablename__ = "cards"
   id = db.Column(db.Integer, primary_key=True)
-  question = db.Column(db.Text)
-  answer = db.Column(db.Text)
-  set_id = db.Column(db.Integer, db.ForeignKey("sets.id"))
+  question = db.Column(db.Text, nullable=False)
+  answer = db.Column(db.Text, nullable=False)
+  set_id = db.Column(db.Integer, db.ForeignKey("sets.id"), nullable=False)
 
   setId = db.relationship("Set", back_populates="card")
 

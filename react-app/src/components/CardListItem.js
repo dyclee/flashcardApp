@@ -18,7 +18,7 @@ export default function CardListItem({ card, hidden }) {
             method: 'DELETE'
         })
         const deletedCard = await res.json();
-        console.log("REMOVED CARD", deletedCard)
+        // console.log("REMOVED CARD", deletedCard)
         window.location.reload(false)
     }
     return (<>

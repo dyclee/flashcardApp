@@ -64,7 +64,7 @@ def createSet():
         description = form.data['description']
         created_by = request.json['created_by']
 
-        if subject == "":
+        if subject == "" or "None":
             newSet = Set(
                 title=title,
                 description=description,
@@ -75,9 +75,6 @@ def createSet():
             newSet = Set.query.get(newSet.id)
             createdSet = set_schema.dump(newSet)
             return jsonify(createdSet)
-
-        checkSubject = Subject.query.filter(Subject.name == subject).all()
-        # print("CHECK SUBJECT", checkSubject)
 
         findSubject = Subject.query.filter(Subject.name == subject).one()
         print("FIND SUBJECT", findSubject)
