@@ -64,7 +64,7 @@ def createSet():
         description = form.data['description']
         created_by = request.json['created_by']
 
-        if subject == "None":
+        if subject == "":
             newSet = Set(
                 title=title,
                 description=description,

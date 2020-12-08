@@ -4,10 +4,18 @@ export default function setReducer(state = {}, action) {
     const newState = {...state}
     switch(action.type) {
         case GET_SETS:
-            newState.allSets = action.sets
+            newState.allSets = []
+            for (let i = 0; i < action.sets.length; i++) {
+                let set = action.sets[i]
+                newState.allSets[set.id] = set
+            }
             return newState
         case GET_USER_SETS:
-            newState.userSets = action.sets
+            newState.userSets = []
+            for (let i = 0; i < action.sets.length; i++) {
+                let set = action.sets[i]
+                newState.userSets[set.id] = set
+            }
             return newState
         case CREATE_SET:
             newState.allSets[action.set.id] = action.set
@@ -15,7 +23,7 @@ export default function setReducer(state = {}, action) {
             return newState
         case DELETE_SET:
             delete newState.allSets[action.set.id]
-            // delete newState.userSets[action.set.id]
+            delete newState.userSets[action.set.id]
             return newState
         case EDIT_SET:
             newState.allSets[action.set.id] = action.set

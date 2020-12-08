@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSet } from '../store/actions/sets';
+import { createSet, getSets, getUserSets } from '../store/actions/sets';
+import { Redirect } from 'react-router-dom';
 
 import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
@@ -16,6 +17,9 @@ export const CreateSetForm = () => {
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState([])
     const [open, setOpen] = useState(false)
+
+    const [redirect, setRedirect] = useState(false)
+    const [createdSetId, setCreatedSetId] = useState()
 
     const handleOpen = (e) => setOpen(true)
     const handleClose = (e) => setOpen(false)
@@ -46,10 +50,13 @@ export const CreateSetForm = () => {
             console.log("SUCCESSFUL RES", resObj)
             dispatch(createSet(resObj))
             handleClose()
+            setCreatedSetId(resObj.id)
+            setRedirect(true)
         }
     }
-
+    if (redirect) return <Redirect to={`/set/${createdSetId}`} />
     return (<>
+
         <button onClick={handleOpen}>Create Set</button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new set</DialogTitle>
