@@ -25,11 +25,45 @@ def validation_errors_to_error_messages(validation_errors):
 @set_routes.route('/')
 # @login_required
 def getAllSets():
-    allsets = Set.query.all()
-    sets = [set_schema.dump(set) for set in allsets]
+    # sets = Set.query.all()
+    allsets = Set.query.options( \
+        joinedload(Set.createdBy), \
+        joinedload(Set.card), \
+        joinedload(Set.like), \
+        joinedload(Set.favorite), \
+        joinedload(Set.subjectId)) \
+        .all()
+    set_data = dump_data_list(allsets, set_schema)
+    for i in range(len(set_data)):
+        set_data[i]["cards"] = []
+        set_data[i]["likes"] = []
+        set_data[i]["favorites"] = []
 
-    print("SETS", sets)
-    return jsonify(sets)
+        for j in range(len(set_data[i].card)):
+            set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
+            card = card_schema.dump(allsets[i].card[j])
+            set_data[i]["cards"][j] = card
+        for k in range(len(set_data[i].like)):
+            set_data[i]["likes"].append(like_schema.dump(allsets[i].like[k]))
+            like = like_schema.dump(allsets[i].like[k])
+            set_data[i]["likes"][k] = like
+        for m in range(len(set_data[i].favorite)):
+            set_data[i]["favorites"].append(favorite_schema.dump(allsets[i].favorite[m]))
+
+        set_data[i]["subject"] = subject_schema.dump(allsets[i].subject)
+        set_data[i][]
+    # joinedSets = []
+    # for each in allsets:
+    #     joinedset = set_schema.dump(each)
+    #     joinedset["createdBy"] = user_schema.dump(each.createdBy)
+    #     joinedset["card"] = [card for card in dump_data_list(each.card, card_schema)]
+    #     joinedset["like"] = [like for like in dump_data_list(each.like, like_schema)]
+    #     joinedset["favorite"] = [favorite for favorite in dump_data_list(each.favorite, favorite_schema)]
+    #     joinedset["subject"] = subject_schema.dump(each.subjectId)
+    #     joinedSets.append(joinedset)
+
+    # print("SETS", sets)
+    # return jsonify(joinedSets)
 
 
 @set_routes.route('/<int:setId>')
@@ -110,17 +144,25 @@ def editSet(setId):
 
     if form.validate():
         chosenSet = Set.query.get(setId)
-        if form.data["subject"] == "":
+        # print("CHOSEN SET", chosenSet)
+        # print("FORM DATA", form.data)
+        # print(set_schema.dump(chosenSet))
+        if form.data["subject"] == "" or form.data["subject"] == "None":
             chosenSet.title = form.data["title"]
             chosenSet.description = form.data["description"]
-            chosenSet.subject_id = None
+            del chosenSet.subjectId
+            db.session.add(chosenSet)
             db.session.commit()
             setData = set_schema.dump(chosenSet)
             return jsonify(setData)
         # print("form data ---------", form.data)
         chosenSet.title = form.data["title"]
         chosenSet.description = form.data["description"]
-        chosenSet.subject_id = form.data["subject"]
+        findSubject = Subject.query.filter(Subject.name == form.data["subject"]).one()
+        foundSubject = subject_schema.dump(findSubject)
+        # print("FOUND SUBJECT", foundSubject)
+        chosenSet.subject_id = foundSubject["id"]
+        db.session.add(chosenSet)
         db.session.commit()
         setData = set_schema.dump(chosenSet)
         setData["subject"] = subject_schema.dump(chosenSet.subject_id)

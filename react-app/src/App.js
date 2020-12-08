@@ -10,7 +10,7 @@ import { authenticate } from "./services/auth";
 import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
 import { getUser } from './store/actions/users';
-import { getSets, getUserSets } from './store/actions/sets';
+import { getSets, getUserSets, getSubjects } from './store/actions/sets';
 import { useDispatch } from 'react-redux';
 
 function App() {
@@ -37,9 +37,15 @@ function App() {
       const setUserObjs = await userRes.json();
       // console.log("USER SETS", setUserObjs)
       dispatch(getUserSets(setUserObjs))
+
+      const subjectRes = await fetch('/api/subjects');
+      const subjectArray = await subjectRes.json();
+      dispatch(getSubjects(subjectArray))
+
       setLoaded(true);
     })();
   }, []);
+
 
 
   if (!loaded) {

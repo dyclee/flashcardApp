@@ -17,6 +17,7 @@ export function CreateCardForm({setId}) {
 
     const onCreate = async (e) => {
         e.preventDefault();
+        setOpen(false)
         const res = await fetch(`/api/cards/create`, {
             method: "POST",
             headers: {"Content-Type":"application/json"},
@@ -28,8 +29,8 @@ export function CreateCardForm({setId}) {
         });
         if (res.ok) {
             const resObj = await res.json()
-            handleClose()
-            window.location.reload(false)
+            // handleClose()
+            // window.location.reload(false)
         }
     }
     // if (redirect) {

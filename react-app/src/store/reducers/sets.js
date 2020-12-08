@@ -1,8 +1,11 @@
-import { GET_SETS, GET_USER_SETS, CREATE_SET, DELETE_SET, EDIT_SET, RESET_SETS } from '../actions/sets';
+import { GET_SUBJECTS, GET_SETS, GET_USER_SETS, CREATE_SET, DELETE_SET, EDIT_SET, RESET_SETS } from '../actions/sets';
 
 export default function setReducer(state = {}, action) {
     const newState = {...state}
     switch(action.type) {
+        case GET_SUBJECTS:
+            newState.subjects = action.subjects
+            return newState
         case GET_SETS:
             newState.allSets = []
             for (let i = 0; i < action.sets.length; i++) {

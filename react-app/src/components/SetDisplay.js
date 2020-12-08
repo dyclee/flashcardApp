@@ -5,6 +5,7 @@ import SetHeader from './SetHeader';
 import CardListItem from './CardListItem';
 import { deleteSet } from '../store/actions/sets';
 import { CreateCardForm } from './CardForm';
+import {EditSetForm} from './SetForm';
 
 
 export default function SetDisplay() {
@@ -57,12 +58,12 @@ export default function SetDisplay() {
     // console.log("CARDS", cards)
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
-    // if
+    if (!set) return null;
     return (<>
         <h1>Set Display Page</h1>
         <SetHeader set={set} />
         <button hidden={hidden} onClick={onDelete}>DELETE SET</button>
-
+        <EditSetForm set={set}/>
         <h4>Number of cards: {cards.length}</h4>
         <h4>Number of likes: {likes.length}</h4>
         <h4>Number of favorites: {favorites.length}</h4>
