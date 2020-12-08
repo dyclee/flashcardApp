@@ -4,6 +4,7 @@ import { useParams, Redirect, useHistory } from 'react-router-dom';
 import SetHeader from './SetHeader';
 import CardListItem from './CardListItem';
 import { deleteSet } from '../store/actions/sets';
+import { CreateCardForm } from './CardForm';
 
 
 export default function SetDisplay() {
@@ -52,17 +53,7 @@ export default function SetDisplay() {
         return history.push('/')
     }
 
-    const addCard = async (e) => {
-        e.preventDefault();
-        const res = await fetch(`/api/cards/create`, {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({
-                setId: set.id
-            })
 
-        })
-    }
     // console.log("CARDS", cards)
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
@@ -75,7 +66,7 @@ export default function SetDisplay() {
         <h4>Number of cards: {cards.length}</h4>
         <h4>Number of likes: {likes.length}</h4>
         <h4>Number of favorites: {favorites.length}</h4>
-        <button hidden={hidden} onClick={addCard}>ADD CARD</button>
+        <CreateCardForm setId={setId} />
         {cards.map((card) => (<>
             <CardListItem card={card} hidden={hidden} />
             {/* <button hidden={hidden}>DELETE</button> */}

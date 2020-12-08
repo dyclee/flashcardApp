@@ -61,36 +61,67 @@ export function AddDescription({ description, setDescription }) {
     )
   }
 
-  export function AddSubject({ subject, setSubject, subjects }) {
-      const classes = useStyles();
-    //   const [disableToggle, setDisableToggle] = useState(false);
-    //   const [hidden, setHidden] = useState(false);
-
-      const updateSubject = (e) => setSubject(e.target.value)
-
-      return (<>
-        <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Subject</InputLabel>
-            <Select onChange={updateSubject} label="Subject" value={subject}>
-                <MenuItem value={"None"}>None</MenuItem>
-                {subjects.map(sub => {
-                    return (
-                        <MenuItem value={sub}>{sub}</MenuItem>
-                    )
-                })}
-            </Select>
-
-        </FormControl>
-        {/* <TextField
-            disabled={!disableToggle}
+export function AddQuestion({ question, setQuestion }) {
+    const updateQuestion = (e) => setQuestion(e.target.value)
+    return (
+        <TextField
             autoFocus
-            value={subject}
+            value={question}
             margin="dense"
-            id="subject"
-            label="Create Subject"
+            id="question"
+            label="Question"
             type="text"
             fullWidth
-            onChange={updateSubject}
-        /> */}
-      </>)
-  }
+            onChange={updateQuestion}
+        />
+    )
+}
+export function AddAnswer({ answer, setAnswer }) {
+    const updateAnswer = (e) => setAnswer(e.target.value)
+    return (
+        <TextField
+            autoFocus
+            value={answer}
+            margin="dense"
+            id="answer"
+            label="Answer"
+            type="text"
+            fullWidth
+            onChange={updateAnswer}
+        />
+    )
+}
+
+export function AddSubject({ subject, setSubject, subjects }) {
+    const classes = useStyles();
+//   const [disableToggle, setDisableToggle] = useState(false);
+//   const [hidden, setHidden] = useState(false);
+
+    const updateSubject = (e) => setSubject(e.target.value)
+
+    return (<>
+    <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Subject</InputLabel>
+        <Select onChange={updateSubject} label="Subject" value={subject}>
+            <MenuItem value={"None"}>None</MenuItem>
+            {subjects.map(sub => {
+                return (
+                    <MenuItem value={sub}>{sub}</MenuItem>
+                )
+            })}
+        </Select>
+
+    </FormControl>
+    {/* <TextField
+        disabled={!disableToggle}
+        autoFocus
+        value={subject}
+        margin="dense"
+        id="subject"
+        label="Create Subject"
+        type="text"
+        fullWidth
+        onChange={updateSubject}
+    /> */}
+    </>)
+}
