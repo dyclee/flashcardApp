@@ -7,14 +7,15 @@ export default function setReducer(state = {}, action) {
             newState.subjects = action.subjects
             return newState
         case GET_SETS:
-            newState.allSets = []
-            for (let i = 0; i < action.sets.length; i++) {
-                let set = action.sets[i]
-                newState.allSets[set.id] = set
-            }
-            return newState
+            return action.sets
+            // newState.allSets = []
+            // for (let i = 0; i < action.sets.length; i++) {
+            //     let set = action.sets[i]
+            //     newState.allSets[set.id] = set
+            // }
+            // return newState
         case GET_USER_SETS:
-            newState.userSets = []
+            newState.userSets = {}
             for (let i = 0; i < action.sets.length; i++) {
                 let set = action.sets[i]
                 newState.userSets[set.id] = set

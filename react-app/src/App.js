@@ -29,9 +29,9 @@ function App() {
         setUser(user)
       }
       const res = await fetch(`/api/sets`)
-      const setObjs = await res.json();
-      // console.log("SET OBJS", setObjs);
-      dispatch(getSets(setObjs))
+      const {sets, cards, favorites, likes} = await res.json();
+      // console.log("SET OBJS", sets);
+      dispatch(getSets(sets))
 
       const userRes = await fetch(`/api/users/${user.id}/sets`)
       const setUserObjs = await userRes.json();
@@ -39,8 +39,8 @@ function App() {
       dispatch(getUserSets(setUserObjs))
 
       const subjectRes = await fetch('/api/subjects');
-      const subjectArray = await subjectRes.json();
-      dispatch(getSubjects(subjectArray))
+      const subjectObj = await subjectRes.json();
+      dispatch(getSubjects(subjectObj))
 
       setLoaded(true);
     })();

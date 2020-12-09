@@ -38,32 +38,48 @@ def getAllSets():
         set_data[i]["cards"] = []
         set_data[i]["likes"] = []
         set_data[i]["favorites"] = []
-
-        for j in range(len(set_data[i].card)):
+        print(set_data[i])
+        for j in range(len(set_data[i]["card"])):
             set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
             card = card_schema.dump(allsets[i].card[j])
             set_data[i]["cards"][j] = card
-        for k in range(len(set_data[i].like)):
+        for k in range(len(set_data[i]["like"])):
             set_data[i]["likes"].append(like_schema.dump(allsets[i].like[k]))
             like = like_schema.dump(allsets[i].like[k])
             set_data[i]["likes"][k] = like
-        for m in range(len(set_data[i].favorite)):
+        for m in range(len(set_data[i]["favorite"])):
             set_data[i]["favorites"].append(favorite_schema.dump(allsets[i].favorite[m]))
+            favorite = favorite_schema.dump(allsets[i].favorite[m])
+            set_data[i]["favorites"][m] = favorite
+        set_data[i]["subject"] = subject_schema.dump(allsets[i].subjectId)
 
-        set_data[i]["subject"] = subject_schema.dump(allsets[i].subject)
-        set_data[i][]
-    # joinedSets = []
-    # for each in allsets:
-    #     joinedset = set_schema.dump(each)
-    #     joinedset["createdBy"] = user_schema.dump(each.createdBy)
-    #     joinedset["card"] = [card for card in dump_data_list(each.card, card_schema)]
-    #     joinedset["like"] = [like for like in dump_data_list(each.like, like_schema)]
-    #     joinedset["favorite"] = [favorite for favorite in dump_data_list(each.favorite, favorite_schema)]
-    #     joinedset["subject"] = subject_schema.dump(each.subjectId)
-    #     joinedSets.append(joinedset)
+    sets = {}
+    cards = {}
+    likes = {}
+    favorites = {}
+    # print("SET DATA", set_data)
+    for each in set_data:
+        cards.update({card["id"]:card for card in each["cards"]})
+        each["cards"] = [card["id"] for card in each["cards"]]
+        sets.update({each["id"]: each})
 
-    # print("SETS", sets)
-    # return jsonify(joinedSets)
+        likes.update({like["id"]:like for like in each["likes"]})
+        each["likes"] = [like["id"] for like in each["likes"]]
+
+        favorites.update({favorite["id"]:favorite for favorite in each["favorites"]})
+        each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
+
+    print("SETS", sets)
+    print("CARDS", cards)
+    print("LIKES", likes)
+    print("FAVORITES", favorites)
+
+    return jsonify(
+        sets=sets,
+        cards=cards,
+        likes=likes,
+        favorites=favorites
+    )
 
 
 @set_routes.route('/<int:setId>')
