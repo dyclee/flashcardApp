@@ -23,7 +23,7 @@ def validation_errors_to_error_messages(validation_errors):
 def getSubjects():
     subjects = Subject.query.all()
     allSubjects = dump_data_list(subjects, subject_schema)
-    subjectNames = {}
+    subjectNames = []
     for each in allSubjects:
-        subjectNames[each["id"]] = each
+        subjectNames.append(each["name"])
     return jsonify(subjectNames)

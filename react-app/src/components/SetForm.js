@@ -7,9 +7,10 @@ import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
 
-export const CreateSetForm = () => {
+export const CreateSetForm = ({subjectOptions}) => {
     const user = useSelector(state => state.userReducer.user)
-    const subjectOptions = useSelector(state => state.setReducer.subjects)
+
+    // console.log(subjectOptions)
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState()
@@ -41,9 +42,11 @@ export const CreateSetForm = () => {
             const resObj = await res.json()
             console.log("SUCCESSFUL RES", resObj)
             dispatch(createSet(resObj))
-            // handleClose()
+            handleClose()
             setCreatedSetId(resObj.id)
             setRedirect(true)
+            // return createdSetId ? <Redirect to={`/set/${createdSetId}`} /> : null
+            // return <Redirect to={`/set/${createdSetId}`} />
         }
     }
     if (redirect) return <Redirect to={`/set/${createdSetId}`} />
@@ -63,12 +66,13 @@ export const CreateSetForm = () => {
     </>)
 }
 
-export function EditSetForm({}) {
+export function EditSetForm({set}) {
     const { setId } = useParams()
-    const set = useSelector(state => state.setReducer.allSets[setId])
+    // const set = useSelector(state => state.setReducer[setId])
     // console.log("SETID", setId, "--------SET,", set)
     const user = useSelector(state => state.userReducer.user)
     const subjectOptions = useSelector(state => state.setReducer.subjects)
+
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState(set.title)

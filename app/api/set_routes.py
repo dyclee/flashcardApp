@@ -108,13 +108,14 @@ def createSet():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
-        print("FORM DATA", form.data)
+        # print("FORM DATA", form.data)
         title = form.data['title']
         subject = form.data['subject']
         description = form.data['description']
         created_by = request.json['created_by']
-
-        if subject == "" or "None":
+        # print("SUBJECT", subject)
+        if subject == "" or subject == "None":
+            # print("CHECK")
             newSet = Set(
                 title=title,
                 description=description,
@@ -127,7 +128,7 @@ def createSet():
             return jsonify(createdSet)
 
         findSubject = Subject.query.filter(Subject.name == subject).one()
-        print("FIND SUBJECT", findSubject)
+        # print("FIND SUBJECT", findSubject)
         foundSubject = subject_schema.dump(findSubject)
         subject_id = foundSubject["id"]
         newSet = Set(

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { createCard } from '../store/actions/cards';
 
 import { ActionAndCancelButtons, AddQuestion, AddAnswer } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
 export function CreateCardForm({setId}) {
+    const dispatch = useDispatch()
+
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
     const [errors, setErrors] = useState([])
@@ -29,6 +32,8 @@ export function CreateCardForm({setId}) {
         });
         if (res.ok) {
             const resObj = await res.json()
+            // console.log(resObj)
+            dispatch(createCard(resObj))
             // handleClose()
             // window.location.reload(false)
         }

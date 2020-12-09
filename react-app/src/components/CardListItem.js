@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { deleteCard } from '../store/actions/cards';
 
 
 export default function CardListItem({ card, hidden }) {
     const { setId } = useParams();
     const cardId = card.id;
+    const dispatch = useDispatch()
     // console.log("CARD ID", cardId)
     // const history = useHistory();
     // useEffect(async () => {
@@ -18,8 +21,7 @@ export default function CardListItem({ card, hidden }) {
             method: 'DELETE'
         })
         const deletedCard = await res.json();
-        // console.log("REMOVED CARD", deletedCard)
-        window.location.reload(false)
+        dispatch(deleteCard(deletedCard))
     }
     return (<>
         <div>{card.question}</div>

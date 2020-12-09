@@ -20,6 +20,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState();
+  const [subjectArr, setSubjectArr] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,15 +42,17 @@ function App() {
 
       // const userRes = await fetch(`/api/users/${user.id}/sets`)
       // const setUserObjs = await userRes.json();
-      // console.log("USER SETS", setUserObjs)
+      // // console.log("USER SETS", setUserObjs)
       // dispatch(getUserSets(setUserObjs))
 
       const subjectRes = await fetch('/api/subjects');
-      const subjectObj = await subjectRes.json();
-      dispatch(getSubjects(subjectObj))
+      const subjects = await subjectRes.json();
+      // console.log("SUBJECTS", subjects)
+      dispatch(getSubjects(subjects))
+      setSubjectArr(subjects)
 
-      setLoaded(true);
     })();
+    setLoaded(true);
   }, []);
 
 
@@ -81,7 +84,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/" exact={true} authenticated={authenticated} subjects={subjectArr}>
           <HomeDisplay />
         </ProtectedRoute>
       {/* </UserContext.Provider> */}

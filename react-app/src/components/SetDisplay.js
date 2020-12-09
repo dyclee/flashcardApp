@@ -11,34 +11,25 @@ import {EditSetForm} from './SetForm';
 export default function SetDisplay() {
     const { setId } = useParams()
 
-    const [set, setSet] = useState()
-    const [cards, setCards] = useState([])
-    const [likes, setLikes] = useState([])
-    const [favorites, setFavorites] = useState([])
-
-    const [hidden, setHidden] = useState(true)
+    const set = useSelector(state => state.setReducer[setId])
+    const user = useSelector(state => state.userReducer.user)
+    let hidden = true
+    // const [hidden, setHidden] = useState(set ? false:true)
 
     const [userLike, setUserLike] = useState([])
     const [userFavorite, setUserFavorite] = useState([])
+    if (set) {
+        if (set.createdBy === user.id) {
+            hidden = false
 
-    const user = useSelector(state => state.userReducer.user)
-
+        }
+    }
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
         (async() => {
-            const res = await fetch(`/api/sets/${setId}`)
-            const resObj = await res.json()
-            console.log("RES ", resObj)
-            if (resObj.createdBy.id === user.id) {
-                setHidden(false)
-            }
-            setSet(resObj)
-            setCards(resObj.card)
-            setLikes(resObj.like)
-            setFavorites(resObj.favorite)
-            return
+            console.log("SET in SET DISPLAY", set)
         })()
     },[])
 
@@ -54,21 +45,21 @@ export default function SetDisplay() {
         return history.push('/')
     }
 
-
     // console.log("CARDS", cards)
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
     if (!set) return null;
+
     return (<>
         <h1>Set Display Page</h1>
         <SetHeader set={set} />
         <button hidden={hidden} onClick={onDelete}>DELETE SET</button>
-        <EditSetForm set={set}/>
-        <h4>Number of cards: {cards.length}</h4>
-        <h4>Number of likes: {likes.length}</h4>
-        <h4>Number of favorites: {favorites.length}</h4>
+        <EditSetForm hidden={hidden} set={set}/>
+        <h4>Number of cards: {set.card.length}</h4>
+        <h4>Number of likes: {set.like.length}</h4>
+        <h4>Number of favorites: {set.favorite.length}</h4>
         <CreateCardForm setId={setId} />
-        {cards.map((card) => (<>
+        {set.cards.map((card) => (<>
             <CardListItem card={card} hidden={hidden} />
             {/* <button hidden={hidden}>DELETE</button> */}
         </>))}
