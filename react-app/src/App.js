@@ -11,6 +11,9 @@ import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
 import { getUser } from './store/actions/users';
 import { getSets, getUserSets, getSubjects } from './store/actions/sets';
+import { getCards } from './store/actions/cards';
+import { getLikes } from './store/actions/likes';
+import { getFavorites } from './store/actions/favorites';
 import { useDispatch } from 'react-redux';
 
 function App() {
@@ -32,11 +35,14 @@ function App() {
       const {sets, cards, favorites, likes} = await res.json();
       // console.log("SET OBJS", sets);
       dispatch(getSets(sets))
+      dispatch(getCards(cards))
+      dispatch(getLikes(likes))
+      dispatch(getFavorites(favorites))
 
-      const userRes = await fetch(`/api/users/${user.id}/sets`)
-      const setUserObjs = await userRes.json();
+      // const userRes = await fetch(`/api/users/${user.id}/sets`)
+      // const setUserObjs = await userRes.json();
       // console.log("USER SETS", setUserObjs)
-      dispatch(getUserSets(setUserObjs))
+      // dispatch(getUserSets(setUserObjs))
 
       const subjectRes = await fetch('/api/subjects');
       const subjectObj = await subjectRes.json();

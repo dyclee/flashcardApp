@@ -57,17 +57,17 @@ def getAllSets():
     cards = {}
     likes = {}
     favorites = {}
-    # print("SET DATA", set_data)
+    print("SET DATA", set_data)
     for each in set_data:
         cards.update({card["id"]:card for card in each["cards"]})
-        each["cards"] = [card["id"] for card in each["cards"]]
+        # each["cards"] = [card["id"] for card in each["cards"]]
         sets.update({each["id"]: each})
 
         likes.update({like["id"]:like for like in each["likes"]})
-        each["likes"] = [like["id"] for like in each["likes"]]
+        # each["likes"] = [like["id"] for like in each["likes"]]
 
         favorites.update({favorite["id"]:favorite for favorite in each["favorites"]})
-        each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
+        # each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
 
     print("SETS", sets)
     print("CARDS", cards)

@@ -7,7 +7,12 @@ import { CreateSetForm } from './SetForm';
 
 
 const HomeDisplay = () => {
-    const allSets = useSelector(state => state.setReducer.allSets);
+    const sets = useSelector(state => state.setReducer);
+    const allSets = Object.keys(sets).map((key) => {
+        return { [key]: sets[key] }
+    })
+
+    console.log(allSets);
 
 
     if (!allSets) return null;
@@ -18,9 +23,11 @@ const HomeDisplay = () => {
                 <CreateSetForm />
                 <div>
                     {allSets.map(set => {
+                        let id = Object.keys(set)[0]
+                        let setObj = Object.values(set)[0]
                         return (<>
-                            <Link to={`/set/${set.id}`}>
-                                <SetListItem set={set}></SetListItem>
+                            <Link to={`/set/${id}`}>
+                                <SetListItem set={setObj}></SetListItem>
                             </Link>
                         </>)
                     })}
