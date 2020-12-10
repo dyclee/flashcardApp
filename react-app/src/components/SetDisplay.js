@@ -13,25 +13,27 @@ export default function SetDisplay() {
 
     const set = useSelector(state => state.setReducer[setId])
     const user = useSelector(state => state.userReducer.user)
+    // const cards = useSelectdor(state => state.cardReducer.setCards)
     let hidden = true
     // const [hidden, setHidden] = useState(set ? false:true)
 
     const [userLike, setUserLike] = useState([])
     const [userFavorite, setUserFavorite] = useState([])
-    if (set) {
-        if (set.createdBy === user.id) {
-            hidden = false
 
-        }
-    }
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
         (async() => {
             console.log("SET in SET DISPLAY", set)
+            if (set) {
+                if (set.createdBy === user.id) {
+                    hidden = false
+
+                }
+            }
         })()
-    },[])
+    },[set])
 
     const onDelete = async (e) => {
         e.preventDefault();

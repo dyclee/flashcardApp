@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createCard } from '../store/actions/cards';
+import { editSet } from '../store/actions/sets';
 
 import { ActionAndCancelButtons, AddQuestion, AddAnswer } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
@@ -34,8 +35,12 @@ export function CreateCardForm({setId}) {
             const resObj = await res.json()
             // console.log(resObj)
             dispatch(createCard(resObj))
-            // handleClose()
-            // window.location.reload(false)
+            const setRes = await fetch(`/api/sets/${setId}`)
+            const newSet = await setRes.json()
+            // console.log("NEW SET", newSet)
+            dispatch(editSet(newSet))
+            setQuestion()
+            setAnswer()
         }
     }
     // if (redirect) {

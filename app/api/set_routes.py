@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Set, User, Subject
+from app.models import db, Set, User, Subject, Card
 from app.schemas import user_schema, set_schema, subject_schema, card_schema, like_schema, favorite_schema
 from app.forms import SetForm
 from sqlalchemy.orm import joinedload
@@ -89,14 +89,17 @@ def getOneSet(setId):
         joinedload(Set.createdBy), \
         joinedload(Set.card), \
         joinedload(Set.like), \
-        joinedload(Set.favorite)) \
+        joinedload(Set.favorite), \
+        joinedload(Set.subjectId)) \
         .one()
-    # print("SELECTEDSET" , selectedSet)
+    print("SELECTEDSET" , selectedSet)
     setObj = set_schema.dump(selectedSet)
     setObj["createdBy"] = user_schema.dump(selectedSet.createdBy)
-    setObj["card"] = [card for card in dump_data_list(selectedSet.card, card_schema)]
-    setObj["like"] = [like for like in dump_data_list(selectedSet.like, like_schema)]
-    setObj["favorite"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]
+    setObj["cards"] = [card for card in dump_data_list(selectedSet.card, card_schema)]
+    setObj["likes"] = [like for like in dump_data_list(selectedSet.like, like_schema)]
+    setObj["favorites"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]
+    if setObj["subjectId"] == None:
+        setObj["subject"] = {"name": ""}
     print("SET OBJ" , setObj)
     return jsonify(setObj)
 
@@ -124,7 +127,11 @@ def createSet():
             db.session.add(newSet)
             db.session.commit()
             newSet = Set.query.get(newSet.id)
+            print("NEW SET", newSet)
             createdSet = set_schema.dump(newSet)
+            createdSet["cards"] = []
+            createdSet["subject"] = {"name": ""}
+            # print("CREATED SET", createdSet)
             return jsonify(createdSet)
 
         findSubject = Subject.query.filter(Subject.name == subject).one()
@@ -141,6 +148,8 @@ def createSet():
         db.session.commit()
         newSet = Set.query.get(newSet.id)
         createdSet = set_schema.dump(newSet)
+        createdSet["cards"] = []
+        createdSet["subject"] = foundSubject
         return jsonify(createdSet)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
@@ -160,10 +169,16 @@ def editSet(setId):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
-        chosenSet = Set.query.get(setId)
-        # print("CHOSEN SET", chosenSet)
-        # print("FORM DATA", form.data)
-        # print(set_schema.dump(chosenSet))
+        # chosenSet = Set.query.get(setId)
+        chosenSet = Set.query.options( \
+            joinedload(Set.createdBy), \
+            joinedload(Set.card), \
+            joinedload(Set.like), \
+            joinedload(Set.favorite), \
+            joinedload(Set.subjectId)) \
+            .get(setId)
+        # print("CHOSEN", set_schema.dump(chosenSet))
+        # print("SELECTED SET", set_schema.dump(selectedSet))
         if form.data["subject"] == "" or form.data["subject"] == "None":
             chosenSet.title = form.data["title"]
             chosenSet.description = form.data["description"]
@@ -171,17 +186,34 @@ def editSet(setId):
             db.session.add(chosenSet)
             db.session.commit()
             setData = set_schema.dump(chosenSet)
+            # print("HERE", setData)
+            if setData["card"] == []:
+                setData["cards"] = []
+            else:
+                setData["cards"] = []
+                for cardId in setData["card"]:
+                    cardObj = card_schema.dump(Card.query.get(cardId))
+                    setData["cards"].append(cardObj)
+            setData["subject"] = {"name": ""}
+            # print("SET DATA W/ no subject", setData)
             return jsonify(setData)
         # print("form data ---------", form.data)
         chosenSet.title = form.data["title"]
         chosenSet.description = form.data["description"]
         findSubject = Subject.query.filter(Subject.name == form.data["subject"]).one()
         foundSubject = subject_schema.dump(findSubject)
-        # print("FOUND SUBJECT", foundSubject)
         chosenSet.subject_id = foundSubject["id"]
         db.session.add(chosenSet)
         db.session.commit()
         setData = set_schema.dump(chosenSet)
         setData["subject"] = subject_schema.dump(chosenSet.subject_id)
+        if setData["card"] == []:
+            setData["cards"] = []
+        else:
+            setData["cards"] = []
+            for cardId in setData["card"]:
+                cardObj = card_schema.dump(Card.query.get(cardId))
+                setData["cards"].append(cardObj)
+        # print("SET DATA", setData)
         return jsonify(setData)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
