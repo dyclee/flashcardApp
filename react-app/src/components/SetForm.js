@@ -10,7 +10,6 @@ import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 export const CreateSetForm = ({subjectOptions}) => {
     const user = useSelector(state => state.userReducer.user)
 
-    // console.log(subjectOptions)
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState()
@@ -45,8 +44,6 @@ export const CreateSetForm = ({subjectOptions}) => {
             handleClose()
             setCreatedSetId(resObj.id)
             setRedirect(true)
-            // return createdSetId ? <Redirect to={`/set/${createdSetId}`} /> : null
-            // return <Redirect to={`/set/${createdSetId}`} />
         }
     }
     if (redirect) return <Redirect to={`/set/${createdSetId}`} />

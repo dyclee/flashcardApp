@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getSets } from '../store/actions/sets';
 import SetListItem from './SetListItem';
 import { CreateSetForm } from './SetForm';
+import { CreateSubjectForm } from './SubjectForm';
 
 
 const HomeDisplay = ({subjects}) => {
@@ -27,6 +28,7 @@ const HomeDisplay = ({subjects}) => {
             <article>
                 <h1>All Sets</h1>
                 <CreateSetForm subjectOptions={subjectOptions}/>
+                <CreateSubjectForm />
                 <div>
                     {allSets.map(set => {
                         let id = Object.keys(set)[0]
