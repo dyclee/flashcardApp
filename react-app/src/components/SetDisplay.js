@@ -13,27 +13,20 @@ export default function SetDisplay() {
 
     const set = useSelector(state => state.setReducer[setId])
     const user = useSelector(state => state.userReducer.user)
-    // const cards = useSelectdor(state => state.cardReducer.setCards)
-    let hidden = true
-    // const [hidden, setHidden] = useState(set ? false:true)
+    // const hidden = useSelector(state => {
+    //     let currentSet = state.setReducer[setId]
+    //     let currentUser = state.userReducer.user
+    //     if (currentSet.createdBy === currentUser.id) {
+    //         return false;
+    //     }
+    //     return true;
+    // })
 
     const [userLike, setUserLike] = useState([])
     const [userFavorite, setUserFavorite] = useState([])
 
     const dispatch = useDispatch();
     const history = useHistory();
-
-    useEffect(() => {
-        (async() => {
-            console.log("SET in SET DISPLAY", set)
-            if (set) {
-                if (set.createdBy === user.id) {
-                    hidden = false
-
-                }
-            }
-        })()
-    },[set])
 
     const onDelete = async (e) => {
         e.preventDefault();
@@ -51,18 +44,18 @@ export default function SetDisplay() {
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
     if (!set) return null;
-
+    console.log(set)
     return (<>
         <h1>Set Display Page</h1>
         <SetHeader set={set} />
-        <button hidden={hidden} onClick={onDelete}>DELETE SET</button>
-        <EditSetForm hidden={hidden} set={set}/>
+        <button hidden={set.hidden} onClick={onDelete}>DELETE SET</button>
+        <EditSetForm hidden={set.hidden} set={set}/>
         <h4>Number of cards: {set.card.length}</h4>
         <h4>Number of likes: {set.like.length}</h4>
         <h4>Number of favorites: {set.favorite.length}</h4>
-        <CreateCardForm setId={setId} />
+        <CreateCardForm setId={setId} hidden={set.hidden} />
         {set.cards.map((card) => (<>
-            <CardListItem card={card} hidden={hidden} />
+            <CardListItem card={card} hidden={set.hidden} />
             {/* <button hidden={hidden}>DELETE</button> */}
         </>))}
 

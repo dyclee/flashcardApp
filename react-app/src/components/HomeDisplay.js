@@ -7,7 +7,13 @@ import { CreateSetForm } from './SetForm';
 
 
 const HomeDisplay = ({subjects}) => {
+    const user = useSelector(state => state.userReducer.user);
     const sets = useSelector(state => state.setReducer);
+    // const setsWithHidden = useSelector(state => {
+    //     let newSets = Object.items(sets).map((pair) => {
+    //         console.log(pair)
+    //     })
+    // })
     const allSets = Object.keys(sets).map((key) => {
         return { [key]: sets[key] }
     })

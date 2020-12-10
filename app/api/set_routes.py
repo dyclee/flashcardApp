@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Set, User, Subject, Card
 from app.schemas import user_schema, set_schema, subject_schema, card_schema, like_schema, favorite_schema
 from app.forms import SetForm
@@ -58,6 +58,8 @@ def getAllSets():
     likes = {}
     favorites = {}
     print("SET DATA", set_data)
+    print("CURRENT_USER", dir(current_user))
+    print("CURENT ID", current_user.get_id())
     for each in set_data:
         cards.update({card["id"]:card for card in each["cards"]})
         # each["cards"] = [card["id"] for card in each["cards"]]
@@ -100,6 +102,8 @@ def getOneSet(setId):
     setObj["favorites"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]
     if setObj["subjectId"] == None:
         setObj["subject"] = {"name": ""}
+    else:
+        setObj["subject"] = subject_schema.dump(selectedSet.subject_id)
     print("SET OBJ" , setObj)
     return jsonify(setObj)
 

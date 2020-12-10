@@ -31,25 +31,36 @@ function App() {
         setAuthenticated(true);
         dispatch(getUser(user))
         setUser(user)
+
+        const res = await fetch(`/api/sets`)
+        const {sets, cards, favorites, likes} = await res.json();
+        // console.log("SET OBJS", sets);
+        // dispatch(getSets(sets))
+        dispatch(getCards(cards))
+        dispatch(getLikes(likes))
+        dispatch(getFavorites(favorites))
+
+        const newSets = {}
+        const allSets = Object.keys(sets).map((key) => {
+            if (user.id === sets[key].createdBy) {
+                // console.log(key)
+                sets[key]["hidden"] = false
+                newSets[key] = sets[key]
+                return
+            }
+            sets[key]["hidden"] = true;
+            newSets[key] = sets[key]
+            return
+        })
+
+        dispatch(getSets(newSets))
+
+        const subjectRes = await fetch('/api/subjects');
+        const subjects = await subjectRes.json();
+        // console.log("SUBJECTS", subjects)
+        dispatch(getSubjects(subjects))
+        setSubjectArr(subjects)
       }
-      const res = await fetch(`/api/sets`)
-      const {sets, cards, favorites, likes} = await res.json();
-      // console.log("SET OBJS", sets);
-      dispatch(getSets(sets))
-      dispatch(getCards(cards))
-      dispatch(getLikes(likes))
-      dispatch(getFavorites(favorites))
-
-      // const userRes = await fetch(`/api/users/${user.id}/sets`)
-      // const setUserObjs = await userRes.json();
-      // // console.log("USER SETS", setUserObjs)
-      // dispatch(getUserSets(setUserObjs))
-
-      const subjectRes = await fetch('/api/subjects');
-      const subjects = await subjectRes.json();
-      // console.log("SUBJECTS", subjects)
-      dispatch(getSubjects(subjects))
-      setSubjectArr(subjects)
 
     })();
     setLoaded(true);

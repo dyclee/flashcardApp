@@ -99,9 +99,9 @@ class Set(db.Model):
 
   subjectId = db.relationship("Subject", back_populates="setss")
   createdBy = db.relationship("User", back_populates="setss")
-  card = db.relationship("Card", back_populates="setId")
-  like = db.relationship("Like", back_populates="setId")
-  favorite = db.relationship("Favorite", back_populates="setId")
+  card = db.relationship("Card", back_populates="setId", cascade="all, delete-orphan")
+  like = db.relationship("Like", back_populates="setId", cascade="all, delete-orphan")
+  favorite = db.relationship("Favorite", back_populates="setId", cascade="all, delete-orphan")
 
 class Subject(db.Model):
   __tablename__ = "subjects"
