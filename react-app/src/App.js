@@ -52,6 +52,17 @@ function App() {
             newSets[key] = sets[key]
             return
         })
+        const setsWithFavorites = Object.keys(newSets).map((key) => {
+          const favIdArr = newSets[key].favorites.map((favObj) => {
+            return favObj.userId
+          })
+          // console.log("FAV ID ARR", favIdArr)
+          if (favIdArr.includes(user.id)) {
+            newSets[key]["userFavorite"] = true
+            return
+          }
+          newSets[key]["userFavorite"] = false
+        })
 
         dispatch(getSets(newSets))
 

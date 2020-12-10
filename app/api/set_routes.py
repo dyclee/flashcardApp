@@ -38,7 +38,7 @@ def getAllSets():
         set_data[i]["cards"] = []
         set_data[i]["likes"] = []
         set_data[i]["favorites"] = []
-        print(set_data[i])
+        # print(set_data[i])
         for j in range(len(set_data[i]["card"])):
             set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
             card = card_schema.dump(allsets[i].card[j])
@@ -57,10 +57,11 @@ def getAllSets():
     cards = {}
     likes = {}
     favorites = {}
-    print("SET DATA", set_data)
-    print("CURRENT_USER", dir(current_user))
-    print("CURENT ID", current_user.get_id())
+    # print("SET DATA", set_data)
+    # print("CURRENT_USER", dir(current_user))
+    # print("CURENT ID", current_user.get_id())
     for each in set_data:
+        # print("EACH", each)
         cards.update({card["id"]:card for card in each["cards"]})
         # each["cards"] = [card["id"] for card in each["cards"]]
         sets.update({each["id"]: each})

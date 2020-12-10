@@ -19,7 +19,7 @@ export const CreateSubjectForm = () => {
 
     const onCreate = async (e) => {
         e.preventDefault()
-        setOpen(false)
+        handleClose()
         const res = await fetch(`/api/subjects/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -29,8 +29,8 @@ export const CreateSubjectForm = () => {
         });
         if (res.ok) {
             const newSubject = await res.json();
-            console.log("NEW SUBJECT", newSubject)
             dispatch(createSubject(newSubject))
+            setName()
         }
     }
 
