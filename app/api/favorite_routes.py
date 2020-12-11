@@ -27,9 +27,21 @@ def createFav():
         set_id=set_id,
         user_id=user_id
     )
-    db.session.add(Favorite)
+    db.session.add(newFav)
     db.session.commit()
-    print("NEW FAV", favorite_schema.dump(Favorite))
+    favInfo = favorite_schema.dump(newFav)
+    # editedSet = Set.query.get(set_id)
+    # print("NEW SET", set_schema.dump(editedSet))
+    return jsonify(favObj=favInfo)
 
-    editedSet = Set.query.get(setId)
-    print("NEW SET", editedSet)
+
+@favorite_routes.route('/delete', methods=["DELETE"])
+def deleteFav():
+    set_id = request.json["setId"]
+    user_id = request.json["userId"]
+    findFave = Favorite.query.filter(Favorite.set_id == set_id, Favorite.user_id == user_id).one()
+    print("FOUND FAVE", findFave)
+    favObj = favorite_schema.dump(findFave)
+    db.session.delete(findFave)
+    db.session.commit()
+    return jsonify(favObj=favObj)

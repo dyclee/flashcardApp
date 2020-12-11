@@ -6,10 +6,10 @@ export default function favoriteReducer(state = {}, action) {
         case GET_FAVORITES:
             return action.favorites
         case CREATE_FAVORITE:
-            newState[action.favorite.id] = action.favorite
+            newState[action.favorite.setId] = true
             return newState
         case DELETE_FAVORITE:
-            delete newState[action.favorite.id]
+            newState[action.favorite.setId] = false
             return newState
         case RESET_FAVORITES:
             return {}
