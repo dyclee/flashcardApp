@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const SetListItem = ({ set }) => {
-    console.log(set)
+    // console.log(set)
     return (<>
         <div className="homedisplay__set-text">
             <div className="homedisplay__set-title">{set.title}</div>

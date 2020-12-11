@@ -28,7 +28,6 @@ const HomeDisplay = ({subjects}) => {
         const res = await fetch(`/api/sets`)
         const {sets, cards, favorites, likes} = await res.json();
 
-        dispatch(getCards(cards))
 
         const newSets = {}
         const allSets = Object.keys(sets).map((key) => {
@@ -67,6 +66,16 @@ const HomeDisplay = ({subjects}) => {
             likeSets[key] = { exists: false, count}
         })
         // console.log("LIKE SETS", likeSets)
+        const cardSets = {}
+        const setsWithCards = Object.keys(newSets).map((key) => {
+            const cardArr = newSets[key].cards.map((cardObj) => {
+                return cardObj
+            });
+            console.log("CARD ARR", cardArr);
+            cardSets[key] = cardArr;
+        });
+
+        dispatch(getCards(cardSets))
         dispatch(getLikes(likeSets))
         dispatch(getFavorites(faveSets))
         dispatch(getSets(newSets))

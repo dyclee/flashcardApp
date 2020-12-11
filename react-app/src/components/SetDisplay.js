@@ -2,25 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import SetHeader from './SetHeader';
-import CardListItem from './CardListItem';
+import CardListItem from './Flashcard';
 import { deleteSet } from '../store/actions/sets';
 import { CreateCardForm } from './CardForm';
 import {EditSetForm} from './SetForm';
-
+import FlashcardList from './FlashcardList';
 
 export default function SetDisplay() {
     const { setId } = useParams()
 
     const set = useSelector(state => state.setReducer[setId])
     const user = useSelector(state => state.userReducer.user)
-    // const hidden = useSelector(state => {
-    //     let currentSet = state.setReducer[setId]
-    //     let currentUser = state.userReducer.user
-    //     if (currentSet.createdBy === currentUser.id) {
-    //         return false;
-    //     }
-    //     return true;
-    // })
+    // const flashcards = useSelector(state => state.cardReducer[setId])
 
     const [userLike, setUserLike] = useState([])
     const [userFavorite, setUserFavorite] = useState([])
@@ -44,7 +37,7 @@ export default function SetDisplay() {
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
     if (!set) return null;
-    console.log(set)
+    // console.log("FLASHCARDS", flashcards)
     return (<>
         <h1>Set Display Page</h1>
         <SetHeader set={set} />
@@ -54,10 +47,11 @@ export default function SetDisplay() {
         <h4>Number of likes: {set.like.length}</h4>
         <h4>Number of favorites: {set.favorite.length}</h4>
         <CreateCardForm setId={setId} hidden={set.hidden} />
-        {set.cards.map((card) => (<>
+        <FlashcardList hidden={set.hidden} />
+        {/* {set.cards.map((card) => (<>
             <CardListItem card={card} hidden={set.hidden} />
-            {/* <button hidden={hidden}>DELETE</button> */}
-        </>))}
+            <button hidden={hidden}>DELETE</button>
+        </>))} */}
 
     </>)
 }
