@@ -12,6 +12,7 @@ from .api.set_routes import set_routes
 from .api.card_routes import card_routes
 from .api.subject_routes import subject_routes
 from .api.favorite_routes import favorite_routes
+from .api.like_routes import like_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(set_routes, url_prefix='/api/sets')
 app.register_blueprint(card_routes, url_prefix='/api/cards')
 app.register_blueprint(subject_routes, url_prefix='/api/subjects')
 app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
+app.register_blueprint(like_routes, url_prefix='/api/likes')
 db.init_app(app)
 Migrate(app, db)
 

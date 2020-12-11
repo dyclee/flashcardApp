@@ -6,10 +6,12 @@ export default function likeReducer(state = {}, action) {
         case GET_LIKES:
             return action.likes
         case CREATE_LIKE:
-            newState[action.like.id] = action.like
+            newState[action.like.setId].exists = true;
+            newState[action.like.setId].count += 1
             return newState
         case DELETE_LIKE:
-            delete newState[action.like.id]
+            newState[action.like.setId].exists = false;
+            newState[action.like.setId].count -= 1
             return newState
         case RESET_LIKES:
             return {}

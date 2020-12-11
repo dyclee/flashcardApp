@@ -8,10 +8,8 @@ import { getFavorites, createFavorite, deleteFavorite } from '../store/actions/f
 import SetListItem from './SetListItem';
 import { CreateSetForm } from './SetForm';
 import { CreateSubjectForm } from './SubjectForm';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import heart from '../icons/heart.svg';
-import noheart from '../icons/emptyheart.svg';
+import FaveIcon from './FaveIcon';
+import LikeIcon from './LikeIcon';
 
 const HomeDisplay = ({subjects}) => {
     const user = useSelector(state => state.userReducer.user);
@@ -19,6 +17,7 @@ const HomeDisplay = ({subjects}) => {
     const [subjectArr, setSubjectArr] = useState([]);
 
     const faves = useSelector(state => state.favoriteReducer);
+    const likes = useSelector(state => state.likeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,10 +27,8 @@ const HomeDisplay = ({subjects}) => {
 
         const res = await fetch(`/api/sets`)
         const {sets, cards, favorites, likes} = await res.json();
-        // console.log("SET OBJS", sets);
-        // dispatch(getSets(sets))
+
         dispatch(getCards(cards))
-        dispatch(getLikes(likes))
 
         const newSets = {}
         const allSets = Object.keys(sets).map((key) => {
@@ -57,6 +54,20 @@ const HomeDisplay = ({subjects}) => {
             }
             faveSets[key] = false
         })
+        const likeSets = {}
+        const setsWithLikes = Object.keys(newSets).map((key) => {
+            const likeIdArr = newSets[key].likes.map((likeObj) => {
+                return likeObj.userId
+            });
+            let count = likeIdArr.length;
+            if (likeIdArr.includes(user.id)) {
+                likeSets[key] = {exists: true, count}
+                return
+            }
+            likeSets[key] = { exists: false, count}
+        })
+        // console.log("LIKE SETS", likeSets)
+        dispatch(getLikes(likeSets))
         dispatch(getFavorites(faveSets))
         dispatch(getSets(newSets))
         setSets(newSets)
@@ -74,46 +85,7 @@ const HomeDisplay = ({subjects}) => {
         return { [key]: sets[key] }
     })
 
-
-    const switchFav = async (e) => {
-        // console.log(e.target, e.target.name, e.target.className)
-        const action = e.target.name;
-        const setId = e.target.className;
-        // console.log("ACTION", action, "SET ID", setId)
-        if (action === "create") {
-            const createRes = await fetch(`/api/favorites/create`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({
-                    setId,
-                    userId: user.id
-                })
-            })
-            if (createRes.ok) {
-                const resObj = await createRes.json();
-                // console.log(resObj.favObj)
-                // console.log(resObj.favObj.setId)
-                dispatch(createFavorite(resObj.favObj))
-            }
-            return;
-        }
-        const deleteRes = await fetch(`/api/favorites/delete`, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                setId,
-                userId: user.id
-            })
-        })
-        if (deleteRes.ok) {
-            const resObj = await deleteRes.json();
-            // console.log(resObj.favObj.setId)
-            dispatch(deleteFavorite(resObj.favObj))
-            return;
-        }
-
-    }
-    if (!allSets || !faves) return null;
+    if (!allSets || !faves || !likes) return null;
     // console.log(allSets)
     // console.log("FAVES", faves)
     return (<>
@@ -121,20 +93,22 @@ const HomeDisplay = ({subjects}) => {
                 <h1>All Sets</h1>
                 <CreateSetForm subjectOptions={subjectArr}/>
                 <CreateSubjectForm />
-                <div>
+                <div className="homedisplay__sets-container">
                     {allSets.map(set => {
                         let id = Object.keys(set)[0]
                         let setObj = Object.values(set)[0]
                         let isFave = faves[id]
+                        let isLike = likes[id].exists
+                        let count = likes[id].count
+                        // console.log(isLike)
                         return (<>
                             <Link to={`/set/${id}`}>
                                 <SetListItem set={setObj}></SetListItem>
                             </Link>
-                            {isFave ?
-                                <img className={id} src={heart} name={"delete"} onClick={switchFav} /> :
-                                <img className={id} src={noheart} name={"create"} onClick={switchFav}/>
-                            }
-
+                            <div className="homedisplay__icons">
+                            <FaveIcon id={id} isFave={isFave} user={user}/>
+                            <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                            </div>
                         </>)
                     })}
                 </div>

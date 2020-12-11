@@ -1,5 +1,3 @@
-import { GET_USER } from "./users"
-
 export const GET_LIKES = 'GET LIKES'
 export const CREATE_LIKE = 'CREATE LIKE'
 export const DELETE_LIKE = 'DELETE LIKE'
