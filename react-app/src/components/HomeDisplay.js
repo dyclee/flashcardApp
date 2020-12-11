@@ -93,7 +93,7 @@ const HomeDisplay = ({subjects}) => {
                 <h1>All Sets</h1>
                 <CreateSetForm subjectOptions={subjectArr}/>
                 <CreateSubjectForm />
-                <div className="homedisplay__sets-container">
+                <div className="homedisplay__allsets-container">
                     {allSets.map(set => {
                         let id = Object.keys(set)[0]
                         let setObj = Object.values(set)[0]
@@ -102,12 +102,15 @@ const HomeDisplay = ({subjects}) => {
                         let count = likes[id].count
                         // console.log(isLike)
                         return (<>
-                            <Link to={`/set/${id}`}>
-                                <SetListItem set={setObj}></SetListItem>
-                            </Link>
-                            <div className="homedisplay__icons">
-                            <FaveIcon id={id} isFave={isFave} user={user}/>
-                            <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                            <div className="homedisplay__singleset-container">
+                                <Link to={`/set/${id}`} className="homedisplay__links">
+                                    <SetListItem set={setObj}></SetListItem>
+                                </Link>
+                                <div className="homedisplay__icons">
+                                    <FaveIcon id={id} isFave={isFave} user={user}/>
+                                    <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                    <i>{count}</i>
+                                </div>
                             </div>
                         </>)
                     })}
