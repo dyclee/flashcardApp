@@ -20,11 +20,11 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState();
-  const [subjectArr, setSubjectArr] = useState([]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const user = await authenticate();
       if (!user.errors) {
         // console.log("AT APP, USER:,", user)
@@ -32,51 +32,11 @@ function App() {
         dispatch(getUser(user))
         setUser(user)
 
-        const res = await fetch(`/api/sets`)
-        const {sets, cards, favorites, likes} = await res.json();
-        // console.log("SET OBJS", sets);
-        // dispatch(getSets(sets))
-        dispatch(getCards(cards))
-        dispatch(getLikes(likes))
-        dispatch(getFavorites(favorites))
-
-        const newSets = {}
-        const allSets = Object.keys(sets).map((key) => {
-            if (user.id === sets[key].createdBy) {
-                // console.log(key)
-                sets[key]["hidden"] = false
-                newSets[key] = sets[key]
-                return
-            }
-            sets[key]["hidden"] = true;
-            newSets[key] = sets[key]
-            return
-        })
-        const setsWithFavorites = Object.keys(newSets).map((key) => {
-          const favIdArr = newSets[key].favorites.map((favObj) => {
-            return favObj.userId
-          })
-          // console.log("FAV ID ARR", favIdArr)
-          if (favIdArr.includes(user.id)) {
-            newSets[key]["userFavorite"] = true
-            return
-          }
-          newSets[key]["userFavorite"] = false
-        })
-
-        dispatch(getSets(newSets))
-
-        const subjectRes = await fetch('/api/subjects');
-        const subjects = await subjectRes.json();
-        // console.log("SUBJECTS", subjects)
-        dispatch(getSubjects(subjects))
-        setSubjectArr(subjects)
       }
-
-    })();
-    setLoaded(true);
-  }, []);
-
+      // console.log("HIT THIS")
+      setLoaded(true)
+    })()
+  },[])
 
 
   if (!loaded) {
@@ -106,7 +66,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated} subjects={subjectArr}>
+        <ProtectedRoute path="/" exact={true} authenticated={authenticated} >
           <HomeDisplay />
         </ProtectedRoute>
       {/* </UserContext.Provider> */}

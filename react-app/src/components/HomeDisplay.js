@@ -1,35 +1,91 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getSets } from '../store/actions/sets';
+import { getSets, getUserSets, getSubjects } from '../store/actions/sets';
+import { getCards } from '../store/actions/cards';
+import { getLikes } from '../store/actions/likes';
+import { getFavorites } from '../store/actions/favorites';
 import SetListItem from './SetListItem';
 import { CreateSetForm } from './SetForm';
 import { CreateSubjectForm } from './SubjectForm';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import heart from '../icons/heart.svg';
 
 const HomeDisplay = ({subjects}) => {
     const user = useSelector(state => state.userReducer.user);
-    const sets = useSelector(state => state.setReducer);
+    const [sets, setSets] = useState([]);
+    const [subjectArr, setSubjectArr] = useState([]);
+    const dispatch = useDispatch();
     // const setsWithHidden = useSelector(state => {
     //     let newSets = Object.items(sets).map((pair) => {
     //         console.log(pair)
     //     })
     // })
+    useEffect(() => {
+        console.log("HITTING THIS?")
+        console.log("USER", user)
+        if (!user) return;
+        (async() => {
+
+        const res = await fetch(`/api/sets`)
+        const {sets, cards, favorites, likes} = await res.json();
+        // console.log("SET OBJS", sets);
+        // dispatch(getSets(sets))
+        dispatch(getCards(cards))
+        dispatch(getLikes(likes))
+        dispatch(getFavorites(favorites))
+
+        const newSets = {}
+        const allSets = Object.keys(sets).map((key) => {
+            if (user.id === sets[key].createdBy) {
+                // console.log(key)
+                sets[key]["hidden"] = false
+                newSets[key] = sets[key]
+                return
+            }
+            sets[key]["hidden"] = true;
+            newSets[key] = sets[key]
+            return
+        })
+        const setsWithFavorites = Object.keys(newSets).map((key) => {
+          const favIdArr = newSets[key].favorites.map((favObj) => {
+            return favObj.userId
+          })
+          // console.log("FAV ID ARR", favIdArr)
+          if (favIdArr.includes(user.id)) {
+            newSets[key]["userFavorite"] = true
+            return
+          }
+          newSets[key]["userFavorite"] = false
+        })
+
+        dispatch(getSets(newSets))
+        setSets(newSets)
+
+        const subjectRes = await fetch('/api/subjects');
+        const subjects = await subjectRes.json();
+        // console.log("SUBJECTS", subjects)
+        dispatch(getSubjects(subjects))
+        setSubjectArr(subjects)
+
+        })();
+      }, [user]);
+
     const allSets = Object.keys(sets).map((key) => {
         return { [key]: sets[key] }
     })
-    const subjectOptions = useSelector(state => state.setReducer.subjects)
+
 
     const switchFav = (e) => {
         console.log(e.target.parentNode)
     }
     if (!allSets) return null;
-
+    console.log(allSets)
     return (<>
             <article>
                 <h1>All Sets</h1>
-                <CreateSetForm subjectOptions={subjectOptions}/>
+                <CreateSetForm subjectOptions={subjectArr}/>
                 <CreateSubjectForm />
                 <div>
                     {allSets.map(set => {
@@ -41,8 +97,9 @@ const HomeDisplay = ({subjects}) => {
                                 <SetListItem set={setObj}></SetListItem>
                             </Link>
                             {setObj.userFavorite ? <FavoriteIcon onClick={switchFav}/> : <FavoriteBorderIcon onClick={switchFav}/>}
-                            {/* <FavoriteBorderIcon />
-                            <FavoriteIcon /> */}
+                            <i>{heart}</i>
+                            <img src={heart} />
+
                         </>)
                     })}
                 </div>
