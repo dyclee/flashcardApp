@@ -11,6 +11,7 @@ import { CreateSubjectForm } from './SubjectForm';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import heart from '../icons/heart.svg';
+import noheart from '../icons/emptyheart.svg';
 
 const HomeDisplay = ({subjects}) => {
     const user = useSelector(state => state.userReducer.user);
@@ -77,8 +78,22 @@ const HomeDisplay = ({subjects}) => {
     })
 
 
-    const switchFav = (e) => {
-        console.log(e.target.parentNode)
+    const switchFav = async (e) => {
+        // console.log(e.target, e.target.name, e.target.className)
+        const action = e.target.name;
+        const setId = e.target.className;
+        console.log("ACTION", action, "SET ID", setId)
+        if (action === "create") {
+            const createRes = await fetch(`/api/favorites/create`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    setId,
+                    userId: user.id
+                })
+            })
+        }
+
     }
     if (!allSets) return null;
     console.log(allSets)
@@ -96,9 +111,10 @@ const HomeDisplay = ({subjects}) => {
                             <Link to={`/set/${id}`}>
                                 <SetListItem set={setObj}></SetListItem>
                             </Link>
-                            {setObj.userFavorite ? <FavoriteIcon onClick={switchFav}/> : <FavoriteBorderIcon onClick={switchFav}/>}
-                            <i>{heart}</i>
-                            <img src={heart} />
+                            {setObj.userFavorite ?
+                                <img className={id} src={heart} name={"delete"} onClick={switchFav} /> :
+                                <img className={id} src={noheart} name={"create"} onClick={switchFav}/>
+                            }
 
                         </>)
                     })}

@@ -15,6 +15,7 @@ import { getCards } from './store/actions/cards';
 import { getLikes } from './store/actions/likes';
 import { getFavorites } from './store/actions/favorites';
 import { useDispatch } from 'react-redux';
+import './styles/random.css';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
