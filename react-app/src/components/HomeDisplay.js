@@ -22,14 +22,16 @@ const HomeDisplay = ({}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const allSets = Object.keys(sets).map((key) => {
-            return { [key]: sets[key] }
-        })
-
-        const subjects = allSets.pop(-1);
-        setSetArr(allSets)
-        setSubjectArr(subjects.subjects)
-
+        (async () => {
+            const allSets = await Object.keys(sets).map((key) => {
+                return { [key]: sets[key] }
+            })
+            console.log("ALL SETS", allSets)
+            const subjects = allSets.pop(-1);
+            console.log("SUBJECTS", subjects)
+            setSetArr(allSets)
+            setSubjectArr(subjects.subjects)
+        })()
     }, [])
 
     if (!setArr || !faves || !likes || !subjectArr) return null;

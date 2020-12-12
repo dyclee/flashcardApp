@@ -17,6 +17,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     if (!user.errors) {
       setAuthenticated(true);
       dispatch(getUser(user))
+      console.log("DISPATCHING USER", user)
     } else {
       setErrors(user.errors);
     }
