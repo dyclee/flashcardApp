@@ -11,90 +11,28 @@ import { CreateSubjectForm } from './SubjectForm';
 import FaveIcon from './FaveIcon';
 import LikeIcon from './LikeIcon';
 
-const HomeDisplay = ({subjects}) => {
+const HomeDisplay = ({}) => {
     const user = useSelector(state => state.userReducer.user);
-    const [sets, setSets] = useState([]);
-    const [subjectArr, setSubjectArr] = useState([]);
+    const sets = useSelector(state => state.setReducer)
+    const [subjectArr, setSubjectArr] = useState();
+    const [setArr, setSetArr] = useState([]);
 
     const faves = useSelector(state => state.favoriteReducer);
     const likes = useSelector(state => state.likeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // console.log("USER", user)
-        if (!user) return;
-        (async() => {
-
-        const res = await fetch(`/api/sets`)
-        const {sets, cards, favorites, likes} = await res.json();
-
-
-        const newSets = {}
         const allSets = Object.keys(sets).map((key) => {
-            if (user.id === sets[key].createdBy) {
-                // console.log(key)
-                sets[key]["hidden"] = false
-                newSets[key] = sets[key]
-                return
-            }
-            sets[key]["hidden"] = true;
-            newSets[key] = sets[key]
-            return
+            return { [key]: sets[key] }
         })
-        const faveSets = {}
-        const setsWithFavorites = Object.keys(newSets).map((key) => {
-            const favIdArr = newSets[key].favorites.map((favObj) => {
-                return favObj.userId
-            })
 
-            if (favIdArr.includes(user.id)) {
-                faveSets[key] = true
-                return
-            }
-            faveSets[key] = false
-        })
-        const likeSets = {}
-        const setsWithLikes = Object.keys(newSets).map((key) => {
-            const likeIdArr = newSets[key].likes.map((likeObj) => {
-                return likeObj.userId
-            });
-            let count = likeIdArr.length;
-            if (likeIdArr.includes(user.id)) {
-                likeSets[key] = {exists: true, count}
-                return
-            }
-            likeSets[key] = { exists: false, count}
-        })
-        // console.log("LIKE SETS", likeSets)
-        const cardSets = {}
-        const setsWithCards = Object.keys(newSets).map((key) => {
-            const cardArr = newSets[key].cards.map((cardObj) => {
-                return cardObj
-            });
-            console.log("CARD ARR", cardArr);
-            cardSets[key] = cardArr;
-        });
+        const subjects = allSets.pop(-1);
+        setSetArr(allSets)
+        setSubjectArr(subjects.subjects)
 
-        dispatch(getCards(cardSets))
-        dispatch(getLikes(likeSets))
-        dispatch(getFavorites(faveSets))
-        dispatch(getSets(newSets))
-        setSets(newSets)
+    }, [])
 
-        const subjectRes = await fetch('/api/subjects');
-        const subjects = await subjectRes.json();
-
-        dispatch(getSubjects(subjects))
-        setSubjectArr(subjects)
-
-        })();
-      }, [user]);
-
-    const allSets = Object.keys(sets).map((key) => {
-        return { [key]: sets[key] }
-    })
-
-    if (!allSets || !faves || !likes) return null;
+    if (!setArr || !faves || !likes || !subjectArr) return null;
     // console.log(allSets)
     // console.log("FAVES", faves)
     return (<>
@@ -103,7 +41,7 @@ const HomeDisplay = ({subjects}) => {
                 <CreateSetForm subjectOptions={subjectArr}/>
                 <CreateSubjectForm />
                 <div className="homedisplay__allsets-container">
-                    {allSets.map(set => {
+                    {setArr.map(set => {
                         let id = Object.keys(set)[0]
                         let setObj = Object.values(set)[0]
                         let isFave = faves[id]
@@ -111,7 +49,7 @@ const HomeDisplay = ({subjects}) => {
                         let count = likes[id].count
                         // console.log(isLike)
                         return (<>
-                            <div className="homedisplay__singleset-container">
+                            <div id={id} className="homedisplay__singleset-container">
                                 <Link to={`/set/${id}`} className="homedisplay__links">
                                     <SetListItem set={setObj}></SetListItem>
                                 </Link>

@@ -6,10 +6,10 @@ export default function cardReducer(state = {}, action) {
         case GET_CARDS:
             return action.cards
         case CREATE_CARD:
-            newState[action.card.id] = action.card
+            newState[action.card.setId][action.card.id] = action.card
             return newState
         case DELETE_CARD:
-            delete newState[action.card.id]
+            delete newState[action.card.setId][action.card.id]
             return newState;
         case EDIT_CARD:
             newState[action.card.id] = action.card

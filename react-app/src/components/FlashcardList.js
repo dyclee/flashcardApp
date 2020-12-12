@@ -7,11 +7,15 @@ import '../styles/setdisplay.css';
 export default function FlashcardList({ hidden }) {
     const {setId} = useParams()
     const flashcards = useSelector(state => state.cardReducer[setId])
-    // console.log(setId, flashcards)
-
+    const flashcardArr = []
+    for (let key in flashcards) {
+        flashcardArr.push(flashcards[key])
+    }
+    // console.log(flashcardArr)
+    if (flashcardArr.length === 0) return null;
     return (<>
         <div className="card-grid">
-            {flashcards.map(flashcard => {
+            {flashcardArr.map(flashcard => {
                 return <Flashcard flashcard={flashcard} key={flashcard.id} hidden={hidden}/>
             })}
         </div>

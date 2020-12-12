@@ -33,7 +33,7 @@ export function CreateCardForm({setId, hidden}) {
         });
         if (res.ok) {
             const resObj = await res.json()
-            // console.log(resObj)
+            console.log(resObj)
             dispatch(createCard(resObj))
             const setRes = await fetch(`/api/sets/${setId}`)
             const newSet = await setRes.json()

@@ -19,7 +19,10 @@ export default function Flashcard({ flashcard, hidden }) {
         setHeight(Math.max(frontHeight, backHeight, 150))
     }
     useEffect(setMaxHeight, [flashcard.question, flashcard.answer])
-
+    useEffect(() => {
+        window.addEventListener('resize', setMaxHeight)
+        return () => window.removeEventListener('resize', setMaxHeight)
+    },[])
     const onDelete = async (e) => {
         e.preventDefault()
         const res = await fetch(`/api/cards/${cardId}/delete`, {
