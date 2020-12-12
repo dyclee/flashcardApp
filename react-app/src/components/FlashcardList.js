@@ -8,6 +8,7 @@ export default function FlashcardList({ hidden }) {
     const {setId} = useParams()
     const flashcards = useSelector(state => state.cardReducer[setId])
     // console.log(setId, flashcards)
+
     return (<>
         <div className="card-grid">
             {flashcards.map(flashcard => {
