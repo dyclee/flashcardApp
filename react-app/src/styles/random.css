@@ -7,40 +7,79 @@
 
 .homedisplay__icons {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.homedisplay__likes {
+    display: flex;
     flex-direction: row;
     align-items: flex-end;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.homedisplay__count {
 }
 .homedisplay__singleset-container {
     display: flex;
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     border: 2px solid black;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
     justify-content: space-between;
+    background-color: white;
+    border-radius: 25px;
 }
 .homedisplay__set-text {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
 }
 .homedisplay__set-title {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px;
 
+
 }
 .homedisplay__set-description {
-    font-size: 20px;
+    font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px;
+    color: black;
 }
 .homedisplay__set-subject {
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px;
+    color: black;
+}
+.homedisplay__set-cardcount {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
 }
 .homedisplay__links {
+    text-decoration: none;
+}
+.homedisplay__welcome {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    color: beige;
+}
+
+.navbar__home {
+    display: flex;
+    color: white;
+    /* text-decoration: none; */
+}
+.navbar__title {
     text-decoration: none;
 }

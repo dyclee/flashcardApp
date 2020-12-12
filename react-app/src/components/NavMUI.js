@@ -18,16 +18,9 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { logout } from "../services/auth";
 import { removeUser } from '../store/actions/users';
 import { useDispatch } from 'react-redux';
-
-// const LogoutButton = ({setAuthenticated}) => {
-
-//   const dispatch = useDispatch();
-
-//   const onLogout = async (e) => {
-//     await logout();
-//     setAuthenticated(false);
-//     dispatch(removeUser())
-//   };
+import { NavLink } from 'react-router-dom';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -93,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({setAuthenticated}) {
+export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -123,6 +116,7 @@ export default function PrimarySearchAppBar({setAuthenticated}) {
     await logout();
     setAuthenticated(false);
     dispatch(removeUser())
+    return;
   };
 
   const menuId = 'primary-search-account-menu';
@@ -136,9 +130,9 @@ export default function PrimarySearchAppBar({setAuthenticated}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={onLogout}>Logout</MenuItem>
+      <MenuItem id="menuItem-favs" onClick={handleMenuClose}>Favorites</MenuItem>
+      <MenuItem id="menuItem-account" onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem id="menuItem-logout" onClick={onLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -183,22 +177,29 @@ export default function PrimarySearchAppBar({setAuthenticated}) {
     </Menu>
   );
 
-  console.log(setAuthenticated)
+  if (!authenticated) return null;
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+          </IconButton> */}
+          <Link href="/" exact={true} activeClassName="active">
+            <div className="navbar__home">
+              <DashboardIcon />
+              <div className='navbar__title'>
+              <Typography className={classes.title} variant="h6" noWrap>
+                CardMe
+              </Typography>
+              </div>
+            </div>
+          </Link>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

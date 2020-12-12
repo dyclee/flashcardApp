@@ -43,10 +43,16 @@ export default function LikeIcon ({count, id, isLike, user }) {
     }
     if (isLike) {
         return (<>
-            <img className={id} src={like} name={"delete"} onClick={switchLike} />
+            <div className="homedisplay__likes">
+                <img className={id} src={like} name={"delete"} onClick={switchLike} />
+                <strong classname="homedisplay__count">{count}</strong>
+            </div>
         </>)
     }
     return (<>
-        <img className={id} src={nolike} name={"create"} onClick={switchLike} />
+        <div className="homedisplay__likes">
+            <img className={id} src={nolike} name={"create"} onClick={switchLike} />
+            <strong className="homedisplay__count">{count}</strong>
+        </div>
     </>)
 }

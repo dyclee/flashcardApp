@@ -39,7 +39,7 @@ const HomeDisplay = ({}) => {
     // console.log("FAVES", faves)
     return (<>
             <article>
-                <h1>All Sets</h1>
+                <div className="homedisplay__welcome">Choose a set</div>
                 <CreateSetForm subjectOptions={subjectArr}/>
                 <CreateSubjectForm />
                 <div className="homedisplay__allsets-container">
@@ -58,7 +58,6 @@ const HomeDisplay = ({}) => {
                                 <div className="homedisplay__icons">
                                     <FaveIcon id={id} isFave={isFave} user={user}/>
                                     <LikeIcon id={id} count={count} isLike={isLike} user={user} />
-                                    <i>{count}</i>
                                 </div>
                             </div>
                         </>)

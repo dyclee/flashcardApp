@@ -47,7 +47,7 @@ function App() {
       {/* <UserContext.Provider value={{ user }}> */}
 
         <NavBar setAuthenticated={setAuthenticated} />
-        {/* <NavMUI authenticated={authenticated} setAuthenticated={setAuthenticated} /> */}
+        <NavMUI authenticated={authenticated} setAuthenticated={setAuthenticated} />
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
