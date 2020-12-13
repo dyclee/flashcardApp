@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSet, editSet } from '../store/actions/sets';
 import { Redirect, useParams } from 'react-router-dom';
-import { createSubject } from '../store/actions/sets';
+import { addSubject } from '../store/actions/subjects';
 
 import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent, TextField } from '@material-ui/core';
@@ -29,7 +29,7 @@ export const CreateSubjectForm = () => {
         });
         if (res.ok) {
             const newSubject = await res.json();
-            dispatch(createSubject(newSubject))
+            dispatch(addSubject(newSubject))
             setName()
         }
     }

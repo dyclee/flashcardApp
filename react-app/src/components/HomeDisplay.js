@@ -14,7 +14,7 @@ import LikeIcon from './LikeIcon';
 const HomeDisplay = ({}) => {
     const user = useSelector(state => state.userReducer.user);
     const sets = useSelector(state => state.setReducer)
-    const [subjectArr, setSubjectArr] = useState();
+    const subjectArr = useSelector(state => state.subjectReducer.subjects);
     const [setArr, setSetArr] = useState([]);
 
     const faves = useSelector(state => state.favoriteReducer);
@@ -26,11 +26,8 @@ const HomeDisplay = ({}) => {
             const allSets = await Object.keys(sets).map((key) => {
                 return { [key]: sets[key] }
             })
-            console.log("ALL SETS", allSets)
-            const subjects = allSets.pop(-1);
-            console.log("SUBJECTS", subjects)
             setSetArr(allSets)
-            setSubjectArr(subjects.subjects)
+            // setSubjectArr(subjects.subjects)
         })()
     }, [])
 

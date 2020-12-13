@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSets, getUserSets, getSubjects } from '../store/actions/sets';
+import { getSets } from '../store/actions/sets';
 import { getCards } from '../store/actions/cards';
 import { getLikes } from '../store/actions/likes';
 import { getFavorites } from '../store/actions/favorites';
+import { getSubjects } from '../store/actions/subjects';
 import { authenticate } from "../services/auth";
 
 import HomeDisplay from './HomeDisplay';
@@ -76,9 +77,9 @@ export default function LoadState({component}) {
 
         const subjectRes = await fetch('/api/subjects');
         const subjects = await subjectRes.json();
-
+        // console.log("SUBJECTS", subjects);
         dispatch(getSubjects(subjects))
-        console.log("hitting this")
+        // console.log("hitting this")
         setLoaded(true)
         })();
       }, []);
