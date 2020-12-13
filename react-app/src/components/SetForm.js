@@ -102,7 +102,7 @@ export function EditSetForm({set, hidden}) {
 
     }
     if (!set) return null;
-    console.log("SUBJECT OPTIONS", subjectOptions)
+    // console.log("SUBJECT OPTIONS", subjectOptions)
     return (<>
         <div>
             <button hidden={hidden} onClick={handleOpen}>Edit Set</button>

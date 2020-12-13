@@ -58,7 +58,7 @@ def getAllSets():
     cards = {}
     likes = {}
     favorites = {}
-    print("SET DATA", set_data)
+    # print("SET DATA", set_data)
     # print("CURRENT_USER", dir(current_user))
     # print("CURENT ID", current_user.get_id())
     for each in set_data:
@@ -122,7 +122,8 @@ def createSet():
         subject = form.data['subject']
         description = form.data['description']
         created_by = request.json['created_by']
-        # print("SUBJECT", subject)
+        creator = User.query.get(created_by)
+        # print("CREATOR==========", creator)
         if subject == "" or subject == "None":
             # print("CHECK")
             newSet = Set(
@@ -137,6 +138,7 @@ def createSet():
             createdSet = set_schema.dump(newSet)
             createdSet["cards"] = []
             createdSet["subject"] = {"name": ""}
+            createdSet["creator"] = user_schema.dump(creator)
             # print("CREATED SET", createdSet)
             return jsonify(createdSet)
 
@@ -156,6 +158,7 @@ def createSet():
         createdSet = set_schema.dump(newSet)
         createdSet["cards"] = []
         createdSet["subject"] = foundSubject
+        createdSet["creator"] = user_schema.dump(creator)
         return jsonify(createdSet)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
