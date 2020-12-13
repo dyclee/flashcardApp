@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 // import React from "react";
@@ -21,6 +22,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
+import {CreateSetForm} from './SetForm';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -90,6 +92,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = useState(false)
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -119,8 +122,12 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     dispatch(removeUser())
     return;
   };
+  // handling favorite redirect
   const history = useHistory();
   const handleFavoritesLink = async (e) => history.push('/favorites')
+  // handling create set form
+  const handleOpen = (e) => setOpen(true)
+  const handleClose = (e) => setOpen(false)
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -195,6 +202,12 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
           >
             <MenuIcon />
           </IconButton> */}
+          <CreateSetForm
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            open={open}
+            setOpen={setOpen}
+          />
           <Link href="/" exact={true} activeClassName="active">
             <div className="navbar__home">
               <DashboardIcon />
@@ -217,6 +230,13 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
+          </div>
+          <div>
+          <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleOpen}>
+              <Badge color="secondary">
+                <AddToPhotosIcon />
+              </Badge>
+            </IconButton>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

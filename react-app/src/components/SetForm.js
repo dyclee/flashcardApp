@@ -7,8 +7,9 @@ import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 
 
-export const CreateSetForm = ({subjectOptions}) => {
+export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
     const user = useSelector(state => state.userReducer.user)
+    const subjectOptions = useSelector(state => state.subjectReducer.subjects)
 
     const dispatch = useDispatch()
 
@@ -16,13 +17,13 @@ export const CreateSetForm = ({subjectOptions}) => {
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState([])
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
 
     const [redirect, setRedirect] = useState(false)
     const [createdSetId, setCreatedSetId] = useState()
 
-    const handleOpen = (e) => setOpen(true)
-    const handleClose = (e) => setOpen(false)
+    // const handleOpen = (e) => setOpen(true)
+    // const handleClose = (e) => setOpen(false)
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -49,7 +50,7 @@ export const CreateSetForm = ({subjectOptions}) => {
     if (redirect) return <Redirect to={`/set/${createdSetId}`} />
     return (<>
 
-        <button onClick={handleOpen}>Create Set</button>
+        {/* <button onClick={handleOpen}>Create Set</button> */}
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new set</DialogTitle>
 
@@ -68,7 +69,7 @@ export function EditSetForm({set, hidden}) {
     // const set = useSelector(state => state.setReducer[setId])
     // console.log("SETID", setId, "--------SET,", set)
     const user = useSelector(state => state.userReducer.user)
-    const subjectOptions = useSelector(state => state.setReducer.subjects)
+    const subjectOptions = useSelector(state => state.subjectReducer.subjects)
 
     const dispatch = useDispatch()
 
@@ -97,9 +98,10 @@ export function EditSetForm({set, hidden}) {
         });
         const editedSet = await res.json()
         dispatch(editSet(editedSet))
-        // window.location.reload(false)
+
     }
     if (!set) return null;
+    console.log("SUBJECT OPTIONS", subjectOptions)
     return (<>
         <div>
             <button hidden={hidden} onClick={handleOpen}>Edit Set</button>
