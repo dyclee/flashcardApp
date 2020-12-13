@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createSet, editSet } from '../store/actions/sets';
 import { Redirect, useParams } from 'react-router-dom';
 
-import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './FormInputs';
-import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject, AddSubjectButton } from './FormInputs';
+import { Dialog, DialogTitle, DialogContent, Button } from '@material-ui/core';
 
 
 export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
@@ -40,17 +40,18 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
         })
         if (res.ok) {
             const resObj = await res.json()
-            console.log("SUCCESSFUL RES", resObj)
+            // console.log("SUCCESSFUL RES", resObj)
             dispatch(createSet(resObj))
             handleClose()
             setCreatedSetId(resObj.id)
             setRedirect(true)
+            return
         }
     }
+    // console.log("REDIRECT", redirect, "------ createdSetId", createdSetId)
     if (redirect) return <Redirect to={`/set/${createdSetId}`} />
     return (<>
 
-        {/* <button onClick={handleOpen}>Create Set</button> */}
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new set</DialogTitle>
 
@@ -58,7 +59,7 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
                 <AddTitle title={title} setTitle={setTitle} />
                 <AddDescription description={description} setDescription={setDescription} />
                 <AddSubject subjects={subjectOptions} subject={subject} setSubject={setSubject} />
-                <ActionAndCancelButtons handleClose={handleClose} onAction={onCreate} actionName={"Create"} />
+                <ActionAndCancelButtons subjectButton={<AddSubjectButton setSubject={setSubject} />} handleClose={handleClose} onAction={onCreate} actionName={"Create"} />
             </DialogContent>
         </Dialog>
     </>)

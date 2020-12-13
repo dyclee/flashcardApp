@@ -4,6 +4,7 @@ import {
 } from '@material-ui/core';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {CreateSubjectForm } from './SubjectForm';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -14,10 +15,27 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   }));
+export function AddSubjectButton({setSubject}) {
+    const [openSubject, setOpenSubject] = useState(false)
+    const handleOpenSubject = (e) => setOpenSubject(true)
+    return(<>
+        <CreateSubjectForm
+            handleOpenSubject={handleOpenSubject}
+            openSubject={openSubject}
+            setOpenSubject={setOpenSubject}
+            setSubject={setSubject}
+        />
+        <Button onClick={handleOpenSubject}>
+            New Subject
+        </Button>
+    </>)
+}
 
-export function ActionAndCancelButtons({handleClose, onAction, actionName }) {
+export function ActionAndCancelButtons({subjectButton, handleClose, onAction, actionName }) {
+    // console.log(subjectButton)
     return (
         <DialogActions>
+            {subjectButton}
             <Button onClick={handleClose}>
                 Cancel
             </Button>

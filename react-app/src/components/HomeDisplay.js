@@ -36,8 +36,6 @@ const HomeDisplay = ({}) => {
     return (<>
             <article>
                 <div className="homedisplay__welcome">Choose a set</div>
-                <CreateSetForm subjectOptions={subjectArr}/>
-                <CreateSubjectForm />
                 <div className="homedisplay__allsets-container">
                     {setArr.map(set => {
                         let id = Object.keys(set)[0]

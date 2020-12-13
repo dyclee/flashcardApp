@@ -7,19 +7,18 @@ import { addSubject } from '../store/actions/subjects';
 import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent, TextField } from '@material-ui/core';
 
-export const CreateSubjectForm = () => {
+export const CreateSubjectForm = ({setSubject, handleOpenSubject, openSubject, setOpenSubject}) => {
     const dispatch = useDispatch();
-
     const [name, setName] = useState()
-    const [open, setOpen] = useState(false)
+    // const [openSubject, setOpenSubject] = useState(false)
     const [errors, setErrors] = useState([])
 
-    const handleOpen = (e) => setOpen(true)
-    const handleClose = (e) => setOpen(false)
+    // const handleOpenSubject = (e) => setOpenSubject(true)
+    const handleCloseSubject = (e) => setOpenSubject(false)
 
     const onCreate = async (e) => {
         e.preventDefault()
-        handleClose()
+        handleCloseSubject()
         const res = await fetch(`/api/subjects/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -29,7 +28,8 @@ export const CreateSubjectForm = () => {
         });
         if (res.ok) {
             const newSubject = await res.json();
-            dispatch(addSubject(newSubject))
+            dispatch(addSubject(newSubject));
+            setSubject(newSubject.name);
             setName()
         }
     }
@@ -37,8 +37,8 @@ export const CreateSubjectForm = () => {
     const updateName = (e) => setName(e.target.value)
 
     return (<>
-        <button onClick={handleOpen}>Create Subject</button>
-        <Dialog open={open} onClose={handleClose}>
+        {/* <button onClick={handleOpenSubject}>Create Subject</button> */}
+        <Dialog open={openSubject} onClose={handleCloseSubject}>
             <DialogTitle id="subjectForm-dialog-title">Create a new subject</DialogTitle>
                 <DialogContent>
                     <TextField
@@ -51,7 +51,7 @@ export const CreateSubjectForm = () => {
                         fullWidth
                         onChange={updateName}
                     />
-                    <ActionAndCancelButtons handleClose={handleClose} onAction={onCreate} actionName={"Create"} />
+                    <ActionAndCancelButtons handleClose={handleCloseSubject} onAction={onCreate} actionName={"Create"} />
                 </DialogContent>
         </Dialog>
     </>)

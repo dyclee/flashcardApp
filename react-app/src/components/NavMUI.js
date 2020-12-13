@@ -23,6 +23,7 @@ import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
 import {CreateSetForm} from './SetForm';
+import {CreateSubjectForm} from './SubjectForm';
 
 const useStyles = makeStyles((theme) => ({
   grow: {

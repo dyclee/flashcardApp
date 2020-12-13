@@ -36,8 +36,6 @@ export default function FavoritesDisplay(){
     return (<>
         <article>
             <div className="homedisplay__welcome">Your favorites</div>
-            {/* <CreateSetForm subjectOptions={subjectArr}/>
-            <CreateSubjectForm /> */}
             <div className="homedisplay__allsets-container">
                 {userFaves.map(set => {
                     let id = set.id
