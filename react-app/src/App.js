@@ -10,6 +10,7 @@ import { authenticate } from "./services/auth";
 import LoadState from './components/LoadState';
 import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
+import FavoritesDisplay from './components/FavoritesDisplay';
 import { getUser } from './store/actions/users';
 
 import { useDispatch } from 'react-redux';
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/set/:setId" exact={true} authenticated={authenticated}>
           <LoadState user={user} component={<SetDisplay />} />
+        </ProtectedRoute>
+        <ProtectedRoute path="/favorites" exact={true} authenticated={authenticated}>
+          <LoadState user={user} component={<FavoritesDisplay />} />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList/>

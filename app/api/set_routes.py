@@ -38,6 +38,7 @@ def getAllSets():
         set_data[i]["cards"] = []
         set_data[i]["likes"] = []
         set_data[i]["favorites"] = []
+        set_data[i]["creator"] = user_schema.dump(allsets[i].createdBy)
         # print(set_data[i])
         for j in range(len(set_data[i]["card"])):
             set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
@@ -57,7 +58,7 @@ def getAllSets():
     cards = {}
     likes = {}
     favorites = {}
-    # print("SET DATA", set_data)
+    print("SET DATA", set_data)
     # print("CURRENT_USER", dir(current_user))
     # print("CURENT ID", current_user.get_id())
     for each in set_data:
@@ -72,10 +73,10 @@ def getAllSets():
         favorites.update({favorite["id"]:favorite for favorite in each["favorites"]})
         # each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
 
-    print("SETS", sets)
-    print("CARDS", cards)
-    print("LIKES", likes)
-    print("FAVORITES", favorites)
+    # print("SETS", sets)
+    # print("CARDS", cards)
+    # print("LIKES", likes)
+    # print("FAVORITES", favorites)
 
     return jsonify(
         sets=sets,

@@ -51,3 +51,17 @@ body {
 .card .front {
     left: 0;
 }
+
+.setheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border: 2px solid black;
+    width: 600px;
+}
+.setheader-title {
+    font-size: 30px;
+    font-family:
+}

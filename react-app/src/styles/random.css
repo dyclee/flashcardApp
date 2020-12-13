@@ -17,8 +17,7 @@
     align-items: flex-end;
     font-family: Arial, Helvetica, sans-serif;
 }
-.homedisplay__count {
-}
+
 .homedisplay__singleset-container {
     display: flex;
     width: 350px;
@@ -65,6 +64,7 @@
 }
 .homedisplay__links {
     text-decoration: none;
+    display: flex;
 }
 .homedisplay__welcome {
     font-family: Arial, Helvetica, sans-serif;

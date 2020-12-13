@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 
 export default function SetHeader({set}) {
 
-
+    // console.log("SET", set)
     if (!set) return null;
     return (<>
-    <div>
-        <h3>Set Header</h3>
-        <h4>{set.title} - {set.description}</h4>
-        <h5>{set.createdBy.username}</h5>
+    <div className="setheader">
+        <div className="setheader-title">{set.title}</div>
+        <div className="setheader-description">{set.description}</div>
+        <div className="setheader-creator">Creator: {set.creator.username}</div>
     </div>
     </>)
 }

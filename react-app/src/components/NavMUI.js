@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,7 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { logout } from "../services/auth";
 import { removeUser } from '../store/actions/users';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
 
@@ -93,6 +93,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [redirect, setRedirect] = useState(false);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -118,6 +119,10 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     dispatch(removeUser())
     return;
   };
+  const handleFavoritesLink = async (e) => {
+    setRedirect(true);
+    return;
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -130,7 +135,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem id="menuItem-favs" onClick={handleMenuClose}>Favorites</MenuItem>
+      <MenuItem id="menuItem-favs" onClick={handleFavoritesLink}>Favorites</MenuItem>
       <MenuItem id="menuItem-account" onClick={handleMenuClose}>My account</MenuItem>
       <MenuItem id="menuItem-logout" onClick={onLogout}>Logout</MenuItem>
     </Menu>
@@ -178,6 +183,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   );
 
   if (!authenticated) return null;
+  if (redirect) return <Redirect to={`/favorites`} />
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">

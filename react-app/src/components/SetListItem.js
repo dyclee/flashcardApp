@@ -10,7 +10,7 @@ const SetListItem = ({ set }) => {
                 <div className="homedisplay__set-description">{set.description}</div>
                 <div className="homedisplay__set-subject">{set.subject.name}</div>
             </div>
-            <div className="homedisplay__set-cardcount">{set.card.length} cards</div>
+            <div className="homedisplay__set-cardcount"><i>{set.card.length} cards</i></div>
         </div>
 
     </>)

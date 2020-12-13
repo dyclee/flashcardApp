@@ -39,7 +39,6 @@ export default function SetDisplay() {
     if (!set) return null;
     // console.log("FLASHCARDS", flashcards)
     return (<>
-        <h1>Set Display Page</h1>
         <SetHeader set={set} />
         <button hidden={set.hidden} onClick={onDelete}>DELETE SET</button>
         <EditSetForm hidden={set.hidden} set={set}/>
