@@ -18,7 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { logout } from "../services/auth";
 import { removeUser } from '../store/actions/users';
 import { useDispatch } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
 
@@ -119,10 +119,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     dispatch(removeUser())
     return;
   };
-  const handleFavoritesLink = async (e) => {
-    setRedirect(true);
-    return;
-  }
+  const history = useHistory();
+  const handleFavoritesLink = async (e) => history.push('/favorites')
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -183,7 +181,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   );
 
   if (!authenticated) return null;
-  if (redirect) return <Redirect to={`/favorites`} />
+
 
   return (
     <div className={classes.grow}>

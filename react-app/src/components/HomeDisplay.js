@@ -32,8 +32,7 @@ const HomeDisplay = ({}) => {
     }, [])
 
     if (!setArr || !faves || !likes || !subjectArr) return null;
-    // console.log(allSets)
-    // console.log("FAVES", faves)
+    console.log("SET ARR", setArr)
     return (<>
             <article>
                 <div className="homedisplay__welcome">Choose a set</div>
