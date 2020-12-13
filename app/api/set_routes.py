@@ -99,6 +99,7 @@ def getOneSet(setId):
     print("SELECTEDSET" , selectedSet)
     setObj = set_schema.dump(selectedSet)
     setObj["createdBy"] = user_schema.dump(selectedSet.createdBy)
+    setObj["creator"] = user_schema.dump(selectedSet.createdBy)
     setObj["cards"] = [card for card in dump_data_list(selectedSet.card, card_schema)]
     setObj["likes"] = [like for like in dump_data_list(selectedSet.like, like_schema)]
     setObj["favorites"] = [favorite for favorite in dump_data_list(selectedSet.favorite, favorite_schema)]

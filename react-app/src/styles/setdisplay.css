@@ -51,19 +51,35 @@ body {
 .card .front {
     left: 0;
 }
-/* .setheader-container {
+.setheader-stats {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70px;
+    height: 200px;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    background-color: beige;
+    border: 1px solid black;
 
-} */
+}
+.setheader-everything {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+}
 .setheader-container {
     display: flex;
     /* flex-direction: column; */
     justify-content: space-between;
     width: 470px;
     height: 200px;
-    margin: 20px auto;
-    border: 2px solid black;
+    margin: 20px;
+    border: 1px solid black;
     padding: 10px;
     border-radius: 25px;
     background-color: beige;
@@ -71,8 +87,7 @@ body {
 .setheader {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
+    font-family: Arial, Helvetica, sans-serif;
     padding: 10px;
 }
 .setheader-icons {
