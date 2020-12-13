@@ -40,9 +40,8 @@ export default function SetDisplay() {
     // console.log("SET", set)
     // console.log("FLASHCARDS", flashcards)
     return (<>
-        <SetHeader set={set} />
-        <button hidden={set.hidden} onClick={onDelete}>DELETE SET</button>
-        <EditSetForm hidden={set.hidden} set={set}/>
+        <SetHeader set={set} hidden={set.hidden} onDelete={onDelete} />
+        {/* <EditSetForm hidden={set.hidden} set={set}/> */}
         <h4>Number of cards: {set.card.length}</h4>
         <h4>Number of likes: {set.like.length}</h4>
         <h4>Number of favorites: {set.favorite.length}</h4>

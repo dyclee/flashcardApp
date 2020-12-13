@@ -39,6 +39,7 @@ const HomeDisplay = ({}) => {
                 <div className="homedisplay__allsets-container">
                     {setArr.map(set => {
                         let id = Object.keys(set)[0]
+                        // console.log("ID", id)
                         let setObj = Object.values(set)[0]
                         let isFave = faves[id]
                         let isLike = likes[id].exists
@@ -50,8 +51,8 @@ const HomeDisplay = ({}) => {
                                     <SetListItem set={setObj}></SetListItem>
                                 </Link>
                                 <div className="homedisplay__icons">
-                                    <FaveIcon isFave={isFave} user={user}/>
-                                    <LikeIcon count={count} isLike={isLike} user={user} />
+                                    <FaveIcon id={id} isFave={isFave} user={user}/>
+                                    <LikeIcon id={id} count={count} isLike={isLike} user={user} />
                                 </div>
                             </div>
                         </>)

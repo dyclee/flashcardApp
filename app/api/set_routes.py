@@ -186,7 +186,7 @@ def editSet(setId):
             joinedload(Set.favorite), \
             joinedload(Set.subjectId)) \
             .get(setId)
-        # print("CHOSEN", set_schema.dump(chosenSet))
+        print("CHOSEN", set_schema.dump(chosenSet))
         # print("SELECTED SET", set_schema.dump(selectedSet))
         if form.data["subject"] == "" or form.data["subject"] == "None":
             chosenSet.title = form.data["title"]
@@ -196,6 +196,7 @@ def editSet(setId):
             db.session.commit()
             setData = set_schema.dump(chosenSet)
             # print("HERE", setData)
+            setData["creator"] = user_schema.dump(chosenSet.createdBy)
             if setData["card"] == []:
                 setData["cards"] = []
             else:
@@ -215,6 +216,7 @@ def editSet(setId):
         db.session.add(chosenSet)
         db.session.commit()
         setData = set_schema.dump(chosenSet)
+        setData["creator"] = user_schema.dump(chosenSet.createdBy)
         setData["subject"] = subject_schema.dump(chosenSet.subject_id)
         if setData["card"] == []:
             setData["cards"] = []

@@ -65,7 +65,7 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
     </>)
 }
 
-export function EditSetForm({set, hidden}) {
+export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     const { setId } = useParams()
     // const set = useSelector(state => state.setReducer[setId])
     // console.log("SETID", setId, "--------SET,", set)
@@ -78,9 +78,9 @@ export function EditSetForm({set, hidden}) {
     const [subject, setSubject] = useState(set.subject.name)
     const [description, setDescription] = useState(set.description)
     const [errors, setErrors] = useState([])
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
 
-    const handleOpen = (e) => setOpen(true)
+    // const handleOpen = (e) => setOpen(true)
     const handleClose = (e) => setOpen(false)
 
 
@@ -105,7 +105,7 @@ export function EditSetForm({set, hidden}) {
     // console.log("SUBJECT OPTIONS", subjectOptions)
     return (<>
         <div>
-            <button hidden={hidden} onClick={handleOpen}>Edit Set</button>
+            {/* <button hidden={hidden} onClick={handleOpen}>Edit Set</button> */}
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit {set.title}</DialogTitle>
                 <DialogContent>
