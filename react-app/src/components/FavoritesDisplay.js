@@ -23,7 +23,7 @@ export default function FavoritesDisplay(){
                 let faveObjArr = sets[key].favorites.map((faveObj) => {
                     return faveObj.userId
                 })
-                console.log("FAVE OBJ ARR", faveObjArr)
+                // console.log("FAVE OBJ ARR", faveObjArr)
                 if (faveObjArr.includes(user.id)) {
                     userfavorites.push(sets[key])
                 }
@@ -35,7 +35,7 @@ export default function FavoritesDisplay(){
 
     return (<>
         <article>
-            <div className="homedisplay__welcome">Your favorites</div>
+            <div  id="welcome-favorites" className="homedisplay__welcome">Your favorites</div>
             <div className="homedisplay__allsets-container">
                 {userFaves.map(set => {
                     let id = set.id
@@ -45,13 +45,13 @@ export default function FavoritesDisplay(){
                     let count = likes[id].count
                     // console.log(isLike)
                     return (<>
-                        <div id={id} className="homedisplay__singleset-container">
+                        <div key={`${id}-singlecontainer`} className="homedisplay__singleset-container">
                             <Link to={`/set/${id}`} className="homedisplay__links">
                                 <SetListItem set={setObj}></SetListItem>
                             </Link>
                             <div className="homedisplay__icons">
-                                <FaveIcon id={id} isFave={isFave} user={user}/>
-                                <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                <FaveIcon isFave={isFave} user={user}/>
+                                <LikeIcon count={count} isLike={isLike} user={user} />
                             </div>
                         </div>
                     </>)

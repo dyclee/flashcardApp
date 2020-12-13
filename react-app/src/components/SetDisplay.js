@@ -37,7 +37,7 @@ export default function SetDisplay() {
     // console.log("LIKES", likes)
     // console.log("FAVORITES", favorites)
     if (!set) return null;
-    console.log("SET", set)
+    // console.log("SET", set)
     // console.log("FLASHCARDS", flashcards)
     return (<>
         <SetHeader set={set} />

@@ -45,7 +45,7 @@ export default function LikeIcon ({count, id, isLike, user }) {
         return (<>
             <div className="homedisplay__likes">
                 <img className={id} src={like} name={"delete"} onClick={switchLike} />
-                <strong classname="homedisplay__count">{count}</strong>
+                <strong className="homedisplay__count">{count}</strong>
             </div>
         </>)
     }

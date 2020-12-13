@@ -17,7 +17,6 @@ export default function LoadState({component}) {
     useEffect(() => {
         (async() => {
         const user = await authenticate();
-        console.log("PLEASE", user)
         const res = await fetch(`/api/sets`)
         const {sets, cards, favorites, likes} = await res.json();
 

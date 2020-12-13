@@ -35,7 +35,7 @@ const HomeDisplay = ({}) => {
     // console.log("SET ARR", setArr)
     return (<>
             <article>
-                <div className="homedisplay__welcome">Choose a set</div>
+                <div id="welcome-container" className="homedisplay__welcome">Choose a set</div>
                 <div className="homedisplay__allsets-container">
                     {setArr.map(set => {
                         let id = Object.keys(set)[0]
@@ -45,13 +45,13 @@ const HomeDisplay = ({}) => {
                         let count = likes[id].count
                         // console.log(isLike)
                         return (<>
-                            <div id={id} className="homedisplay__singleset-container">
+                            <div key={`${id}-container`} className="homedisplay__singleset-container">
                                 <Link to={`/set/${id}`} className="homedisplay__links">
                                     <SetListItem set={setObj}></SetListItem>
                                 </Link>
                                 <div className="homedisplay__icons">
-                                    <FaveIcon id={id} isFave={isFave} user={user}/>
-                                    <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                    <FaveIcon isFave={isFave} user={user}/>
+                                    <LikeIcon count={count} isLike={isLike} user={user} />
                                 </div>
                             </div>
                         </>)

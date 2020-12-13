@@ -51,15 +51,33 @@ body {
 .card .front {
     left: 0;
 }
+/* .setheader-container {
+    display: flex;
+    justify-content: center;
 
+} */
+.setheader-container {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    margin: 30px 400px;
+    border: 2px solid black;
+    padding: 30px;
+    border-radius: 25px;
+    background-color: beige;
+}
 .setheader {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    border: 2px solid black;
-    width: 600px;
+}
+.setheader-icons {
+    display: relative;
+    /* flex-direction: row;
+    align-items: flex-end; */
+
 }
 .setheader-title {
     font-size: 30px;

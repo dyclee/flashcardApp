@@ -209,7 +209,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
             open={open}
             setOpen={setOpen}
           />
-          <Link href="/" exact={true} activeClassName="active">
+          <Link href="/">
             <div className="navbar__home">
               <DashboardIcon />
               <div className='navbar__title'>
