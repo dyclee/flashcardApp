@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .homedisplay__singleset-container {
@@ -39,35 +39,40 @@
 .homedisplay__set-title {
     font-size: 25px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 10px;
 
 
 }
 .homedisplay__set-description {
     font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 10px;
     color: black;
+    font-weight: bolder;
 }
 .homedisplay__set-subject {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 10px;
     color: black;
 }
 .homedisplay__set-cardcount {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 8px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    font-weight: bold;
 }
+/* .homedisplay__count {
+    font-weight: bold;
+} */
 .homedisplay__links {
     text-decoration: none;
     display: flex;
 }
 .homedisplay__welcome {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     padding: 15px;
     display: flex;

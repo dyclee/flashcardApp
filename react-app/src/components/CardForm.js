@@ -5,9 +5,9 @@ import { createCard, deleteCard } from '../store/actions/cards';
 import { editSet } from '../store/actions/sets';
 
 import { ActionAndCancelButtons, AddQuestion, AddAnswer } from './FormInputs';
-import { Dialog, DialogTitle, DialogContent, Icon } from '@material-ui/core';
-import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { Dialog, DialogTitle, DialogContent, Icon, SvgIcon } from '@material-ui/core';
+// import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
+// import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 export function CreateCardForm({setId, hidden}) {
     const dispatch = useDispatch()
@@ -56,8 +56,7 @@ export function CreateCardForm({setId, hidden}) {
     //     return <Redirect to={`/set/${setId}`} />
     // }
     return (<>
-        {/* <button hidden={hidden} onClick={handleOpen}>Create Card</button> */}
-        <AddBoxIcon fontSize="large" aria-disabled={hidden} onClick={handleOpen}/>
+        <Icon component="option" fontSize="large" disabled={hidden} onClick={handleOpen}>add_box</Icon>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new card</DialogTitle>
 
@@ -95,7 +94,7 @@ export function DeleteCardForm({flashcard, hidden, cardId, setId}) {
     return (<>
         <Icon component="option" disabled={hidden} onClick={handleOpen}>delete_outline</Icon>
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="setForm-dialog-title">Are you sure you want to delete this card?</DialogTitle>
+            <DialogTitle id="setForm-dialog-title">Delete this card?</DialogTitle>
 
             <DialogContent>
                 <ActionAndCancelButtons handleClose={handleClose} onAction={onDelete} actionName={"Delete"} />

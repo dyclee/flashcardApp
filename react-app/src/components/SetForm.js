@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSet, editSet } from '../store/actions/sets';
-import { Redirect, useParams } from 'react-router-dom';
+import { createSet, editSet, deleteSet } from '../store/actions/sets';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import trashcan from '../icons/trash-alt.svg';
 
 import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject, AddSubjectButton } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent, Button } from '@material-ui/core';
@@ -63,6 +64,37 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
             </DialogContent>
         </Dialog>
     </>)
+}
+
+export function DeleteSetForm({ set, hidden}) {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const onDelete = async (e) => {
+        e.preventDefault();
+
+        // dispatch(deleteSet(set))
+        const res = await fetch(`/api/sets/${set.id}/delete`, {
+            method: "DELETE"
+        });
+        const deleted = await res.json();
+        dispatch(deleteSet(deleted))
+        return history.push('/')
+    }
+    return (<>
+        <img src={trashcan} hidden={hidden} name="delete" onClick={handleOpen} />
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle id="setDelete-dialog-title">Delete set "<i>{set.title}"</i>?</DialogTitle>
+            <DialogContent>
+                <ActionAndCancelButtons handleClose={handleClose} onAction={onDelete} actionName={"Delete"} />
+            </DialogContent>
+        </Dialog>
+    </>)
+
 }
 
 export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
