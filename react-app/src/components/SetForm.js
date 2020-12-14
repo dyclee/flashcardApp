@@ -53,8 +53,13 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
     if (redirect) return <Redirect to={`/set/${createdSetId}`} />
     return (<>
 
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="setForm-dialog-title">Create a new set</DialogTitle>
+        <Dialog open={open}
+            onClose={handleClose}
+            PaperProps={{
+                style: { backgroundColor: "#FFFFDE" }
+            }}
+        >
+            <DialogTitle id="setForm-dialog-title" >Create a set</DialogTitle>
 
             <DialogContent>
                 <AddTitle title={title} setTitle={setTitle} />
@@ -83,12 +88,18 @@ export function DeleteSetForm({ set, hidden}) {
         });
         const deleted = await res.json();
         dispatch(deleteSet(deleted))
+        handleClose();
         return history.push('/')
     }
     return (<>
         <img src={trashcan} hidden={hidden} name="delete" onClick={handleOpen} />
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="setDelete-dialog-title">Delete set "<i>{set.title}"</i>?</DialogTitle>
+        <Dialog open={open}
+            onClose={handleClose}
+            PaperProps={{
+                style: { backgroundColor: "#FFFFDE" }
+            }}
+        >
+            <DialogTitle id="setDelete-dialog-title" >Delete "<i>{set.title}"</i>?</DialogTitle>
             <DialogContent>
                 <ActionAndCancelButtons handleClose={handleClose} onAction={onDelete} actionName={"Delete"} />
             </DialogContent>
@@ -129,7 +140,8 @@ export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
                 created_by: user.id
             })
         });
-        const editedSet = await res.json()
+        const editedSet = await res.json();
+        handleClose();
         dispatch(editSet(editedSet))
 
     }
@@ -138,8 +150,14 @@ export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     return (<>
         <div>
             {/* <button hidden={hidden} onClick={handleOpen}>Edit Set</button> */}
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit {set.title}</DialogTitle>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                    style: { backgroundColor: "#FFFFDE" }
+                }}
+            >
+                <DialogTitle >Edit "<i>{set.title}</i>"</DialogTitle>
                 <DialogContent>
                 <AddTitle title={title} setTitle={setTitle} />
                 <AddDescription description={description} setDescription={setDescription} />

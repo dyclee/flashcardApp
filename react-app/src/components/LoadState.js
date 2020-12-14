@@ -7,7 +7,7 @@ import { getFavorites } from '../store/actions/favorites';
 import { getSubjects } from '../store/actions/subjects';
 import { authenticate } from "../services/auth";
 
-import HomeDisplay from './HomeDisplay';
+import "../styles/random.css"
 
 export default function LoadState({component}) {
     // console.log("LOCATION", window.location.href)

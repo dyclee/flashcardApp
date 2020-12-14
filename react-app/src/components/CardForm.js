@@ -57,8 +57,14 @@ export function CreateCardForm({setId, hidden}) {
     // }
     return (<>
         <Icon component="option" fontSize="large" disabled={hidden} onClick={handleOpen}>add_box</Icon>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="setForm-dialog-title">Create a new card</DialogTitle>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+                style: { backgroundColor: "#FFFFDE" }
+            }}
+        >
+            <DialogTitle id="setForm-dialog-title" >Create a card</DialogTitle>
 
             <DialogContent>
                 <AddQuestion question={question} setQuestion={setQuestion} />
@@ -93,8 +99,14 @@ export function DeleteCardForm({flashcard, hidden, cardId, setId}) {
     // console.log("HIDDEN", hidden);
     return (<>
         <Icon component="option" disabled={hidden} onClick={handleOpen}>delete_outline</Icon>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle id="setForm-dialog-title">Delete this card?</DialogTitle>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+                style: { backgroundColor: "#FFFFDE" }
+            }}
+        >
+            <DialogTitle id="setForm-dialog-title" >Delete this card?</DialogTitle>
 
             <DialogContent>
                 <ActionAndCancelButtons handleClose={handleClose} onAction={onDelete} actionName={"Delete"} />

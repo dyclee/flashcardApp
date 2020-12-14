@@ -60,7 +60,11 @@ const renderErrors = (errors) => {
 
   return (<>
     {/* <button onClick={handleClickOpen}>Sign Up</button> */}
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose}
+      PaperProps={{
+        style: { backgroundColor: "#FFFFDE" }
+      }}
+    >
       <DialogTitle id="form-dialog-title">Make an account</DialogTitle>
       <div>
           {renderErrors(errors)}
