@@ -20,13 +20,27 @@ const LoginForm = ({ authenticated, setAuthenticated}) => {
 
   const dispatch = useDispatch();
 
+  const demoLogin = async (e) => {
+    e.preventDefault()
+    const demoEmail = "email@email.com";
+    const demoPassword = "password";
+    const user = await login(demoEmail, demoPassword);
+    if (!user.errors) {
+      setAuthenticated(true);
+      dispatch(getUser(user))
+      // console.log("DISPATCHING USER", user)
+    } else {
+      setErrors(user.errors);
+    }
+
+  }
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
       dispatch(getUser(user))
-      console.log("DISPATCHING USER", user)
+      // console.log("DISPATCHING USER", user)
     } else {
       setErrors(user.errors);
     }
@@ -49,6 +63,7 @@ const LoginForm = ({ authenticated, setAuthenticated}) => {
         ))}
       </div>
       <h2 className="loginHeader">CardMe</h2>
+      <Button variant="contained" color="primary" onClick={demoLogin}>Demo</Button>
       <form onSubmit={onLogin}>
           <TextField
             autoFocus
