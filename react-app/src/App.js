@@ -47,13 +47,15 @@ function App() {
     <BrowserRouter>
       {/* <UserContext.Provider value={{ user }}> */}
 
-        <NavBar setAuthenticated={setAuthenticated} />
+        {/* <NavBar setAuthenticated={setAuthenticated} /> */}
         <NavMUI authenticated={authenticated} setAuthenticated={setAuthenticated} />
         <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <div className="splashPageBackground overlay">
+            <LoginForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          </div>
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />

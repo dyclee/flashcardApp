@@ -1,3 +1,44 @@
+.loginContainer {
+    /* display: flex;
+    flex-direction: column; */
+    position: relative;
+    text-align: center;
+    background-color: rgb(255, 255, 219);
+    width: 400px;
+    margin: auto;
+    padding: 10px;
+    top: 80px;
+    border-radius: 15px;
+    border: 5px solid #00695f;
+}
+.loginHeader {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: normal;
+    /* border: 3px solid black; */
+}
+
+.errorHeader {
+    color:red;
+    margin: auto;
+
+}
+.overlay{
+    opacity:0.8;
+    /* background-color: "#00695f"; */
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+
+  }
+  .splashPageBackground {
+    height: 100%;
+    background-image: url("../icons/vector-abstract-pattern-background-with-green-shapes.jpg")
+  }
+
 .homedisplay__allsets-container {
     display: flex;
     flex-direction: row;
@@ -22,19 +63,24 @@
     display: flex;
     width: 350px;
     height: 350px;
-    border: 2px solid black;
+    border: 5px solid #00695f;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
     justify-content: space-between;
     background-color: white;
     border-radius: 25px;
+    background-color: lightgoldenrodyellow;
+
 }
 .homedisplay__set-text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+}
+.homedisplay__set-split {
+    display: relative;
 }
 .homedisplay__set-title {
     font-size: 25px;
@@ -78,6 +124,7 @@
     display: flex;
     justify-content: center;
     color: "#000";
+    font-weight: bolder;
 }
 
 .navbar__home {

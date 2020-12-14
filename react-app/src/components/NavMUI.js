@@ -119,6 +119,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
 
   const onLogout = async (e) => {
     await logout();
+    handleMenuClose();
     setAuthenticated(false);
     dispatch(removeUser())
     return;
@@ -244,16 +245,16 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+            {/* <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={null} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={null} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               edge="end"
               aria-label="account of current user"

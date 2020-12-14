@@ -42,8 +42,8 @@ export default function SetHeader({set, hidden, onDelete}) {
                     </div>
                 </div>
                 <div className="setheader-description">{set.description}</div>
-                <div className="setheader-creator">Made by <i>{set.creator.username}</i></div>
-                <div className="setheader-cardcount">{set.card.length} cards</div>
+                <div className="setheader-creator">Made by: <strong><i>{set.creator.username}</i></strong></div>
+                {/* <div className="setheader-cardcount">{set.card.length} cards</div> */}
                 <div className="setheader-stats">
                     <CreateCardForm setId={id} hidden={hidden} />
                     <FaveIcon id={id} isFave={isFave} user={user} />
