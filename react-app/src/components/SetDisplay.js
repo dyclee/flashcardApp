@@ -45,7 +45,7 @@ export default function SetDisplay() {
         <h4>Number of cards: {set.card.length}</h4>
         <h4>Number of likes: {set.like.length}</h4>
         <h4>Number of favorites: {set.favorite.length}</h4>
-        <CreateCardForm setId={setId} hidden={set.hidden} />
+        {/* <CreateCardForm setId={setId} hidden={set.hidden} /> */}
         <div className="cards-container">
             <FlashcardList hidden={set.hidden} />
         </div>

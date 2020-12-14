@@ -125,7 +125,10 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   };
   // handling favorite redirect
   const history = useHistory();
-  const handleFavoritesLink = async (e) => history.push('/favorites')
+  const handleFavoritesLink = async (e) => {
+    handleMenuClose();
+    return history.push('/favorites');
+  }
   // handling create set form
   const handleOpen = (e) => setOpen(true)
   const handleClose = (e) => setOpen(false)

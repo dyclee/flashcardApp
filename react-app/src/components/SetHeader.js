@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import pencil from '../icons/pencil-alt.svg';
 import trashcan from '../icons/trash-alt.svg';
 import {EditSetForm} from './SetForm';
+import {CreateCardForm} from './CardForm';
 import LikeIcon from './LikeIcon';
 import FaveIcon from './FaveIcon';
-import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
+// import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
 
 
 export default function SetHeader({set, hidden, onDelete}) {
@@ -20,7 +21,7 @@ export default function SetHeader({set, hidden, onDelete}) {
     const isLike = likes[id].exists;
     const count = likes[id].count;
 
-    console.log("SET", set)
+    // console.log("SET", set)
     const handleOpen = (e) => setOpen(true)
     if (!set) return null;
     return (<>
@@ -31,6 +32,7 @@ export default function SetHeader({set, hidden, onDelete}) {
             setOpen={setOpen}
             handleOpen={handleOpen}
         />
+
         <div className="setheader-everything">
             <div className="setheader-container">
                 <div className="setheader">
@@ -44,7 +46,7 @@ export default function SetHeader({set, hidden, onDelete}) {
                 </div>
             </div>
             <div className="setheader-stats">
-                <AddBoxIcon fontSize="large" />
+                <CreateCardForm setId={id} hidden={hidden} />
                 <FaveIcon id={id} isFave={isFave} user={user} />
                 <LikeIcon id={id} count={count} isLike={isLike} user={user}/>
             </div>

@@ -6,6 +6,7 @@ import { editSet } from '../store/actions/sets';
 
 import { ActionAndCancelButtons, AddQuestion, AddAnswer } from './FormInputs';
 import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
 
 export function CreateCardForm({setId, hidden}) {
     const dispatch = useDispatch()
@@ -48,7 +49,8 @@ export function CreateCardForm({setId, hidden}) {
     //     return <Redirect to={`/set/${setId}`} />
     // }
     return (<>
-        <button hidden={hidden} onClick={handleOpen}>Create Card</button>
+        {/* <button hidden={hidden} onClick={handleOpen}>Create Card</button> */}
+        <AddBoxIcon fontSize="large" hidden={hidden} onClick={handleOpen}/>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new card</DialogTitle>
 
