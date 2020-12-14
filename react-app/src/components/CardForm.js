@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { createCard } from '../store/actions/cards';
+import { createCard, deleteCard } from '../store/actions/cards';
 import { editSet } from '../store/actions/sets';
 
 import { ActionAndCancelButtons, AddQuestion, AddAnswer } from './FormInputs';
-import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Icon } from '@material-ui/core';
 import AddBoxIcon from '@material-ui/icons/AddBoxOutlined';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 export function CreateCardForm({setId, hidden}) {
     const dispatch = useDispatch()
@@ -17,7 +18,13 @@ export function CreateCardForm({setId, hidden}) {
     const [open, setOpen] = useState(false)
 
     // const [redirect, setRedirect] = useState(false)
-    const handleOpen = (e) => setOpen(true)
+    const handleOpen = (e) => {
+        if (hidden) {
+            alert("Unable to create card for this set.")
+            return;
+        }
+        setOpen(true)
+    }
     const handleClose = (e) => setOpen(false)
 
     const onCreate = async (e) => {
@@ -50,7 +57,7 @@ export function CreateCardForm({setId, hidden}) {
     // }
     return (<>
         {/* <button hidden={hidden} onClick={handleOpen}>Create Card</button> */}
-        <AddBoxIcon fontSize="large" hidden={hidden} onClick={handleOpen}/>
+        <AddBoxIcon fontSize="large" aria-disabled={hidden} onClick={handleOpen}/>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle id="setForm-dialog-title">Create a new card</DialogTitle>
 
@@ -58,6 +65,40 @@ export function CreateCardForm({setId, hidden}) {
                 <AddQuestion question={question} setQuestion={setQuestion} />
                 <AddAnswer answer={answer} setAnswer={setAnswer} />
                 <ActionAndCancelButtons handleClose={handleClose} onAction={onCreate} actionName={"Create"} />
+            </DialogContent>
+        </Dialog>
+    </>)
+}
+
+export function DeleteCardForm({flashcard, hidden, cardId, setId}) {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const dispatch = useDispatch()
+
+    const onDelete = async (e) => {
+        e.preventDefault()
+        const res = await fetch(`/api/cards/${cardId}/delete`, {
+            method: 'DELETE'
+        })
+        const deletedCard = await res.json();
+        dispatch(deleteCard(deletedCard))
+
+        const getNewSet = await fetch(`/api/sets/${setId}`)
+        const newSet = await getNewSet.json();
+        // console.log("NEW SET", newSet)
+        dispatch(editSet(newSet))
+
+    }
+    // console.log("HIDDEN", hidden);
+    return (<>
+        <Icon component="option" disabled={hidden} onClick={handleOpen}>delete_outline</Icon>
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle id="setForm-dialog-title">Are you sure you want to delete this card?</DialogTitle>
+
+            <DialogContent>
+                <ActionAndCancelButtons handleClose={handleClose} onAction={onDelete} actionName={"Delete"} />
             </DialogContent>
         </Dialog>
     </>)

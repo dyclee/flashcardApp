@@ -50,6 +50,21 @@ body {
 
 .card .front {
     left: 0;
+    /* min-width: 279px; */
+}
+.card-deleteicon-front {
+    position: absolute;
+    right:0;
+    top: 0;
+    padding: 5px;
+    z-index: 1;
+}
+.card-deleteicon-back {
+    position: absolute;
+    left:0;
+    top: 0;
+    padding: 5px;
+    z-index: 1;
 }
 .setheader-stats {
     display: flex;
@@ -89,6 +104,7 @@ body {
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px;
+    justify-content: space-between;
 }
 .setheader-icons {
     display: flex;
@@ -110,5 +126,9 @@ body {
 }
 .setheader-creator {
     font-size: 17px;
+    padding: 6px;
+}
+.setheader-cardcount {
+    font-size:17px;
     padding: 6px;
 }

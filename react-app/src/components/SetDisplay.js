@@ -41,18 +41,9 @@ export default function SetDisplay() {
     // console.log("FLASHCARDS", flashcards)
     return (<>
         <SetHeader set={set} hidden={set.hidden} onDelete={onDelete} />
-        {/* <EditSetForm hidden={set.hidden} set={set}/> */}
-        <h4>Number of cards: {set.card.length}</h4>
-        <h4>Number of likes: {set.like.length}</h4>
-        <h4>Number of favorites: {set.favorite.length}</h4>
-        {/* <CreateCardForm setId={setId} hidden={set.hidden} /> */}
+
         <div className="cards-container">
             <FlashcardList hidden={set.hidden} />
         </div>
-        {/* {set.cards.map((card) => (<>
-            <CardListItem card={card} hidden={set.hidden} />
-            <button hidden={hidden}>DELETE</button>
-        </>))} */}
-
     </>)
 }

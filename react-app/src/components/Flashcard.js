@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteCard } from '../store/actions/cards';
 import { editSet } from '../store/actions/sets';
 
+import {DeleteCardForm} from './CardForm'
+
 export default function Flashcard({ flashcard, hidden }) {
     const { setId } = useParams();
     const [isFlipped, setIsFlipped] = useState(false);
@@ -23,33 +25,24 @@ export default function Flashcard({ flashcard, hidden }) {
         window.addEventListener('resize', setMaxHeight)
         return () => window.removeEventListener('resize', setMaxHeight)
     },[])
-    const onDelete = async (e) => {
-        e.preventDefault()
-        const res = await fetch(`/api/cards/${cardId}/delete`, {
-            method: 'DELETE'
-        })
-        const deletedCard = await res.json();
-        dispatch(deleteCard(deletedCard))
 
-        const getNewSet = await fetch(`/api/sets/${setId}`)
-        const newSet = await getNewSet.json();
-        // console.log("NEW SET", newSet)
-        dispatch(editSet(newSet))
-
-    }
     return (<>
     <div
         className={`card ${isFlipped ? 'isFlipped' : ''}`}
         style={{ height: height }}
         onClick={() => setIsFlipped(!isFlipped)}
     >
+        {/* <div className="card-deleteicon">
+            <DeleteCardForm cardId={cardId} setId={setId} />
+        </div> */}
+        <div className={`card-deleteicon-${isFlipped ? 'back' : 'front'}`}>
+            <DeleteCardForm cardId={cardId} setId={setId} hidden={hidden} />
+        </div>
         <div className="front" ref={frontEl}>
             {flashcard.question}
-            <button hidden={hidden} onClick={onDelete}>DELETE CARD</button>
         </div>
         <div className="back" ref={backEl}>
             {flashcard.answer}
-            {/* <button hidden={hidden} onClick={onDelete}>DELETE CARD</button> */}
         </div>
         {/* {isFlipped ? flashcard.answer :flashcard.question} */}
         {/* <button hidden={hidden} onClick={onDelete}>DELETE CARD</button> */}
