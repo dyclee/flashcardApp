@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSet, editSet, deleteSet } from '../store/actions/sets';
+import { setFavorite } from '../store/actions/favorites';
+import { setLike } from '../store/actions/likes';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import trashcan from '../icons/trash-alt.svg';
 
@@ -8,10 +10,11 @@ import { ActionAndCancelButtons, AddTitle, AddDescription, AddSubject, AddSubjec
 import { Dialog, DialogTitle, DialogContent, Button } from '@material-ui/core';
 
 
-export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
+export const CreateSetForm = ({handleOpen, open, setOpen}) => {
     const user = useSelector(state => state.userReducer.user)
     const subjectOptions = useSelector(state => state.subjectReducer.subjects)
 
+    const handleClose = () => setOpen(false)
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState()
@@ -42,8 +45,13 @@ export const CreateSetForm = ({handleOpen, handleClose, open, setOpen}) => {
         if (res.ok) {
             const resObj = await res.json()
             // console.log("SUCCESSFUL RES", resObj)
+            console.log("HANDLE CLOSE PROP", handleClose)
+            handleClose();
+            // setOpen(false);
             dispatch(createSet(resObj))
-            handleClose()
+            dispatch(setFavorite({"setId": resObj.id}))
+            dispatch(setLike({"setId": resObj.id}))
+            console.log("OPEN after handleclose()", open)
             setCreatedSetId(resObj.id)
             setRedirect(true)
             return

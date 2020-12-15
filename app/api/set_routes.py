@@ -135,12 +135,14 @@ def createSet():
             db.session.add(newSet)
             db.session.commit()
             newSet = Set.query.get(newSet.id)
-            print("NEW SET", newSet)
+            # print("NEW SET", newSet)
             createdSet = set_schema.dump(newSet)
             createdSet["cards"] = []
             createdSet["subject"] = {"name": ""}
             createdSet["creator"] = user_schema.dump(creator)
             # print("CREATED SET", createdSet)
+            # createdSet["newFave"] = {"setId": newSet.id, "exists": "false"}
+            # createdSet["newLikes"] = {"exists": "false", "count": 0}
             return jsonify(createdSet)
 
         findSubject = Subject.query.filter(Subject.name == subject).one()

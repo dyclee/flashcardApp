@@ -131,8 +131,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     return history.push('/favorites');
   }
   // handling create set form
-  const handleOpen = (e) => setOpen(true)
-  const handleClose = (e) => setOpen(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
