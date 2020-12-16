@@ -17,7 +17,7 @@ export default function LoadState({component}) {
     useEffect(() => {
         (async() => {
         const user = await authenticate();
-        const res = await fetch(`/api/sets`)
+        const res = await fetch(`https://cardme.herokuapp/api/sets`)
         const {sets, cards, favorites, likes} = await res.json();
 
 
