@@ -25,7 +25,7 @@ export default function SetDisplay() {
         e.preventDefault();
 
         // dispatch(deleteSet(set))
-        const res = await fetch(`/api/sets/${setId}/delete`, {
+        const res = await fetch(`/api/sets/${setId}/delete/`, {
             method: "DELETE"
         });
         const deleted = await res.json();
