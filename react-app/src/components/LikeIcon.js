@@ -13,7 +13,7 @@ export default function LikeIcon ({count, id, isLike, user }) {
         const setId = e.target.className;
 
         if (action === "create") {
-            const resLike = await fetch(`/api/likes/create/`, {
+            const resLike = await fetch(`/api/likes/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -27,7 +27,7 @@ export default function LikeIcon ({count, id, isLike, user }) {
             }
             return;
         }
-        const deleteRes = await fetch(`/api/likes/delete/`, {
+        const deleteRes = await fetch(`/api/likes/delete`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

@@ -14,7 +14,7 @@ export default function FaveIcon ({id, isFave, user}) {
         const setId = e.target.className;
         // console.log("ACTION", action, "SET ID", setId)
         if (action === "create") {
-            const createRes = await fetch(`/api/favorites/create/`, {
+            const createRes = await fetch(`/api/favorites/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -30,7 +30,7 @@ export default function FaveIcon ({id, isFave, user}) {
             }
             return;
         }
-        const deleteRes = await fetch(`/api/favorites/delete/`, {
+        const deleteRes = await fetch(`/api/favorites/delete`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

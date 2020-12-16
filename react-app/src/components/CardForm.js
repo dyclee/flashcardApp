@@ -30,7 +30,7 @@ export function CreateCardForm({setId, hidden}) {
     const onCreate = async (e) => {
         e.preventDefault();
         setOpen(false)
-        const res = await fetch(`/api/cards/create/`, {
+        const res = await fetch(`/api/cards/create`, {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify({
@@ -43,7 +43,7 @@ export function CreateCardForm({setId, hidden}) {
             const resObj = await res.json()
             console.log(resObj)
             dispatch(createCard(resObj))
-            const setRes = await fetch(`/api/sets/${setId}/`)
+            const setRes = await fetch(`/api/sets/${setId}`)
             const newSet = await setRes.json()
             // console.log("NEW SET", newSet)
             dispatch(editSet(newSet))
@@ -84,13 +84,13 @@ export function DeleteCardForm({flashcard, hidden, cardId, setId}) {
 
     const onDelete = async (e) => {
         e.preventDefault()
-        const res = await fetch(`/api/cards/${cardId}/delete/`, {
+        const res = await fetch(`/api/cards/${cardId}/delete`, {
             method: 'DELETE'
         })
         const deletedCard = await res.json();
         dispatch(deleteCard(deletedCard))
 
-        const getNewSet = await fetch(`/api/sets/${setId}/`)
+        const getNewSet = await fetch(`/api/sets/${setId}`)
         const newSet = await getNewSet.json();
         // console.log("NEW SET", newSet)
         dispatch(editSet(newSet))

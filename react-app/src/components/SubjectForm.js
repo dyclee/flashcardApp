@@ -19,7 +19,7 @@ export const CreateSubjectForm = ({setSubject, handleOpenSubject, openSubject, s
     const onCreate = async (e) => {
         e.preventDefault()
         handleCloseSubject()
-        const res = await fetch(`/api/subjects/create/`, {
+        const res = await fetch(`/api/subjects/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

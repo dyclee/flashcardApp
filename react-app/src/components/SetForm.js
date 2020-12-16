@@ -32,7 +32,7 @@ export const CreateSetForm = ({handleOpen, open, setOpen}) => {
     const onCreate = async (e) => {
         e.preventDefault();
         setOpen(false);
-        const res = await fetch(`/api/sets/create/`, {
+        const res = await fetch(`/api/sets/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -91,7 +91,7 @@ export function DeleteSetForm({ set, hidden}) {
         e.preventDefault();
 
         // dispatch(deleteSet(set))
-        const res = await fetch(`/api/sets/${set.id}/delete/`, {
+        const res = await fetch(`/api/sets/${set.id}/delete`, {
             method: "DELETE"
         });
         const deleted = await res.json();
@@ -138,7 +138,7 @@ export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     const onEdit = async (e) => {
         e.preventDefault();
         setOpen(false)
-        const res = await fetch(`/api/sets/${set.id}/edit/`, {
+        const res = await fetch(`/api/sets/${set.id}/edit`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
