@@ -11,6 +11,8 @@ import { CreateSubjectForm } from './SubjectForm';
 import FaveIcon from './FaveIcon';
 import LikeIcon from './LikeIcon';
 
+import FilterButton from './FilterButton';
+
 const HomeDisplay = ({}) => {
     const user = useSelector(state => state.userReducer.user);
     const sets = useSelector(state => state.setReducer)
@@ -36,6 +38,7 @@ const HomeDisplay = ({}) => {
     return (<>
             <article>
                 <div id="welcome-container" className="homedisplay__welcome">Choose a set</div>
+                <FilterButton />
                 <div className="homedisplay__allsets-container">
                     {setArr.map(set => {
                         let id = Object.keys(set)[0]
