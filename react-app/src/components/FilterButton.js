@@ -51,6 +51,7 @@ export default function FilterButton({sets, setSetArr}) {
         setAnchorEl(null);
     };
     const handleAlphabetical = () => {
+        console.log("SET ARR", setArr)
         let sortedSets = setArr.sort((a, b) => {
             let akey = Object.keys(a)[0]
             let bkey = Object.keys(b)[0]
@@ -67,19 +68,23 @@ export default function FilterButton({sets, setSetArr}) {
     }
 
     const handleDate = () => {
-      let sortedSet = sets.sort((a, b) => {
-        return b.id - a.id;
-      });
-      dispatch(getSets(sortedSet));
-      setAnchorEl(null);
+        let sortedSets = setArr.sort((a, b) => {
+            let akey = Object.keys(a)[0]
+            let bkey = Object.keys(b)[0]
+            return b[bkey].like.length - a[akey].like.length;
+        });
+        dispatch(getSets(sortedSets));
+        setAnchorEl(null);
     };
 
     const handleCount = () => {
-      let sortedSet = sets.sort((a, b) => {
-        return b.card_count - a.card_count;
-      });
-      dispatch(getSets(sortedSet));
-      setAnchorEl(null);
+        let sortedSets = setArr.sort((a, b) => {
+            let akey = Object.keys(a)[0]
+            let bkey = Object.keys(b)[0]
+            return b[bkey].card.length - a[akey].card.length;
+        });
+        setSetArr(sortedSets);
+        setAnchorEl(null);
     };
 
     // console.log("SETS FROM FILTER BUTTON", sets);
