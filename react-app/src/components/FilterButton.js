@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterButton({sets, setSetArr}) {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const setArr = [];
+    for (let key in sets) {
+        setArr.push({ [key]: sets[key] })
+    }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -37,22 +41,30 @@ export default function FilterButton({sets, setSetArr}) {
       setAnchorEl(null);
     };
 
-    const handlePopularity = () => {
-        const setArr = [];
-        for (let key in sets) {
-            setArr.push({ [key]: sets[key] })
-            // console.log("SET ARR", setArr)
-        }
-        // console.log("SET ARR", setArr)
+    const handleLikes = () => {
         let sortedSets = setArr.sort((a, b) => {
             let akey = Object.keys(a)[0]
             let bkey = Object.keys(b)[0]
             return b[bkey].like.length - a[akey].like.length;
         });
-        // console.log("SORTED SETS", sortedSets)
         setSetArr(sortedSets);
         setAnchorEl(null);
     };
+    const handleAlphabetical = () => {
+        let sortedSets = setArr.sort((a, b) => {
+            let akey = Object.keys(a)[0]
+            let bkey = Object.keys(b)[0]
+            if (b[bkey].title.toLowerCase() < a[akey].title.toLowerCase()) {
+                return 1;
+            }
+            if (b[bkey].title.toLowerCase() > a[akey].title.toLowerCase()) {
+                return -1;
+            }
+            return 0;
+        });
+        setSetArr(sortedSets);
+        setAnchorEl(null);
+    }
 
     const handleDate = () => {
       let sortedSet = sets.sort((a, b) => {
@@ -88,8 +100,11 @@ export default function FilterButton({sets, setSetArr}) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handlePopularity}>
+            <MenuItem onClick={handleLikes}>
               <Link to="/" style={{ color: '#00897b' }}>Likes</Link>
+            </MenuItem>
+            <MenuItem onClick={handleAlphabetical}>
+              <Link to="/" style={{ color: '#00897b' }}>Alphabetical</Link>
             </MenuItem>
             <MenuItem onClick={handleDate}>
               <Link to="/" style={{ color: '#00897b' }}>Newest</Link>
