@@ -45,13 +45,13 @@ export const CreateSetForm = ({handleOpen, open, setOpen}) => {
         if (res.ok) {
             const resObj = await res.json()
             // console.log("SUCCESSFUL RES", resObj)
-            console.log("HANDLE CLOSE PROP", handleClose)
+            // console.log("HANDLE CLOSE PROP", handleClose)
             handleClose();
             // setOpen(false);
             dispatch(createSet(resObj))
             dispatch(setFavorite({"setId": resObj.id}))
             dispatch(setLike({"setId": resObj.id}))
-            console.log("OPEN after handleclose()", open)
+            // console.log("OPEN after handleclose()", open)
             setCreatedSetId(resObj.id)
             setRedirect(true)
             return
