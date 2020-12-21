@@ -132,7 +132,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   }
   // handling create set form
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  // const handleClose = () => setOpen(false)
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -209,7 +209,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
           </IconButton> */}
           <CreateSetForm
             handleOpen={handleOpen}
-            handleClose={handleClose}
+            // handleClose={handleClose}
             open={open}
             setOpen={setOpen}
           />

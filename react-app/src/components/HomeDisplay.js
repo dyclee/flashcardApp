@@ -37,8 +37,10 @@ const HomeDisplay = ({}) => {
     // console.log("SET ARR", setArr)
     return (<>
             <article>
-                <div id="welcome-container" className="homedisplay__welcome">Choose a set</div>
-                <FilterButton sets={sets} setSetArr={setSetArr} />
+                <div className="homedisplay__header">
+                    <div id="welcome-container" className="homedisplay__welcome">Choose a set</div>
+                    <FilterButton sets={sets} setSetArr={setSetArr} />
+                </div>
                 <div className="homedisplay__allsets-container">
                     {setArr.map(set => {
                         let id = Object.keys(set)[0]

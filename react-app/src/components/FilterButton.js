@@ -51,7 +51,6 @@ export default function FilterButton({sets, setSetArr}) {
         setAnchorEl(null);
     };
     const handleAlphabetical = () => {
-        console.log("SET ARR", setArr)
         let sortedSets = setArr.sort((a, b) => {
             let akey = Object.keys(a)[0]
             let bkey = Object.keys(b)[0]
@@ -71,8 +70,10 @@ export default function FilterButton({sets, setSetArr}) {
         let sortedSets = setArr.sort((a, b) => {
             let akey = Object.keys(a)[0]
             let bkey = Object.keys(b)[0]
-            return b[bkey].like.length - a[akey].like.length;
+            // console.log(new Date(b[bkey].created_at))
+            return new Date(b[bkey].created_at) - new Date(a[akey].created_at);
         });
+        // console.log("SET ARR", sortedSets)
         setSetArr(sortedSets);
         setAnchorEl(null);
     };
@@ -95,6 +96,8 @@ export default function FilterButton({sets, setSetArr}) {
             aria-haspopup="true"
             onClick={handleClick}
             style={{ color: "#00695f" }}
+            variant='outlined'
+            color='primary'
           >
             Filter <FilterListIcon />
           </Button>
@@ -106,16 +109,16 @@ export default function FilterButton({sets, setSetArr}) {
             onClose={handleClose}
           >
             <MenuItem onClick={handleAlphabetical}>
-              <Link to="/" style={{ color: '#00897b' }}>Alphabetical</Link>
+              <Link to="/" style={{ color: '#00897b', textDecoration: 'none' }}>Alphabetical</Link>
             </MenuItem>
             <MenuItem onClick={handleLikes}>
-              <Link to="/" style={{ color: '#00897b' }}>Likes</Link>
+              <Link to="/" style={{ color: '#00897b', textDecoration: 'none' }}>Likes</Link>
             </MenuItem>
             <MenuItem onClick={handleDate}>
-              <Link to="/" style={{ color: '#00897b' }}>Newest</Link>
+              <Link to="/" style={{ color: '#00897b', textDecoration: 'none' }}>Most Recent</Link>
             </MenuItem>
             <MenuItem onClick={handleCount}>
-              <Link to="/" style={{ color: '#00897b' }}># Cards</Link>
+              <Link to="/" style={{ color: '#00897b', textDecoration: 'none' }}># Cards</Link>
             </MenuItem>
           </Menu>
         </div>
