@@ -144,3 +144,35 @@
 .filterMenu {
     text-decoration: none;
 }
+.userheader-topline{
+    display: flex;
+    justify-content: center;
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+.userheader-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 30%;
+
+}
+.userheader-title {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 7px;
+}
+.userheader-description {
+    text-align: center;
+    font-size: 20px;
+    padding: 3px;
+}
+.userheader-creator {
+    text-align: center;
+    font-size: 17px;
+    padding: 3px;
+}
+.userheader-cardcount {
+    font-size:17px;
+    padding: 5px;
+}

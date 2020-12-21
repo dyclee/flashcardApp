@@ -26,12 +26,11 @@ export default function UserDisplay() {
         (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
-        //   console.log("USER", user);
+        user.created_date = new Date(user.created_at).toDateString()
         setUser(user);
         const getUserSets = await fetch(`/api/users/${userId}/sets`)
         const userSets = await getUserSets.json();
-        console.log("USER SETS", userSets)
-        // console.log("SETS", sets)
+
         const storeSetArr = [];
         userSets.forEach((set) => {
             storeSetArr.push(sets[set.id])
@@ -40,7 +39,8 @@ export default function UserDisplay() {
         setSetArr(storeSetArr);
         })();
     }, [userId]);
-    // console.log("SET ARR", setArr)
+
+    // console.log("USER", user)
     if (!user || !setArr || !likes || !faves) {
         return null;
     }
@@ -48,17 +48,16 @@ export default function UserDisplay() {
     return (<>
             <div className="setheader-everything">
                 <div className="setheader-container">
-                    <div className="setheader-topline">
-                        <div className="setheader-title">{user.username}</div>
-                        <div className="setheader-icons">
+                    <div className="userheader-topline">
+                        <div className="userheader-title">{user.username}</div>
+                        {/* <div className="userheader-icons">
                             <img src={pencil} />
-                            {/* <DeleteSetForm set={set} hidden={hidden} /> */}
-                        </div>
+                        </div> */}
                     </div>
-                    <div className="setheader-description">{user.email}</div>
-                    <div className="setheader-creator">Made by: <strong><i>UserName</i></strong></div>
-                    {/* <div className="setheader-cardcount">{set.card.length} cards</div> */}
-                    <div className="setheader-stats">
+                    <div className="userheader-description"><strong>{user.email}</strong></div>
+                    <div className="userheader-creator">Created: <strong><i>{user.created_date}</i></strong></div>
+                    {/* <div className="userheader-cardcount">{set.card.length} cards</div> */}
+                    <div className="userheader-stats">
                         {/* <CreateCardForm setId={id} hidden={hidden} /> */}
                         {/* <FaveIcon id={id} isFave={isFave} user={user} />
                         <LikeIcon id={id} count={count} isLike={isLike} user={user}/> */}

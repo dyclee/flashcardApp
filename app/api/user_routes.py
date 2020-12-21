@@ -18,7 +18,9 @@ def users():
 @login_required
 def user(id):
     userObj = User.query.get(id)
-    return userObj.to_dict()
+    user = userObj.to_dict()
+    user["created_at"] = userObj.created_at
+    return user
 
 
 @user_routes.route('/<int:id>/sets')
