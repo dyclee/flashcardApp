@@ -36,7 +36,7 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+    <Dialog fullScreen={true} onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
         <DialogTitle id="simple-dialog-title">Quiz</DialogTitle>
         <Quiz set={set}/>
     </Dialog>
