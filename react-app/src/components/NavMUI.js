@@ -18,7 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 // import React from "react";
 import { logout } from "../services/auth";
 import { removeUser } from '../store/actions/users';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
@@ -97,6 +97,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const user = useSelector(state => state.userReducer.user)
+  console.log("USER", user)
   const [redirect, setRedirect] = useState(false);
 
   const handleProfileMenuOpen = (event) => {
@@ -124,6 +126,11 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     dispatch(removeUser())
     return;
   };
+
+  const handleUserLink = async (e) => {
+    handleMenuClose();
+    return history.push(`/users/${user.id}`)
+  }
   // handling favorite redirect
   const history = useHistory();
   const handleFavoritesLink = async (e) => {
@@ -146,7 +153,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
       onClose={handleMenuClose}
     >
       <MenuItem id="menuItem-favs" onClick={handleFavoritesLink}>Favorites</MenuItem>
-      <MenuItem id="menuItem-account" onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem id="menuItem-account" onClick={handleUserLink}>My account</MenuItem>
       <MenuItem id="menuItem-logout" onClick={onLogout}>Logout</MenuItem>
     </Menu>
   );

@@ -25,6 +25,7 @@ def user(id):
 def userSets(id):
     userSets = Set.query.filter(Set.created_by == id).all()
     setObjs = dump_data_list(userSets, set_schema)
+    # print("SET OBJS", setObjs)
     return jsonify(setObjs)
 
 
