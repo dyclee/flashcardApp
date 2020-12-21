@@ -64,7 +64,7 @@ export default function UserDisplay() {
                     </div>
                 </div>
             </div>
-            <div className="homedisplay__welcome">Your sets</div>
+            <div className="homedisplay__welcome">{user.username}'s sets</div>
             <div className="homedisplay__allsets-container">
                     {setArr.map(setObj => {
                         let id = setObj.id
