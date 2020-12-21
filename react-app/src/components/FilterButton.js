@@ -73,7 +73,7 @@ export default function FilterButton({sets, setSetArr}) {
             let bkey = Object.keys(b)[0]
             return b[bkey].like.length - a[akey].like.length;
         });
-        dispatch(getSets(sortedSets));
+        setSetArr(sortedSets);
         setAnchorEl(null);
     };
 
@@ -105,11 +105,11 @@ export default function FilterButton({sets, setSetArr}) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleLikes}>
-              <Link to="/" style={{ color: '#00897b' }}>Likes</Link>
-            </MenuItem>
             <MenuItem onClick={handleAlphabetical}>
               <Link to="/" style={{ color: '#00897b' }}>Alphabetical</Link>
+            </MenuItem>
+            <MenuItem onClick={handleLikes}>
+              <Link to="/" style={{ color: '#00897b' }}>Likes</Link>
             </MenuItem>
             <MenuItem onClick={handleDate}>
               <Link to="/" style={{ color: '#00897b' }}>Newest</Link>

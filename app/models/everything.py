@@ -96,6 +96,7 @@ class Set(db.Model):
   description = db.Column(db.String(255))
   subject_id = db.Column(db.Integer, db.ForeignKey("subjects.id"))
   created_by = db.Column(db.Integer, db.ForeignKey("users.id"))
+  created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
   subjectId = db.relationship("Subject", back_populates="setss")
   createdBy = db.relationship("User", back_populates="setss")

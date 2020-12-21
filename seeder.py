@@ -118,54 +118,63 @@ with app.app_context():
         description="As vanilla as it gets",
         subject_id=4,
         created_by=1,
+        created_at=datetime(2019, 12, 17)
     )
     set2 = Set(
         title="Graphs and Trees",
         description="Random practice questions",
         subject_id=1,
         created_by=1,
+        created_at=datetime(2019, 12, 28)
     )
     set3 = Set(
         title="Time and Space Complexities",
         description="Quiz for DSA time and space complexities",
         subject_id=1,
         created_by=2,
+        created_at=datetime(2020, 1, 15)
     )
     set4 = Set(
         title="STATS 101",
         description="Primer for intro stats",
         subject_id=3,
         created_by=3,
+        created_at=datetime(2020, 2, 15)
     )
     set5 = Set(
         title="HTML Basics",
         description="Elements and such",
         subject_id=5,
         created_by=5,
+        created_at=datetime(2020, 4, 3)
     )
     set6 = Set(
         title="Basic Python Syntax",
         description="Become a python.",
         subject_id=6,
         created_by=6,
+        created_at=datetime(2020, 5, 9)
     )
     set7 = Set(
         title="SQL Stuff 2",
         description="The sequel",
         subject_id=7,
         created_by=7,
+        created_at=datetime(2020, 5, 16)
     )
     set8 = Set(
         title="CSS Basics",
         description="Attributes and such",
         subject_id=5,
         created_by=5,
+        created_at=datetime(2020, 8, 20)
     )
     set9 = Set(
         title="Asian American Classics",
         description="quiz review for AA-LIT 479",
         subject_id=2,
         created_by=4,
+        created_at=datetime(2020, 10, 30)
     )
     sets = [set1, set2, set3, set4, set5, set6, set7, set8, set9]
     for each in sets:
