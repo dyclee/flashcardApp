@@ -8,7 +8,7 @@ import { CreateCardForm } from './CardForm';
 import {EditSetForm} from './SetForm';
 import FlashcardList from './FlashcardList';
 import Quiz from './Quiz';
-import QuizDialogMUI from './QuizDialogMUI';
+import TabPanel from './TabNavigationMUI';
 
 
 export default function SetDisplay() {
@@ -43,7 +43,7 @@ export default function SetDisplay() {
     return (<>
         <SetHeader set={set} hidden={set.hidden} onDelete={onDelete} />
         <div>
-            <QuizDialogMUI set={set}/>
+            <TabPanel set={set}/>
         </div>
         <div>
             <Quiz set={set}/>

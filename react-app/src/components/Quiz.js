@@ -47,10 +47,15 @@ export default function Quiz({set}) {
 
         let answerBankTemp = [...answerBank];
         for (let i=0; i < 3; i++) {
-
+            if (answerBankTemp.length === 0) {
+                continue;
+            }
             let randomIndex = getRandomInt(answerBankTemp.length);
             if (answerBankTemp[randomIndex] === question.a) {
                 answerBankTemp.splice(randomIndex, 1);
+                if (answerBankTemp.length === 0) {
+                    continue;
+                }
                 randomIndex = getRandomInt(answerBankTemp.length);
             }
             const answerArr = answerBankTemp.splice(randomIndex, 1)
@@ -81,7 +86,7 @@ export default function Quiz({set}) {
 			setShowScore(true);
 		}
     };
-    if (!questions) return null;
+    if (!questions || !set.cards.length) return null;
     return (
 		<div className='quiz-app'>
 			{showScore ? (
