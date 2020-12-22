@@ -1,48 +1,39 @@
-/* body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  * {
-    font-family: "Verdana", cursive, sans-serif;
-    color: #ffffff;
-  }
 
-  body {
-    background-color: #7cc6fe;
+  .quiz-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
   }
-*/
 
-  /* .quiz-app {
-    background-color: #252d4a;
-    width: 450px;
-    min-height: 200px;
-    height: min-content;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+
+  .quiz-app {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    border: 5px solid#5f4339;
+    background-color: lightgoldenrodyellow;
+    font-family: 'Courier New', Courier, monospace;
+    width: 800px;
+    min-height: 250px;
+    height: min-content;
+    border-radius: 25px;
+    padding: 20px;
+    /* box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75); */
   }
 
   .score-section {
     display: flex;
     font-size: 24px;
     align-items: center;
-  } */
+  }
 
   /* QUESTION/TIMER/LEFT SECTION */
 
   .quiz-question-section {
     width: 100%;
     position: relative;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
   }
 
   .quiz-question-count {
@@ -50,12 +41,13 @@
   }
 
 
-/*  .question-count span {
-    font-size: 28px;
+ .quiz-question-count span {
+    font-size: 32px;
   }
 
-  .question-text {
+  .quiz-question-text {
     margin-bottom: 12px;
+    font-size: 20px;
   }
 
   .timer-text {
@@ -66,10 +58,10 @@
     border: 5px solid rgb(255, 189, 67);
     border-radius: 15px;
     text-align: center;
-  } */
+  }
 
   /* ANSWERS/RIGHT SECTION */
-  /* .answer-section {
+  .quiz-answer-section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -79,14 +71,16 @@
   .quiz-button {
     width: 100%;
     font-size: 16px;
-    color: #ffffff;
-    background-color: #252d4a;
-    border-radius: 15px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: black;
+    background-color:#DEFFDE;
+    border-radius: 25px;
     display: flex;
     padding: 5px;
     justify-content: flex-start;
     align-items: center;
-    border: 5px solid #234668;
+    border: 5px solid #00695f;
     cursor: pointer;
   }
 
@@ -108,4 +102,4 @@
 
   .quiz-button svg{
     margin-right: 5px;
-  } */
+  }

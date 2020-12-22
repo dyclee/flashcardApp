@@ -88,26 +88,28 @@ export default function Quiz({set}) {
     };
     if (!questions || !set.cards.length) return null;
     return (
-		<div className='quiz-app'>
-			{showScore ? (
-				<div className='quiz-score-section'>
-					You scored {score} out of {questions.length}
-				</div>
-			) : (
-				<>
-					<div className='quiz-question-section'>
-						<div className='quiz-question-count'>
-							<span>Question {currentQuestion + 1}</span>/{questions.length}
-						</div>
-						<div className='quiz-question-text'>{questions[currentQuestion].questionText}</div>
-					</div>
-					<div className='quiz-answer-section'>
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button className="quiz-button" onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-						))}
-					</div>
-				</>
-			)}
-		</div>
+        <div className='quiz-body'>
+            <div className='quiz-app'>
+                {showScore ? (
+                    <div className='quiz-score-section'>
+                        You scored {score} out of {questions.length}
+                    </div>
+                ) : (
+                    <>
+                        <div className='quiz-question-section'>
+                            <div className='quiz-question-count'>
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className='quiz-question-text'>{questions[currentQuestion].questionText}</div>
+                        </div>
+                        <div className='quiz-answer-section'>
+                            {questions[currentQuestion].answerOptions.map((answerOption) => (
+                                <button className="quiz-button" onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+        </div>
 	);
 }
