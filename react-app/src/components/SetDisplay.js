@@ -45,11 +45,5 @@ export default function SetDisplay() {
         <div>
             <TabPanel set={set}/>
         </div>
-        <div>
-            <Quiz set={set}/>
-        </div>
-        <div className="cards-container">
-            <FlashcardList hidden={set.hidden} />
-        </div>
     </>)
 }
