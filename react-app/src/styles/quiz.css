@@ -9,14 +9,15 @@
   .quiz-app {
     display: flex;
     /* justify-content: flex-start; */
-    border: 5px solid#5f4339;
+    border: 7px solid#5f4339;
     background-color: lightgoldenrodyellow;
     font-family: 'Courier New', Courier, monospace;
     width: 800px;
     min-height: 250px;
     height: min-content;
     border-radius: 25px;
-    padding: 20px;
+    padding: 10px;
+    margin-bottom: 40px;
     /* box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75); */
   }
 
@@ -27,8 +28,8 @@
     margin: 0 auto;
     align-self: center;
     font-weight: bold;
-    /* justify-content: center;
-    align-items: center; */
+    /* justify-content: center; */
+    align-items: center;
   }
 
   /* QUESTION/TIMER/LEFT SECTION */

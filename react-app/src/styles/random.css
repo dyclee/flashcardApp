@@ -3,7 +3,7 @@
     flex-direction: column; */
     position: relative;
     text-align: center;
-    background-color: rgb(240, 255, 175);
+    background-color: rgb(254, 255, 175);;
     width: 400px;
     margin: auto;
     padding: 10px;
@@ -36,7 +36,12 @@
   }
 .splashPageBackground {
     height: 100%;
+    opacity: 100%;
     background-image: url("../icons/vector-abstract-pattern-background-with-green-shapes.jpg")
+}
+body {
+    height: 100%;
+    /* background-image: url("../icons/bricks"); */
 }
 
 .homedisplay__allsets-container {
@@ -63,7 +68,7 @@
     display: flex;
     width: 350px;
     height: 350px;
-    border: 5px solid #00695f;
+    border: 7px solid #00695f;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
@@ -77,6 +82,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: rgb(109, 35, 109);
 
 }
 .homedisplay__set-split {

@@ -95,8 +95,8 @@ export default function FilterButton({sets, setSetArr}) {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
-            style={{ color: "#00695f" }}
-            variant='outlined'
+            style={{ color: "#FFFFFF" }}
+            variant='contained'
             color='primary'
           >
             Filter <FilterListIcon />

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {editSet } from '../store/actions/sets';
+import {Button} from '@material-ui/core';
 import '../styles/quiz.css';
 
 export default function Quiz({setId}) {
@@ -111,7 +111,7 @@ export default function Quiz({setId}) {
                 {showScore ? (<>
                     <div className='quiz-score-section'>
                         <h2>You scored {score} out of {questions.length}</h2>
-                        <button onClick={handleResetQuiz}>Try again</button>
+                        <Button style={{width: "150px"}} color="secondary" variant="outlined" onClick={handleResetQuiz}>Try again </Button>
                     </div>
                 </>) : (
                     <>

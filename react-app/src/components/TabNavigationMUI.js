@@ -26,7 +26,6 @@ export default function FullTabPanel({set}) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log("SET IN TABNAV", set);
   return (
     <div className={classes.root}>
       <TabContext value={value}>
