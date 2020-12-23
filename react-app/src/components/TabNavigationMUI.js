@@ -26,7 +26,7 @@ export default function FullTabPanel({set}) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log("SET IN TABNAV", set);
   return (
     <div className={classes.root}>
       <TabContext value={value}>
@@ -43,7 +43,7 @@ export default function FullTabPanel({set}) {
           </div>
         </TabPanel>
         <TabPanel value="2">
-          <Quiz set={set} />
+          <Quiz setId={set.id} />
         </TabPanel>
         {/* <TabPanel value="3">Item Three</TabPanel> */}
       </TabContext>

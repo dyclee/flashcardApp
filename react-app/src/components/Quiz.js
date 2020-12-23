@@ -1,7 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {editSet } from '../store/actions/sets';
 import '../styles/quiz.css';
 
-export default function Quiz({set}) {
+export default function Quiz({setId}) {
+    // console.log(setId);
+    const dispatch = useDispatch();
+    const set = useSelector(state => state.setReducer[setId])
+    const [questions, setQuestions] = useState();
 
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -27,49 +33,52 @@ export default function Quiz({set}) {
     }
 
     // console.log("SET FROM QUIZ", set);
-    const answerBank = []
-    const questionsT = set.cards.map((card) => {
-        answerBank.push(card.answer);
-        let obj = {}
-        obj.q = card.question;
-        obj.a = card.answer;
-        return obj
-    });
-    // console.log("QUESTIONS", questionsT)
-    // console.log("ANSWERS", answerBank);
-    const questions = [];
-    // for (let question in questionsT) {
-    questionsT.forEach((question) => {
-        const newQobj = {}
-        // console.log("QUESTION", question)
-        newQobj.questionText = question.q;
-        newQobj.answerOptions = [{answerText: question.a, isCorrect: true}];
+    useEffect(() => {
+        const answerBank = []
+        const questionsT = set.cards.map((card) => {
+            answerBank.push(card.answer);
+            let obj = {}
+            obj.q = card.question;
+            obj.a = card.answer;
+            return obj
+        });
+        // console.log("QUESTIONS", questionsT)
+        // console.log("ANSWERS", answerBank);
+        const makeQuestions = [];
+        // for (let question in questionsT) {
+        questionsT.forEach((question) => {
+            const newQobj = {}
+            // console.log("QUESTION", question)
+            newQobj.questionText = question.q;
+            newQobj.answerOptions = [{answerText: question.a, isCorrect: true}];
 
-        let answerBankTemp = [...answerBank];
-        for (let i=0; i < 3; i++) {
-            if (answerBankTemp.length === 0) {
-                continue;
-            }
-            let randomIndex = getRandomInt(answerBankTemp.length);
-            if (answerBankTemp[randomIndex] === question.a) {
-                answerBankTemp.splice(randomIndex, 1);
+            let answerBankTemp = [...answerBank];
+            for (let i=0; i < 3; i++) {
                 if (answerBankTemp.length === 0) {
                     continue;
                 }
-                randomIndex = getRandomInt(answerBankTemp.length);
+                let randomIndex = getRandomInt(answerBankTemp.length);
+                if (answerBankTemp[randomIndex] === question.a) {
+                    answerBankTemp.splice(randomIndex, 1);
+                    if (answerBankTemp.length === 0) {
+                        continue;
+                    }
+                    randomIndex = getRandomInt(answerBankTemp.length);
+                }
+                const answerArr = answerBankTemp.splice(randomIndex, 1)
+                const answer = answerArr[0]
+                const randomA = { answerText: answer, isCorrect: false}
+                newQobj.answerOptions.push(randomA)
             }
-            const answerArr = answerBankTemp.splice(randomIndex, 1)
-            const answer = answerArr[0]
-            const randomA = { answerText: answer, isCorrect: false}
-            newQobj.answerOptions.push(randomA)
-        }
-        const shuffleOptions = shuffle(newQobj.answerOptions)
-        newQobj.answerOptions = shuffleOptions;
-        // console.log("NEW Q OBJ", newQobj)
-        questions.push(newQobj)
+            const shuffleOptions = shuffle(newQobj.answerOptions)
+            newQobj.answerOptions = shuffleOptions;
+            // console.log("NEW Q OBJ", newQobj)
+            makeQuestions.push(newQobj)
 
-    })
-
+        })
+        setQuestions(makeQuestions);
+    }, [])
+    // const [restart, setRestart] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
@@ -86,15 +95,25 @@ export default function Quiz({set}) {
 			setShowScore(true);
 		}
     };
-    if (!questions || !set.cards.length) return null;
+
+    const handleResetQuiz = (e) => {
+        e.preventDefault();
+        setCurrentQuestion(0);
+        setScore(0);
+        setQuestions(shuffle(questions));
+        setShowScore(false);
+    }
+    // console.log("SET", set);
+    if (!set || !questions || !set.cards.length) return null;
     return (
         <div className='quiz-body'>
             <div className='quiz-app'>
-                {showScore ? (
+                {showScore ? (<>
                     <div className='quiz-score-section'>
-                        You scored {score} out of {questions.length}
+                        <h2>You scored {score} out of {questions.length}</h2>
+                        <button onClick={handleResetQuiz}>Try again</button>
                     </div>
-                ) : (
+                </>) : (
                     <>
                         <div className='quiz-question-section'>
                             <div className='quiz-question-count'>
