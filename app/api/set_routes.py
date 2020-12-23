@@ -189,7 +189,7 @@ def editSet(setId):
             joinedload(Set.favorite), \
             joinedload(Set.subjectId)) \
             .get(setId)
-        print("CHOSEN", set_schema.dump(chosenSet))
+        # print("CHOSEN", set_schema.dump(chosenSet))
         # print("SELECTED SET", set_schema.dump(selectedSet))
         if form.data["subject"] == "" or form.data["subject"] == "None":
             chosenSet.title = form.data["title"]
@@ -231,3 +231,12 @@ def editSet(setId):
         # print("SET DATA", setData)
         return jsonify(setData)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@set_routes.route('/search', methods=["POST"])
+def getSearchItems():
+    # print("REQUEST", request.data)
+    searchTerm = request.json["searchTerm"]
+    # print("SEARCH TERM", searchTerm)
+    getSets = Set.query.filter()
+    return jsonify(request)

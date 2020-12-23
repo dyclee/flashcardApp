@@ -94,12 +94,13 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [open, setOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const user = useSelector(state => state.userReducer.user)
-  console.log("USER", user)
-  const [redirect, setRedirect] = useState(false);
+  // console.log("USER", user)
+  // const [redirect, setRedirect] = useState(false);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -140,6 +141,28 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   // handling create set form
   const handleOpen = () => setOpen(true)
   // const handleClose = () => setOpen(false)
+
+  // const handleSearch = (e) => {
+  //   // console.log("SEARCHING", e.target.value)
+  //   setSearchTerm(e.target.value);
+  // }
+  const handleSearchEnter = async (e) => {
+    setSearchTerm(e.target.value);
+    // console.log("SEARCH TERM ON KEY UP", searchTerm)
+    if (e.keyCode === 13) {
+      const searching = await fetch('/api/sets/search', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          searchTerm
+        })
+      });
+      const searchRes = await searching.json();
+      console.log("SEARCH RES", searchRes);
+    }
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -206,17 +229,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <CreateSetForm
             handleOpen={handleOpen}
-            // handleClose={handleClose}
             open={open}
             setOpen={setOpen}
           />
@@ -241,6 +255,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              // onChange={handleSearch}
+              onKeyUp={handleSearchEnter}
             />
           </div>
           <div>
