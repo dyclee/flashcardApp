@@ -111,7 +111,7 @@ export default function Quiz({setId}) {
                 {showScore ? (<>
                     <div className='quiz-score-section'>
                         <h2>You scored {score} out of {questions.length}</h2>
-                        <Button style={{width: "150px"}} color="secondary" variant="outlined" onClick={handleResetQuiz}>Try again </Button>
+                        <Button style={{width: "150px"}} color="secondary" variant="contained" onClick={handleResetQuiz}>Start Over</Button>
                     </div>
                 </>) : (
                     <>

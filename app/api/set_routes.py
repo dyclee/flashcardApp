@@ -236,7 +236,19 @@ def editSet(setId):
 @set_routes.route('/search', methods=["POST"])
 def getSearchItems():
     # print("REQUEST", request.data)
-    searchTerm = request.json["searchTerm"]
-    # print("SEARCH TERM", searchTerm)
-    getSets = Set.query.filter()
+    searchTerm = request.json["searchTerm"].casefold()
+    print("SEARCH TERM", searchTerm.casefold())
+    allSets = Set.query.all()
+    allCards = Card.query.all()
+    setList = dump_data_list(allSets, set_schema)
+
+    def searchSet(setObj):
+        print("SETOBJ", setObj["title"], searchTerm)
+        if searchTerm in setObj["title"].casefold():
+            return True
+        return False
+    # getSets = filter(Set.title.like('%' + searchTerm + '%'), setList)
+    getSets = filter(searchSet, setList)
+    print("GET SETS", list(getSets))
+    # print("GET CARDS", getCards)
     return jsonify(request)
