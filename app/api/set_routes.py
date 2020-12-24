@@ -237,11 +237,19 @@ def editSet(setId):
 def getSearchItems():
     searchTerm = request.json["searchTerm"].casefold()
     print("SEARCH TERM", searchTerm.casefold())
-    allSets = Set.query.all()
+    allSets = Set.query.options( \
+        joinedload(Set.createdBy), \
+        joinedload(Set.subjectId)) \
+        .all()
     allCards = Card.query.all()
     allSubjects = Subject.query.all()
+    allUsers = User.query.all()
 
     setList = dump_data_list(allSets, set_schema)
+
+    for i in range(len(setList)):
+        setList[i]["creator"] = user_schema.dump(allSets[i].createdBy)
+        setList[i]["subject"] = subject_schema.dump(allSets[i].subjectId)
 
     def searchSet(setObj):
         print("SETOBJ", setObj["title"], searchTerm)
@@ -251,6 +259,7 @@ def getSearchItems():
 
     getSets = filter(searchSet, setList)
     foundSets = list(getSets)
+
 
     cardList = dump_data_list(allCards, card_schema)
 
@@ -272,4 +281,14 @@ def getSearchItems():
 
     getSubjects = filter(searchSubject, subjectList)
     foundSubjects = list(getSubjects)
-    return jsonify(foundSets=foundSets, foundCards=foundCards, foundSubjects=foundSubjects)
+
+    userList = dump_data_list(allUsers, user_schema)
+
+    def searchUser(userObj):
+        if searchTerm in userObj["username"].casefold():
+            return True
+        return False
+
+    getUsers = filter(searchUser, userList)
+    foundUsers = list(getUsers)
+    return jsonify(searchTerm=request.json["searchTerm"], foundSets=foundSets, foundCards=foundCards, foundSubjects=foundSubjects, foundUsers=foundUsers)

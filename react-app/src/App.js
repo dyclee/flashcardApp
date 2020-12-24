@@ -12,7 +12,7 @@ import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
 import FavoritesDisplay from './components/FavoritesDisplay';
 import UserDisplay from './components/UserDisplay';
-import Quiz from './components/Quiz';
+import SearchDisplay from './components/SearchDisplay';
 import { getUser } from './store/actions/users';
 
 import { useDispatch } from 'react-redux';
@@ -77,8 +77,8 @@ function App() {
         <ProtectedRoute path="/" exact={true} authenticated={authenticated} >
           <LoadState user={user} component={<HomeDisplay />}/>
         </ProtectedRoute>
-        <ProtectedRoute path="/quiz" exact={true} authenticated={authenticated} >
-          <LoadState user={user} component={<Quiz />}/>
+        <ProtectedRoute path="/search" exact={true} authenticated={authenticated} >
+          <LoadState user={user} component={<SearchDisplay />}/>
         </ProtectedRoute>
       {/* </UserContext.Provider> */}
     </BrowserRouter>

@@ -9,6 +9,7 @@ export default function FaveIcon ({id, isFave, user}) {
     const dispatch = useDispatch()
 
     const switchFav = async (e) => {
+        e.preventDefault();
         // console.log(e.target, e.target.name, e.target.className)
         const action = e.target.name;
         const setId = e.target.className;

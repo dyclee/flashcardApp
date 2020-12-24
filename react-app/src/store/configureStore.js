@@ -6,6 +6,7 @@ import cardReducer from './reducers/cards';
 import likeReducer from './reducers/likes';
 import favoriteReducer from './reducers/favorites';
 import subjectReducer from './reducers/subjects';
+import searchReducer from './reducers/search';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
     likeReducer,
     favoriteReducer,
     subjectReducer,
+    searchReducer,
 })
 
 const configureStore = initialState => {

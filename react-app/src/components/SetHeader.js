@@ -21,7 +21,7 @@ export default function SetHeader({set, hidden, onDelete}) {
     const isLike = likes[id].exists;
     const count = likes[id].count;
 
-    console.log("SET", set)
+    // console.log("SET", set)
     const handleOpen = (e) => setOpen(true)
     if (!set) return null;
     return (<>
@@ -50,7 +50,10 @@ export default function SetHeader({set, hidden, onDelete}) {
                 <div className="setheader-stats">
                     <CreateCardForm setId={id} hidden={hidden} />
                     <FaveIcon id={id} isFave={isFave} user={user} />
-                    <LikeIcon id={id} count={count} isLike={isLike} user={user}/>
+                    <div>
+                        <LikeIcon id={id} count={count} isLike={isLike} user={user}/>
+                        <strong className="homedisplay__count">{count}</strong>
+                    </div>
                 </div>
             </div>
         </div>

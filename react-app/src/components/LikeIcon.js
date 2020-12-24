@@ -5,10 +5,15 @@ import { createLike, deleteLike } from '../store/actions/likes';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-export default function LikeIcon ({count, id, isLike, user }) {
+export default function LikeIcon ({count, id, isLike, user, disable }) {
     const dispatch = useDispatch();
 
     const switchLike = async (e) => {
+        e.preventDefault();
+        // if (disable === true) {
+        //     e.preventDefault();
+        //     return;
+        // }
         const action = e.target.name;
         const setId = e.target.className;
 
@@ -43,16 +48,12 @@ export default function LikeIcon ({count, id, isLike, user }) {
     }
     if (isLike) {
         return (<>
-            <div className="homedisplay__likes">
-                <img className={id} src={like} name={"delete"} onClick={switchLike} />
-                <strong className="homedisplay__count">{count}</strong>
-            </div>
+            <img className={id} src={like} name={"delete"} onClick={switchLike} />
+            {/* <strong className="homedisplay__count">{count}</strong> */}
         </>)
     }
     return (<>
-        <div className="homedisplay__likes">
-            <img className={id} src={nolike} name={"create"} onClick={switchLike} />
-            <strong className="homedisplay__count">{count}</strong>
-        </div>
+        <img className={id} src={nolike} name={"create"} onClick={switchLike} />
+        {/* <strong className="homedisplay__count">{count}</strong> */}
     </>)
 }

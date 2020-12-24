@@ -23,7 +23,7 @@ import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
 import {CreateSetForm} from './SetForm';
-import {CreateSubjectForm} from './SubjectForm';
+import { setSearch } from '../store/actions/search'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -94,7 +94,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [open, setOpen] = useState(false)
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -140,16 +140,14 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
   }
   // handling create set form
   const handleOpen = () => setOpen(true)
-  // const handleClose = () => setOpen(false)
 
-  // const handleSearch = (e) => {
-  //   // console.log("SEARCHING", e.target.value)
-  //   setSearchTerm(e.target.value);
-  // }
   const handleSearchEnter = async (e) => {
     setSearchTerm(e.target.value);
     // console.log("SEARCH TERM ON KEY UP", searchTerm)
     if (e.keyCode === 13) {
+      if (searchTerm.length === 0) {
+        return;
+      }
       const searching = await fetch('/api/sets/search', {
         method: "POST",
         headers: {
@@ -161,6 +159,8 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
       });
       const searchRes = await searching.json();
       console.log("SEARCH RES", searchRes);
+      dispatch(setSearch(searchRes))
+      return history.push('/search')
     }
   }
 

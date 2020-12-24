@@ -57,7 +57,11 @@ const HomeDisplay = ({}) => {
                                 </Link>
                                 <div className="homedisplay__icons">
                                     <FaveIcon id={id} isFave={isFave} user={user}/>
-                                    <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                    <div className="homedisplay__likes">
+                                        <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                        <strong className="homedisplay__count">{count}</strong>
+                                    </div>
+
                                 </div>
                             </div>
                         </>)
