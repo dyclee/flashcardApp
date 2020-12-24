@@ -41,7 +41,7 @@
 }
 body {
     height: 100%;
-    /* background-image: url("../icons/bricks"); */
+    background-image: url("../icons/wooden-bg.jpg");
 }
 
 .homedisplay__allsets-container {
@@ -68,7 +68,7 @@ body {
     display: flex;
     width: 350px;
     height: 350px;
-    border: 7px solid #00695f;
+    border: 7px solid #187f0a;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
@@ -130,7 +130,9 @@ body {
     padding: 15px;
     display: flex;
     justify-content: center;
-    color: "#000";
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
     font-weight: bolder;
 }
 .homedisplay__header {
@@ -193,10 +195,10 @@ body {
     /* border: 4px solid green */
 }
 .search__item-container {
-    /* border-left: 2px solid #00695f;
-    border-right: 2px solid #00695f;
-    border-top: 1px solid #00695f;
-    border-bottom: 1px solid #00695f; */
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     /* padding: 15px; */
     height: 90px;
     width: 700px;
@@ -205,11 +207,11 @@ body {
     display: flex;
     background-color: lightgoldenrodyellow;
 }
-.user-color {
-    border-left: 4px solid #07d100;
-    border-right: 4px solid #07d100;
-    border-top: 1px solid #07d100;
-    border-bottom: 1px solid#07d100;
+/* .user-color {
+    border-left: 4px solid #e6f05b;
+    border-right: 4px solid #e;
+    border-top: 1px solid #e;
+    border-bottom: 1px solid#e;
 }
 .subject-color {
     border-left: 4px solid #00cccc;
@@ -222,7 +224,7 @@ body {
     border-right: 4px solid #e73030;
     border-top: 1px solid #e73030;
     border-bottom: 1px solid#e73030;
-}
+} */
 
 .search__item-type {
     font-size: 20px;
@@ -240,7 +242,7 @@ body {
 }
 
 .type-line {
-    border-right: 2px solid #00695f;
+    border-right: 3px solid black;
     height: 90px;
     display: fixed;
     left: 100px
@@ -299,14 +301,20 @@ body {
     font-family:'Courier New', Courier, monospace;
     padding: 20px;
     font-weight: bold;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .search-title-card {
     display: flex;
     justify-content: center;
-    font-size: 24px;
+    font-size: 28px;
     font-family:'Courier New', Courier, monospace;
     padding: 20px;
     font-weight: bold;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .search-title-container {
@@ -321,7 +329,7 @@ body {
     width: 470px;
     height: 200px;
     margin: 20px;
-    border: 7px solid #00695f;
+    border: 7px solid #187f0a;
     padding: 10px;
     border-radius: 25px;
     background-color: lightgoldenrodyellow;

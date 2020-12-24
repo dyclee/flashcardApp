@@ -158,8 +158,9 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
         })
       });
       const searchRes = await searching.json();
-      console.log("SEARCH RES", searchRes);
+      // console.log("SEARCH RES", searchRes);
       dispatch(setSearch(searchRes))
+      setSearchTerm("");
       return history.push('/search')
     }
   }
