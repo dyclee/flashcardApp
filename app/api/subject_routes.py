@@ -31,6 +31,16 @@ def getSubjects():
     return jsonify(subjectNames)
 
 
+@subject_routes.route('/<int:subjectId>', methods=["GET"])
+def getSubject(subjectId):
+    subject = Subject.query.get(subjectId)
+    subjectObj = subject_schema.dump(subject)
+
+    subjectSets = Set.query.filter(Set.subject_id == subjectId).all()
+    setObjs = dump_data_list(subjectSets, set_schema)
+    return jsonify(subject=subjectObj, subjectSets=setObjs)
+
+
 @subject_routes.route('/create', methods=["POST"])
 def createSubject():
     form = SubjectForm()

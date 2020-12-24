@@ -58,13 +58,16 @@ export default function SearchDisplay() {
                 </>)
             })}
         </div>
+        {/* {searchObj.foundCards.length ? } */}
         <div className="search-title-card">Cards containing '{searchObj.searchTerm}'</div>
-        <div className="card-grid">
-            {searchObj.foundCards.map((card) => {
-                return (<>
-                    <SearchListItem item={card} />
-                </>)
-            })}
+        <div className="cards-container">
+            <div className="card-grid">
+                {searchObj.foundCards.map((card) => {
+                    return (<>
+                        <SearchListItem item={card} />
+                    </>)
+                })}
+            </div>
         </div>
     </>)
 }
