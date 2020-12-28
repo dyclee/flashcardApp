@@ -36,7 +36,7 @@
   }
 .splashPageBackground {
     height: 100%;
-    opacity: 100%;
+    /* opacity: 1%; */
     background-image: url("../icons/vector-abstract-pattern-background-with-green-shapes.jpg")
 }
 body {
