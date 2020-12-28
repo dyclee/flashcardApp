@@ -43,6 +43,9 @@ body {
     height: 100%;
     background-image: url("../icons/wooden-bg.jpg");
 }
+.try-again {
+    opacity: 1%;
+}
 
 .homedisplay__allsets-container {
     display: flex;
