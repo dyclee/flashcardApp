@@ -24,7 +24,7 @@
 
 }
 .overlay{
-    opacity:0.8;
+    /* opacity:0.8; */
     /* background-color: "#00695f"; */
     position:fixed;
     width:100%;
