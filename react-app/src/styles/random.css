@@ -71,7 +71,7 @@ body {
     display: flex;
     width: 350px;
     height: 350px;
-    border: 5px solid black;
+    border: 6px solid black;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
@@ -97,6 +97,10 @@ body {
     font-family: 'Courier New', Courier, monospace;
     margin: 5px;
     height: 100px;
+}
+
+.homedisplay__set-titletext {
+    height: 55px;
 }
 .homedisplay__set-user {
     display: flex;
@@ -146,7 +150,7 @@ body {
     display: flex;
     justify-content: center;
     color: black;
-    border: 3px solid black;
+    border: 5px solid black;
     border-radius: 15px;
     margin: 20px;
     background-color: lightgoldenrodyellow;
@@ -165,7 +169,7 @@ body {
     display: flex;
     justify-content: center;
     color: black;
-    border: 3px solid black;
+    border: 5px solid black;
     border-radius: 15px;
     background-color: lightgoldenrodyellow;
     font-weight: bolder;
@@ -297,6 +301,12 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     color: #3d2622;
+}
+
+.search__item-user {
+    display: flex;
+    align-items: center;
+    /* flex-direction: row; */
 }
 .search__item-subheader {
     font-size: 18px;

@@ -26,7 +26,8 @@ const SetListItem = ({ set }) => {
     return (<>
         <div className="homedisplay__set-text">
             <div className="homedisplay__set-split">
-                <div className="homedisplay__set-title">{set.title}
+                <div className="homedisplay__set-title">
+                    <div className="homedisplay__set-titletext">{set.title}</div>
                     <div className={`${classes.root} homedisplay__set-user`}>
                         by:
                         {<Avatar alt={`${set.creator.username}`} src={`${set.creator.avatarUrl}`} className={classes.small}/>}
