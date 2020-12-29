@@ -17,8 +17,9 @@ export default function LoadState({component}) {
     useEffect(() => {
         (async() => {
         const user = await authenticate();
-        const res = await fetch(`/api/sets/`)
+        const res = await fetch(`/api/sets/`);
         const {sets, cards, favorites, likes} = await res.json();
+        console.log("RESPONSE FROM /sets/:      ", sets)
 
 
         const newSets = {}
@@ -74,9 +75,9 @@ export default function LoadState({component}) {
         dispatch(getSets(newSets))
         // setSets(newSets)
 
-        const subjectRes = await fetch('/api/subjects');
+        const subjectRes = await fetch('/api/subjects/');
         const subjects = await subjectRes.json();
-        // console.log("SUBJECTS", subjects);
+        console.log("SUBJECTS          ", subjects);
         dispatch(getSubjects(subjects))
         // console.log("hitting this")
         setLoaded(true)

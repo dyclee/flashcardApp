@@ -24,65 +24,67 @@ def validation_errors_to_error_messages(validation_errors):
 
 @set_routes.route('/')
 def getAllSets():
-    allsets = Set.query.options( \
-        joinedload(Set.createdBy), \
-        joinedload(Set.card), \
-        joinedload(Set.like), \
-        joinedload(Set.favorite), \
-        joinedload(Set.subjectId)) \
-        .all()
-    set_data = dump_data_list(allsets, set_schema)
-    for i in range(len(set_data)):
-        set_data[i]["cards"] = []
-        set_data[i]["likes"] = []
-        set_data[i]["favorites"] = []
-        set_data[i]["creator"] = user_schema.dump(allsets[i].createdBy)
-        # print(set_data[i])
-        for j in range(len(set_data[i]["card"])):
-            set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
-            card = card_schema.dump(allsets[i].card[j])
-            set_data[i]["cards"][j] = card
-        for k in range(len(set_data[i]["like"])):
-            set_data[i]["likes"].append(like_schema.dump(allsets[i].like[k]))
-            like = like_schema.dump(allsets[i].like[k])
-            set_data[i]["likes"][k] = like
-        for m in range(len(set_data[i]["favorite"])):
-            set_data[i]["favorites"].append(favorite_schema.dump(allsets[i].favorite[m]))
-            favorite = favorite_schema.dump(allsets[i].favorite[m])
-            set_data[i]["favorites"][m] = favorite
-        set_data[i]["subject"] = subject_schema.dump(allsets[i].subjectId)
+    try:
+        allsets = Set.query.options( \
+            joinedload(Set.createdBy), \
+            joinedload(Set.card), \
+            joinedload(Set.like), \
+            joinedload(Set.favorite), \
+            joinedload(Set.subjectId)) \
+            .all()
+        set_data = dump_data_list(allsets, set_schema)
+        for i in range(len(set_data)):
+            set_data[i]["cards"] = []
+            set_data[i]["likes"] = []
+            set_data[i]["favorites"] = []
+            set_data[i]["creator"] = user_schema.dump(allsets[i].createdBy)
+            # print(set_data[i])
+            for j in range(len(set_data[i]["card"])):
+                set_data[i]["cards"].append(card_schema.dump(allsets[i].card[j]))
+                card = card_schema.dump(allsets[i].card[j])
+                set_data[i]["cards"][j] = card
+            for k in range(len(set_data[i]["like"])):
+                set_data[i]["likes"].append(like_schema.dump(allsets[i].like[k]))
+                like = like_schema.dump(allsets[i].like[k])
+                set_data[i]["likes"][k] = like
+            for m in range(len(set_data[i]["favorite"])):
+                set_data[i]["favorites"].append(favorite_schema.dump(allsets[i].favorite[m]))
+                favorite = favorite_schema.dump(allsets[i].favorite[m])
+                set_data[i]["favorites"][m] = favorite
+            set_data[i]["subject"] = subject_schema.dump(allsets[i].subjectId)
 
-    sets = {}
-    cards = {}
-    likes = {}
-    favorites = {}
-    # print("SET DATA", set_data)
-    # print("CURRENT_USER", dir(current_user))
-    # print("CURENT ID", current_user.get_id())
-    for each in set_data:
-        # print("EACH", each)
-        cards.update({card["id"]:card for card in each["cards"]})
-        # each["cards"] = [card["id"] for card in each["cards"]]
-        sets.update({each["id"]: each})
+        sets = {}
+        cards = {}
+        likes = {}
+        favorites = {}
+        # print("SET DATA", set_data)
+        # print("CURRENT_USER", dir(current_user))
+        # print("CURENT ID", current_user.get_id())
+        for each in set_data:
+            # print("EACH", each)
+            cards.update({card["id"]:card for card in each["cards"]})
+            # each["cards"] = [card["id"] for card in each["cards"]]
+            sets.update({each["id"]: each})
 
-        likes.update({like["id"]:like for like in each["likes"]})
-        # each["likes"] = [like["id"] for like in each["likes"]]
+            likes.update({like["id"]:like for like in each["likes"]})
+            # each["likes"] = [like["id"] for like in each["likes"]]
 
-        favorites.update({favorite["id"]:favorite for favorite in each["favorites"]})
-        # each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
+            favorites.update({favorite["id"]:favorite for favorite in each["favorites"]})
+            # each["favorites"] = [favorite["id"] for favorite in each["favorites"]]
 
-    # print("SETS", sets)
-    # print("CARDS", cards)
-    # print("LIKES", likes)
-    # print("FAVORITES", favorites)
+        # print("SETS", sets)
+        # print("CARDS", cards)
+        # print("LIKES", likes)
+        # print("FAVORITES", favorites)
 
-    return jsonify(
-        sets=sets,
-        cards=cards,
-        likes=likes,
-        favorites=favorites
-    )
-
+        return jsonify(
+            sets=sets,
+            cards=cards,
+            likes=likes,
+            favorites=favorites
+        )
+    except:
+        return jsonify(error="get sets route failed")
 
 @set_routes.route('/<int:setId>')
 def getOneSet(setId):
