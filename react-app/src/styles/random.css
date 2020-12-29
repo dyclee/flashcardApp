@@ -41,7 +41,7 @@
 }
 body {
     height: 100%;
-    background-image: url("../icons/wooden-bg.jpg");
+    background-image: url("../icons/light-wooden-bg.jpg");
 }
 .try-again {
     opacity: 1%;
@@ -71,12 +71,12 @@ body {
     display: flex;
     width: 350px;
     height: 350px;
-    border: 7px solid #187f0a;
+    border: 5px solid black;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
-    justify-content: space-between;
-    background-color: white;
+    /* justify-content: space-between;
+    background-color: white; */
     border-radius: 25px;
     background-color: lightgoldenrodyellow;
 
@@ -130,13 +130,34 @@ body {
 .homedisplay__welcome {
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     justify-content: center;
-    color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    color: black;
+    border: 3px solid black;
+    border-radius: 15px;
+    margin: 20px;
+    background-color: lightgoldenrodyellow;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
+    /* width: 250px; */
     font-weight: bolder;
+    /* align-items: center; */
+}
+
+.headerdisplay__welcome {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    padding: 10px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    color: black;
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: lightgoldenrodyellow;
+    font-weight: bolder;
+
 }
 .homedisplay__header {
     display: flex;
@@ -206,7 +227,7 @@ body {
     height: 90px;
     width: 700px;
     box-sizing: border-box;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     display: flex;
     background-color: lightgoldenrodyellow;
 }
@@ -305,8 +326,8 @@ body {
     padding: 20px;
     font-weight: bold;
     color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
 }
 .search-title-card {
     display: flex;
@@ -316,14 +337,14 @@ body {
     padding: 20px;
     font-weight: bold;
     color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; */
 }
 
 .search-title-container {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 }
 .subjectheader-container {
     display: flex;

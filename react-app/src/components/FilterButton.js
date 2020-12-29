@@ -97,7 +97,7 @@ export default function FilterButton({sets, setSetArr}) {
             onClick={handleClick}
             style={{ color: "#FFFFFF" }}
             variant='contained'
-            color='primary'
+            color="primary"
           >
             Filter <FilterListIcon />
           </Button>

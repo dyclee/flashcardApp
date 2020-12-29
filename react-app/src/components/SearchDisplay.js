@@ -13,12 +13,14 @@ export default function SearchDisplay() {
     }
     // console.log("SEARCH OBJ", searchObj)
     if (!searchObj.foundSets) {
-        console.log("THIS?")
+        // console.log("THIS?")
         return (<>
             <div className="search-title-container">
-                <div className="search-title">Search expired</div>
-                <div>
-                    <Button onClick={goHome} variant="contained" color="primary">GO HOME</Button>
+                <div className="homedisplay__header">
+                    <div className="homedisplay__welcome">Search expired</div>
+                    <div>
+                        <Button onClick={goHome} variant="contained" color="primary">GO HOME</Button>
+                    </div>
                 </div>
             </div>
         </>)
@@ -26,15 +28,22 @@ export default function SearchDisplay() {
     if (!searchObj.foundSets.length && !searchObj.foundSubjects.length && !searchObj.foundCards.length && !searchObj.foundUsers.length) {
         return (<>
             <div className="search-title-container">
-                <div className="search-title">No results found for '{searchObj.searchTerm}'</div>
-                <div>
-                    <Button onClick={goHome} variant="contained" color="primary">GO HOME</Button>
+                <div className="homedisplay__header">
+                    <div className="homedisplay__welcome">No results found for '{searchObj.searchTerm}'</div>
+                    <div>
+                        <Button onClick={goHome} variant="contained" color="primary">GO HOME</Button>
+                    </div>
                 </div>
             </div>
         </>)
     }
     return (<>
-        <div className="search-title">Search results for '{searchObj.searchTerm}'</div>
+        {/* <div className="search-title">Search results for '{searchObj.searchTerm}'</div> */}
+            <div className="search-title-container">
+                <div className="homedisplay__header">
+                    <div className="homedisplay__welcome">Search results for '{searchObj.searchTerm}'</div>
+                </div>
+            </div>
         <div className="search-container">
             {searchObj.foundSets.map((set) => {
                 return (<>
@@ -58,7 +67,12 @@ export default function SearchDisplay() {
                 </>)
             })}
         </div>
-        <div className="search-title-card">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div>
+        <div className="search-title-container">
+                <div className="homedisplay__header">
+                    <div className="homedisplay__welcome">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div>
+                </div>
+            </div>
+        {/* <div className="search-title-card">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div> */}
         <div className="cards-container">
             <div className="card-grid">
                 {searchObj.foundCards.map((card) => {

@@ -35,7 +35,9 @@ export default function FavoritesDisplay(){
 
     return (<>
         <article>
-            <div  id="welcome-favorites" className="homedisplay__welcome">Your favorites</div>
+            <div className="homedisplay__header">
+                <div  id="welcome-favorites" className="homedisplay__welcome">Your favorites</div>
+            </div>
             <div className="homedisplay__allsets-container">
                 {userFaves.map(set => {
                     let id = set.id
