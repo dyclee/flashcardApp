@@ -18,11 +18,10 @@ const SignUpForm = ({open, setOpen, authenticated, setAuthenticated, handleClick
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
   // const [open, setOpen] = React.useState(true);
   const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
-  // const handleClickOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false)
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -31,6 +30,7 @@ const SignUpForm = ({open, setOpen, authenticated, setAuthenticated, handleClick
         username,
         email,
         password,
+        avatarUrl,
         );
       if (!user.errors) {
         dispatch(getUser(user))
@@ -55,6 +55,7 @@ const renderErrors = (errors) => {
   const updateEmail = (e) =>  setEmail(e.target.value)
   const updatePassword = (e) => setPassword(e.target.value)
   const updateRepeatPassword = (e) => setRepeatPassword(e.target.value)
+  const updateAvatarUrl = (e) => setAvatarUrl(e.target.value)
 
   if (authenticated) return <Redirect to="/" />
 
@@ -114,6 +115,16 @@ const renderErrors = (errors) => {
             fullWidth
             onChange={updateRepeatPassword}
             required
+          />
+          <TextField
+            autoFocus
+            defaultValue={avatarUrl}
+            margin="dense"
+            id="avatarUrl"
+            label="Image URL"
+            type="text"
+            fullWidth
+            onChange={updateAvatarUrl}
           />
           <ActionAndCancelButtons handleClose={handleClose} onAction={onSignUp} actionName={"Sign up"}/>
       </DialogContent>

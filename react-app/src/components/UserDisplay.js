@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { useParams, Link } from "react-router-dom";
 
+import Avatar from '@material-ui/core/Avatar';
 import SetListItem from './SetListItem';
 import LikeIcon from './LikeIcon';
 import FaveIcon from './FaveIcon';
@@ -17,6 +18,7 @@ export default function UserDisplay() {
     const faves = useSelector(state => state.favoriteReducer);
     const likes = useSelector(state => state.likeReducer);
     const sets = useSelector(state => state.setReducer);
+    const sessionUser = useSelector(state => state.userReducer.user);
 
     useEffect(() => {
         // console.log("USER ID", userId)
@@ -40,8 +42,8 @@ export default function UserDisplay() {
         })();
     }, [userId]);
 
-    // console.log("USER", user)
-    if (!user || !setArr || !likes || !faves) {
+    console.log("USER", user)
+    if (!user || !setArr || !likes || !faves || !sessionUser) {
         return null;
     }
 
@@ -49,6 +51,7 @@ export default function UserDisplay() {
             <div className="setheader-everything">
                 <div className="setheader-container">
                     <div className="userheader-topline">
+                        <Avatar alt={`${user.username}`} src={`${user.avatarUrl}`} />
                         <div className="userheader-title">{user.username}</div>
                         {/* <div className="userheader-icons">
                             <img src={pencil} />
@@ -82,8 +85,8 @@ export default function UserDisplay() {
                                     <SetListItem set={setObj}></SetListItem>
                                 </Link>
                                 <div className="homedisplay__icons">
-                                    <FaveIcon id={id} isFave={isFave} user={user}/>
-                                    <LikeIcon id={id} count={count} isLike={isLike} user={user} />
+                                    <FaveIcon id={id} isFave={isFave} user={sessionUser}/>
+                                    <LikeIcon id={id} count={count} isLike={isLike} user={sessionUser} />
                                 </div>
                             </div>
                         </>)

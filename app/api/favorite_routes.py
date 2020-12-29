@@ -39,6 +39,7 @@ def createFav():
 def deleteFav():
     set_id = request.json["setId"]
     user_id = request.json["userId"]
+    print("USERID", user_id, "         SETID", set_id)
     findFave = Favorite.query.filter(Favorite.set_id == set_id, Favorite.user_id == user_id).one()
     # print("FOUND FAVE", findFave)
     favObj = favorite_schema.dump(findFave)

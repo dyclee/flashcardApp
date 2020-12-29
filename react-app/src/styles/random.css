@@ -75,8 +75,8 @@ body {
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
-    /* justify-content: space-between;
-    background-color: white; */
+    justify-content: space-between;
+    /* background-color: white; */
     border-radius: 25px;
     background-color: lightgoldenrodyellow;
 
@@ -93,22 +93,34 @@ body {
 }
 .homedisplay__set-title {
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 900;
     font-family: 'Courier New', Courier, monospace;
-    margin: 10px;
+    margin: 5px;
+    height: 100px;
+}
+.homedisplay__set-user {
+    display: flex;
+    align-items: center;
+    font-family:'Courier New', Courier, monospace;
+    margin: 0px;
+    font-size: 13px;
+}
 
-
+.homedisplay__set-separator {
+    background-color: black;
+    height: 2px;
+    width: 260px;
 }
 .homedisplay__set-description {
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
-    margin: 10px;
+    margin: 5px;
     color: black;
-    font-weight: bolder;
+    font-weight: 900;
 }
 .homedisplay__set-subject {
     font-family: 'Courier New', Courier, monospace;
-    margin: 10px;
+    margin: 5px;
     color: black;
 }
 .homedisplay__set-cardcount {

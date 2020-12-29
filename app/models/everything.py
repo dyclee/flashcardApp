@@ -34,6 +34,7 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
   color = db.Column(db.String(7), nullable=False, default="#000")
   created_at = db.Column(db.DateTime, nullable = False, default=datetime.now())
+  avatarUrl = db.Column(db.String(255), default="/user-circle.svg")
 
   setss = db.relationship("Set", back_populates="createdBy")
   like = db.relationship("Like", back_populates="userId")
@@ -77,7 +78,8 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "username": self.username,
       "email": self.email,
-      "color": self.color
+      "color": self.color,
+      "avatarUrl": self.avatarUrl,
     }
 
 
