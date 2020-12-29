@@ -23,9 +23,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @set_routes.route('/')
-# @login_required
 def getAllSets():
-    # sets = Set.query.all()
     allsets = Set.query.options( \
         joinedload(Set.createdBy), \
         joinedload(Set.card), \
@@ -96,7 +94,7 @@ def getOneSet(setId):
         joinedload(Set.favorite), \
         joinedload(Set.subjectId)) \
         .one()
-    print("SELECTEDSET" , selectedSet)
+    # print("SELECTEDSET" , selectedSet)
     setObj = set_schema.dump(selectedSet)
     setObj["createdBy"] = user_schema.dump(selectedSet.createdBy)
     setObj["creator"] = user_schema.dump(selectedSet.createdBy)
