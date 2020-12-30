@@ -51,7 +51,7 @@ with app.app_context():
         hashed_password="pbkdf2:sha256:150000$X9FojJy5$2716c66169cc5cc6ef21a128297931b625f0082ba58c963bda1f41b84f5d8920",
         color="#2c699a",
         created_at=datetime(2020, 10, 20),
-        avatarUrl="/watermelon-background.png",
+        avatarUrl="https://img2.wikia.nocookie.net/__cb20140810222650/disney/images/0/0d/Mighty_ducks_primary_logo.png",
     )
     test6 = User(
         username="lemonbarzz",
