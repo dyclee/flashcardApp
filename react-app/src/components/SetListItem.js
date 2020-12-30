@@ -1,6 +1,8 @@
 import React from 'react';
+import userCircle from '../icons/userCircle.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import { CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +32,8 @@ const SetListItem = ({ set }) => {
                     <div className="homedisplay__set-titletext">{set.title}</div>
                     <div className={`${classes.root} homedisplay__set-user`}>
                         by:
-                        {<Avatar alt={`${set.creator.username}`} src={`${set.creator.avatarUrl}`} className={classes.small}/>}
+
+                        {<Avatar alt={`${set.creator.username}`} src={set.creator.avatarUrl === "/user-circle.svg" ? userCircle : set.creator.avatarUrl} className={classes.small}/>}
                         {set.creator.username}
                     </div>
                 </div>
