@@ -226,12 +226,30 @@ body {
     padding: 5px;
 }
 
+.search-with-filter {
+    display: flex;
+    justify-content: space-around;
+}
+
+.search__filter {
+    background-color: lightgoldenrodyellow;
+    width: 210px;
+    height: 260px;
+    position: sticky;
+    top: 200px;
+    left: 110px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: 5px solid black;
+    margin: 30px;
+
+}
 .search-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
     /* border: 4px solid green */
 }
 .search__item-container {

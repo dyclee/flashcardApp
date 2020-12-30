@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import SearchListItem from './SearchListItem';
 import { Button } from '@material-ui/core';
+import SearchFilter from './SearchFilter';
 
 export default function SearchDisplay() {
     const history = useHistory();
     const searchObj = useSelector(state => state.searchReducer)
+
+    // console.log(searchObj)
+    // const [sets, setSets] = useState([]);
+    // const [subjects, setSubjects] = useState([]);
+    // const [users, setUsers] = useState([]);
+    // const [cards, setCards] = useState([]);
+
+    // useEffect(() => {
+    //     (async () => {
+    //         console.log("hitting this?")
+    //         setSets(searchObj.foundSets);
+    //         setSubjects(searchObj.foundSubjects);
+    //         setUsers(searchObj.foundUsers);
+    //         setCards(searchObj.foundCards);
+    //         console.log(sets, subjects, users, cards)
+    //     })()
+    // },[])
+    // setSets(searchObj.foundSets);
 
     const goHome = (e) => {
         return history.push('/');
@@ -44,28 +63,31 @@ export default function SearchDisplay() {
                     <div className="homedisplay__welcome">Search results for '{searchObj.searchTerm}'</div>
                 </div>
             </div>
-        <div className="search-container">
-            {searchObj.foundSets.map((set) => {
-                return (<>
-                    <Link to={`/set/${set.id}`} className="homedisplay__links">
-                        <SearchListItem item={set} />
-                    </Link>
-                </>)
-            })}
-            {searchObj.foundSubjects.map((subject) => {
-                return (<>
-                    <Link to={`/subjects/${subject.id}`} className="homedisplay__links">
-                        <SearchListItem item={subject} />
-                    </Link>
-                </>)
-            })}
-            {searchObj.foundUsers.map((user) => {
-                return (<>
-                    <Link to={`/users/${user.id}`} className="homedisplay__links">
-                        <SearchListItem item={user} />
-                    </Link>
-                </>)
-            })}
+        <div className="search-with-filter">
+            <SearchFilter />
+            <div className="search-container">
+                {searchObj.foundSets.map((set) => {
+                    return (<>
+                        <Link to={`/set/${set.id}`} className="homedisplay__links">
+                            <SearchListItem item={set} />
+                        </Link>
+                    </>)
+                })}
+                {searchObj.foundSubjects.map((subject) => {
+                    return (<>
+                        <Link to={`/subjects/${subject.id}`} className="homedisplay__links">
+                            <SearchListItem item={subject} />
+                        </Link>
+                    </>)
+                })}
+                {searchObj.foundUsers.map((user) => {
+                    return (<>
+                        <Link to={`/users/${user.id}`} className="homedisplay__links">
+                            <SearchListItem item={user} />
+                        </Link>
+                    </>)
+                })}
+            </div>
         </div>
         <div className="search-title-container">
                 <div className="homedisplay__header">

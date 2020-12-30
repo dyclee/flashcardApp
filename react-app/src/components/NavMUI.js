@@ -24,6 +24,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import Link from '@material-ui/core/Link';
 import {CreateSetForm} from './SetForm';
 import { setSearch } from '../store/actions/search'
+// import { setAllSearch } from '../store/actions/search';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
