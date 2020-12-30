@@ -7,6 +7,7 @@ import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import FlashcardList from './FlashcardList';
 import Quiz from './Quiz';
+import SetQuestions from './SetQuestions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +32,9 @@ export default function FullTabPanel({set}) {
       <TabContext value={value}>
         <AppBar className={classes.appbar} position="fixed" color="secondary">
           <TabList onChange={handleChange} centered aria-label="simple tabs example">
+            <Tab label="List" value="3" />
             <Tab label="Cards" value="1" />
             <Tab label="Quiz" value="2" />
-            {/* <Tab label="" value="3" /> */}
           </TabList>
         </AppBar>
         <TabPanel value="1">
@@ -44,7 +45,9 @@ export default function FullTabPanel({set}) {
         <TabPanel value="2">
           <Quiz setId={set.id} />
         </TabPanel>
-        {/* <TabPanel value="3">Item Three</TabPanel> */}
+        <TabPanel value="3">
+          <SetQuestions set={set} />
+        </TabPanel>
       </TabContext>
     </div>
   );

@@ -31,7 +31,7 @@ export default function SearchFilter() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
     if (event.target.name === "sets" && sets === true) {
-        console.log(sets);
+        // console.log(sets);
     }
   };
 
