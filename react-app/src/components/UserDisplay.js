@@ -7,6 +7,7 @@ import SetListItem from './SetListItem';
 import LikeIcon from './LikeIcon';
 import FaveIcon from './FaveIcon';
 import pencil from '../icons/pencil-alt.svg';
+import userCircle from '../icons/userCircle.svg';
 
 
 export default function UserDisplay() {
@@ -51,7 +52,8 @@ export default function UserDisplay() {
             <div className="setheader-everything">
                 <div className="setheader-container">
                     <div className="userheader-topline">
-                        <Avatar alt={`${user.username}`} src={`${user.avatarUrl}`} />
+                        {/* <Avatar alt={`${user.username}`} src={`${user.avatarUrl}`} /> */}
+                        {<Avatar alt={`${user.username}`} src={user.avatarUrl === "/user-circle.svg" ? userCircle : user.avatarUrl}/>}
                         <div className="userheader-title">{user.username}</div>
                         {/* <div className="userheader-icons">
                             <img src={pencil} />

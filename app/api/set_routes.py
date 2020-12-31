@@ -254,6 +254,7 @@ def getSearchItems():
     def searchSet(setObj):
         print("SETOBJ", setObj["title"], searchTerm)
         if searchTerm in setObj["title"].casefold():
+            setObj["hidden"] = False
             return True
         return False
 
@@ -265,8 +266,10 @@ def getSearchItems():
 
     def searchCard(cardObj):
         if searchTerm in cardObj["question"].casefold():
+            cardObj["hidden"] = False
             return True
         elif searchTerm in cardObj["answer"].casefold():
+            cardObj["hidden"] = False
             return True
         return False
     getCards = filter(searchCard, cardList)
@@ -276,6 +279,7 @@ def getSearchItems():
 
     def searchSubject(subjectObj):
         if searchTerm in subjectObj["name"].casefold():
+            subjectObj["hidden"] = False
             return True
         return False
 
@@ -286,6 +290,7 @@ def getSearchItems():
 
     def searchUser(userObj):
         if searchTerm in userObj["username"].casefold():
+            userObj["hidden"] = False
             return True
         return False
 

@@ -10,7 +10,7 @@ export default function SearchDisplay() {
     const searchObj = useSelector(state => state.searchReducer)
 
     // console.log(searchObj)
-    // const [sets, setSets] = useState([]);
+
     // const [subjects, setSubjects] = useState([]);
     // const [users, setUsers] = useState([]);
     // const [cards, setCards] = useState([]);
@@ -66,21 +66,21 @@ export default function SearchDisplay() {
         <div className="search-with-filter">
             <SearchFilter />
             <div className="search-container">
-                {searchObj.foundSets.map((set) => {
+                {searchObj.foundSets[0].hidden ? null : searchObj.foundSets.map((set) => {
                     return (<>
                         <Link to={`/set/${set.id}`} className="homedisplay__links">
                             <SearchListItem item={set} />
                         </Link>
                     </>)
                 })}
-                {searchObj.foundSubjects.map((subject) => {
+                {searchObj.foundSubjects[0].hidden ? null : searchObj.foundSubjects.map((subject) => {
                     return (<>
                         <Link to={`/subjects/${subject.id}`} className="homedisplay__links">
                             <SearchListItem item={subject} />
                         </Link>
                     </>)
                 })}
-                {searchObj.foundUsers.map((user) => {
+                {searchObj.foundUsers[0].hidden ? null : searchObj.foundUsers.map((user) => {
                     return (<>
                         <Link to={`/users/${user.id}`} className="homedisplay__links">
                             <SearchListItem item={user} />
@@ -89,15 +89,17 @@ export default function SearchDisplay() {
                 })}
             </div>
         </div>
-        <div className="search-title-container">
-                <div className="homedisplay__header">
-                    <div className="homedisplay__welcome">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div>
-                </div>
+        {searchObj.foundCards[0].hidden ? null :
+            <div className="search-title-container">
+                    <div className="homedisplay__header">
+                        <div className="homedisplay__welcome">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div>
+                    </div>
             </div>
+        }
         {/* <div className="search-title-card">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div> */}
         <div className="cards-container">
             <div className="card-grid">
-                {searchObj.foundCards.map((card) => {
+                {searchObj.foundCards[0].hidden ? null : searchObj.foundCards.map((card) => {
                     return (<>
                         <SearchListItem item={card} />
                     </>)

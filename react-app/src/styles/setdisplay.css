@@ -126,6 +126,8 @@ body {
 .setheader-creator {
     font-size: 17px;
     padding: 3px;
+    display: flex;
+    align-items: center;
 }
 .setheader-cardcount {
     font-size:17px;
@@ -167,6 +169,10 @@ tfoot {
     color: #fff;
     font-family:'Courier New', Courier, monospace;
     font-size: 30px;
+}
+
+.whitespace {
+    width: 14px;
 }
 /* .setdisplay__item {
     display: flex;

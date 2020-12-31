@@ -5,6 +5,7 @@ import LikeIcon from './LikeIcon';
 import FaveIcon from './FaveIcon';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import { Avatar } from '@material-ui/core';
+import userCircle from '../icons/userCircle.svg';
 
 export default function SearchListItem({item}) {
     const user = useSelector(state => state.userReducer.user);
@@ -74,7 +75,7 @@ export default function SearchListItem({item}) {
                 <div className="type-line"></div>
                 <div className="search__item-header">
                     <div className="search__item-headliner search__item-user">
-                        <div>{<Avatar alt={`${item.username}`} src={`${item.avatarUrl}`}/>}</div>
+                        <div>{<Avatar alt={`${item.username}`} src={item.avatarUrl === "/user-circle.svg" ? userCircle : item.avatarUrl}/>}</div>
                         <div>{item.username}</div>
                     </div>
                     <div className="search__item-subheader">

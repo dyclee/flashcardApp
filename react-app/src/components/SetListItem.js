@@ -32,7 +32,6 @@ const SetListItem = ({ set }) => {
                     <div className="homedisplay__set-titletext">{set.title}</div>
                     <div className={`${classes.root} homedisplay__set-user`}>
                         by:
-
                         {<Avatar alt={`${set.creator.username}`} src={set.creator.avatarUrl === "/user-circle.svg" ? userCircle : set.creator.avatarUrl} className={classes.small}/>}
                         {set.creator.username}
                     </div>

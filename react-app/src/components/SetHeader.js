@@ -7,9 +7,29 @@ import {EditSetForm, DeleteSetForm} from './SetForm';
 import {CreateCardForm} from './CardForm';
 import LikeIcon from './LikeIcon';
 import FaveIcon from './FaveIcon';
+import { Avatar, makeStyles } from '@material-ui/core';
+import userCircle from '../icons/userCircle.svg';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+  }));
 
 
 export default function SetHeader({set, hidden, onDelete}) {
+    const classes = useStyles();
     const [open, setOpen] = useState(false)
 
     const user = useSelector(state => state.userReducer.user);
@@ -45,6 +65,8 @@ export default function SetHeader({set, hidden, onDelete}) {
                 <div className="setheader-description">{set.description}</div>
                 <div className="setheader-creator">
                     Made by:
+                    <div className="whitespace"></div>
+                    {<Avatar alt={`${set.creator.username}`} src={set.creator.avatarUrl === "/user-circle.svg" ? userCircle : set.creator.avatarUrl} className={classes.small}/>}
                     <Link to={`/users/${set.creator.id}`} style={{ color: '#00897b', textDecoration: 'none' }}><strong><i> {set.creator.username}</i></strong></Link>
                 </div>
                 <div className="setheader-stats">
