@@ -30,7 +30,7 @@ export default function SearchDisplay() {
     const goHome = (e) => {
         return history.push('/');
     }
-    // console.log("SEARCH OBJ", searchObj)
+    console.log("SEARCH OBJ", searchObj)
     if (!searchObj.foundSets) {
         // console.log("THIS?")
         return (<>
@@ -66,21 +66,21 @@ export default function SearchDisplay() {
         <div className="search-with-filter">
             <SearchFilter />
             <div className="search-container">
-                {searchObj.foundSets[0].hidden ? null : searchObj.foundSets.map((set) => {
+                {searchObj.foundSets.length && searchObj.foundSets[0].hidden ? null : searchObj.foundSets.map((set) => {
                     return (<>
                         <Link to={`/set/${set.id}`} className="homedisplay__links">
                             <SearchListItem item={set} />
                         </Link>
                     </>)
                 })}
-                {searchObj.foundSubjects[0].hidden ? null : searchObj.foundSubjects.map((subject) => {
+                {searchObj.foundSubjects.length && searchObj.foundSubjects[0].hidden ? null : searchObj.foundSubjects.map((subject) => {
                     return (<>
                         <Link to={`/subjects/${subject.id}`} className="homedisplay__links">
                             <SearchListItem item={subject} />
                         </Link>
                     </>)
                 })}
-                {searchObj.foundUsers[0].hidden ? null : searchObj.foundUsers.map((user) => {
+                {searchObj.foundUsers.length && searchObj.foundUsers[0].hidden ? null : searchObj.foundUsers.map((user) => {
                     return (<>
                         <Link to={`/users/${user.id}`} className="homedisplay__links">
                             <SearchListItem item={user} />
@@ -89,7 +89,7 @@ export default function SearchDisplay() {
                 })}
             </div>
         </div>
-        {searchObj.foundCards[0].hidden ? null :
+        {searchObj.foundCards.length && searchObj.foundCards[0].hidden ? null :
             <div className="search-title-container">
                     <div className="homedisplay__header">
                         <div className="homedisplay__welcome">{searchObj.foundCards.length} cards containing '{searchObj.searchTerm}'</div>
