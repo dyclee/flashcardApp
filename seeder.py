@@ -23,6 +23,7 @@ with app.app_context():
         hashed_password="pbkdf2:sha256:150000$X9FojJy5$2716c66169cc5cc6ef21a128297931b625f0082ba58c963bda1f41b84f5d8920",
         color="#000",
         created_at=datetime(2020, 10, 20),
+        avatarUrl="https://www.insightsonindia.com/wp-content/uploads/2017/12/Indian-Forest-Act-1.jpg",
     )
     test2 = User(
         username="ramenman",
@@ -30,6 +31,7 @@ with app.app_context():
         hashed_password="pbkdf2:sha256:150000$X9FojJy5$2716c66169cc5cc6ef21a128297931b625f0082ba58c963bda1f41b84f5d8920",
         color="#af4d98",
         created_at=datetime(2020, 10, 20),
+        avatarUrl="https://blog.williams-sonoma.com/wp-content/uploads/2018/09/oct-7-Pork-Ramen-with-Bean-Sprouts.jpg",
     )
     test3 = User(
         username="rainbows",
@@ -37,6 +39,7 @@ with app.app_context():
         hashed_password="pbkdf2:sha256:150000$X9FojJy5$2716c66169cc5cc6ef21a128297931b625f0082ba58c963bda1f41b84f5d8920",
         color="#2c699a",
         created_at=datetime(2020, 10, 20),
+        avatarUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Rainbow-gradient-fully-saturated.svg/1024px-Rainbow-gradient-fully-saturated.svg.png",
     )
     test4 = User(
         username="karatekid2",
@@ -44,6 +47,7 @@ with app.app_context():
         hashed_password="pbkdf2:sha256:150000$X9FojJy5$2716c66169cc5cc6ef21a128297931b625f0082ba58c963bda1f41b84f5d8920",
         color="#2c699a",
         created_at=datetime(2020, 10, 20),
+        avatarUrl="https://thehappypuppysite.com/wp-content/uploads/2015/12/adopt-rescue.png",
     )
     test5 = User(
         username="codemaster34",
