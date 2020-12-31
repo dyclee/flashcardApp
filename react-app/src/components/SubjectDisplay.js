@@ -62,9 +62,9 @@ export default function SubjectDisplay() {
                     <div className="userheader-description"><strong>Number of sets: {subject.setss.length}</strong></div>
                 </div>
             </div>
-            <div className="homedisplay__header">
+            {/* <div className="homedisplay__header">
                 <div className="headerdisplay__welcome">'{`${subject.name}`}' sets</div>
-            </div>
+            </div> */}
             <div className="homedisplay__allsets-container">
                     {setArr.map(setObj => {
                         let id = setObj.id
