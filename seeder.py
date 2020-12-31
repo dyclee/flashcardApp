@@ -171,7 +171,7 @@ with app.app_context():
         created_at=datetime(2020, 8, 20)
     )
     set9 = Set(
-        title="Asian American Classics",
+        title="Asian American LIT - classics",
         description="quiz review for AA-LIT 479",
         subject_id=2,
         created_by=4,
@@ -203,82 +203,107 @@ with app.app_context():
         set_id=9,
     )
     card5 = Card(
-        question="What is the mathematical notation of the 'linear' complexity class?",
-        answer="O(n)",
+        question="Big O notation of 'factorial'",
+        answer="O(n!)",
         set_id=3,
     )
     card6 = Card(
-        question="Which of the following complexities has the best performance for a large input? O(2^n), O(n^2), O(n!), O(n*log(n))",
-        answer="O(n*log(n)) - loglinear",
+        question="time complexity of a merge sort",
+        answer="O(n*log(n))",
         set_id=3,
     )
     card16 = Card(
-        question="What is the time complexity for inserting a value onto a stack?",
-        answer="O(1) - Constant",
+        question="time complexity for inserting a value onto a stack",
+        answer="O(1)",
         set_id=3,
     )
     card7 = Card(
-        question="Rank all the time complexities from most efficient to least efficient using a large data set.",
+        question="Rank all the time complexities from most efficient to least efficient",
         answer="Constant, Logarithmic, Linear, Loglinear, Polynomial, Exponential, Factorial",
         set_id=3,
     )
+    card8 = Card(
+        question="time complexity of a binary search algorithm",
+        answer="O(log n)",
+        set_id=3,
+    )
+    card9 = Card(
+        question="time complexity of a bubble sort",
+        answer="O(n^2)",
+        set_id=3,
+    )
     card12 = Card(
-        question="What is time complexity?",
+        question="time complexity",
         answer="the amount of time it takes to run an algorithm",
         set_id=3,
     )
     card13 = Card(
-        question="What is space complexity?",
+        question="space complexity",
         answer="the amount of memory used by an algorithm",
         set_id=3,
     )
     card14 = Card(
-        question="What is memoization?",
+        question="memoization",
         answer="a programming technique to increase efficiency by storing the results of expensive function calls and returning the cached result when inputs are repeated",
         set_id=3,
     )
     card15 = Card(
-        question="What is tabulation?",
+        question="tabulation",
         answer="a systematic & logical presentation of numeric data in rows and columns to facilitate comparison and statistical analysis",
         set_id=3,
     )
     card17 = Card(
-        question="What is the time complexity of iterating through an array?",
-        answer="O(n) - Linear",
+        question="time complexity of iterating through an array",
+        answer="O(n)",
         set_id=3,
     )
     card18 = Card(
-        question="What's the difference between a graph and a tree?",
+        question="difference between a graph and a tree",
         answer="A tree must have a root node but graphs may not; graphs can have cyles but trees cannot",
         set_id=2,
     )
+    card10 = Card(
+        question="order of nodes visited using an 'In-order' traversal",
+        answer="left subtree, root, right subtree",
+        set_id=2,
+    )
+    card11 = Card(
+        question="order of nodes visited using an 'Pre-order' traversal",
+        answer="root, left subtree, right subtree",
+        set_id=2,
+    )
+    card45 = Card(
+        question="order of nodes visited using an 'Post-order' traversal",
+        answer="left subtree, right subtree, root",
+        set_id=2,
+    )
     card19 = Card(
-        question="In a binary search tree, which of depth-first traversal results in retrieving the nodes in ascending sorted order?",
+        question="traversal that results in retrieving the nodes in ascending sorted order",
         answer="In-order traversal",
         set_id=2,
     )
     card20 = Card(
-        question="What search would you use to determine the shortest distance between two people in a social network?",
+        question="search would you use to determine the shortest distance between two people in a social network",
         answer="Breadth-first search",
         set_id=2,
     )
     card21 = Card(
-        question="What is the name of the node in a tree that does not have a parent node?",
+        question="node in a tree that does not have a parent node",
         answer="the root node",
         set_id=2,
     )
     card22 = Card(
-        question="What is a binary tree?",
-        answer="A tree where each node may have up to two children",
+        question="binary tree",
+        answer="A data structure where each node may have up to two children",
         set_id=2,
     )
     card23 = Card(
-        question="What is a leaf node?",
+        question="leaf node",
         answer="A node without child nodes",
         set_id=2,
     )
     card24 = Card(
-        question="What is a graph cycle?",
+        question="graph cycle",
         answer="A path that begins and ends at the same node",
         set_id=2,
     )
@@ -309,22 +334,32 @@ with app.app_context():
     )
     card30 = Card(
         question="Empirical Rule",
-        answer="AKA 68-95-99.7 rule - percentages representing the values that lie within 2, 4, and 6 standard deviations of a 'normal' distribution ",
+        answer="AKA 68-95-99.7 rule - normal distribution",
         set_id=4,
     )
     card31 = Card(
-        question="What is HTML?",
+        question="HTML",
         answer="hyper text markup language",
         set_id=5,
     )
     card32 = Card(
-        question="What are 'ul', 'ol', and 'li' tags?",
-        answer="<ul> stands for unordered list, <ol> stands for ordered list, and <li> is a list item",
+        question="<ul> tag",
+        answer="unordered list",
+        set_id=5,
+    )
+    card41 = Card(
+        question="<ol> tag",
+        answer="ordered list",
+        set_id=5,
+    )
+    card42 = Card(
+        question="<li> tag",
+        answer="list item",
         set_id=5,
     )
     card33 = Card(
-        question="What is a <link> tag?",
-        answer="a tag that defines the relationship between the current document and an external resource (commonly used for css stylesheets)",
+        question="<link> tag",
+        answer="defines the relationship between the current document and an external resource (commonly used for css stylesheets)",
         set_id=5,
     )
     card34 = Card(
@@ -338,35 +373,46 @@ with app.app_context():
         set_id=5,
     )
     card36 = Card(
-        question="What are the two types of JavaScript values?",
+        question="types of JavaScript values",
         answer="literals and variables",
         set_id=1,
     )
     card37 = Card(
-        question="True or False: JS is case-sensitive",
+        question="JS is case-sensitive",
         answer="true",
         set_id=1,
     )
     card38 = Card(
-        question="What are the six primitive JS data-types?",
+        question="the primitive JS data-types",
         answer="undefined, boolean, number, string, BigInt, symbol",
         set_id=1,
     )
     card39 = Card(
-        question="What are the two structural JS data-types?",
+        question="structural JS data-types",
         answer="object, function",
         set_id=1,
     )
     card40 = Card(
-        question="What are the logical operators for NOT, AND, OR?",
-        answer="NOT: '!', AND: '&&', OR: '||' ",
+        question="logical operator of 'NOT'",
+        answer="'!'",
+        set_id=1,
+    )
+    card43 = Card(
+        question="logical operator of 'AND'",
+        answer="'&&'",
+        set_id=1,
+    )
+    card44 = Card(
+        question="logical operator of 'OR'",
+        answer="'||'",
         set_id=1,
     )
 
-    cards = [card1, card2, card3, card4, card5, card6, card7,\
+    cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, \
             card12, card13, card14, card15, card16, card17, card18, card19, card20, \
             card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, \
-            card31, card32, card33, card34, card35, card36, card37, card38, card39, card40]
+            card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, \
+            card41, card42, card43, card44, card45]
     for card in cards:
         db.session.add(card)
     db.session.commit()
