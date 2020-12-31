@@ -95,9 +95,9 @@ body {
     width: 470px;
     height: 200px;
     margin: 20px;
-    border: 6px solid black;
+    border: 5px solid black;
     padding: 10px;
-    border-radius: 25px;
+    border-radius: 15px;
     background-color: lightgoldenrodyellow;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -160,7 +160,7 @@ td {
     text-align: left;
     padding: 15px;
     font-size: 20px;
-    /* font-family:'Courier New', Courier, monospace; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 thead,

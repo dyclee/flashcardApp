@@ -71,13 +71,13 @@ body {
     display: flex;
     width: 350px;
     height: 350px;
-    border: 6px solid black;
+    border: 6px solid #654321;
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
     justify-content: space-between;
     /* background-color: white; */
-    border-radius: 25px;
+    border-radius: 15px;
     background-color: lightgoldenrodyellow;
 
 }
@@ -150,7 +150,7 @@ body {
     display: flex;
     justify-content: center;
     color: black;
-    border: 5px solid black;
+    border: 4px solid black;
     border-radius: 15px;
     margin: 20px;
     background-color: lightgoldenrodyellow;
@@ -169,7 +169,7 @@ body {
     display: flex;
     justify-content: center;
     color: black;
-    border: 5px solid black;
+    border: 4px solid black;
     border-radius: 15px;
     background-color: lightgoldenrodyellow;
     font-weight: bolder;
@@ -241,7 +241,7 @@ body {
         height: 300px;
         box-sizing: border-box;
         border-radius: 15px;
-        border: 5px solid black;
+        border: 4px solid black;
     }
 }
 
@@ -256,7 +256,7 @@ body {
         /* left: 110px; */
         box-sizing: border-box;
         border-radius: 15px;
-        border: 5px solid black;
+        border: 4px solid black;
         margin-bottom: 30px;
     }
 
@@ -410,9 +410,9 @@ body {
     width: 470px;
     height: 200px;
     margin: 20px;
-    border: 7px solid #187f0a;
+    border: 5px solid black;
     padding: 10px;
-    border-radius: 25px;
+    border-radius: 15px;
     background-color: lightgoldenrodyellow;
     font-family: 'Courier New', Courier, monospace;
 }
