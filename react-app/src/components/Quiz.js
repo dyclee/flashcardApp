@@ -76,7 +76,8 @@ export default function Quiz({setId}) {
             makeQuestions.push(newQobj)
 
         })
-        setQuestions(makeQuestions);
+        const shuffleQuestions = shuffle(makeQuestions);
+        setQuestions(shuffleQuestions);
     }, [])
     // const [restart, setRestart] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
