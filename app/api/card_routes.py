@@ -20,15 +20,15 @@ def validation_errors_to_error_messages(validation_errors):
 
 @card_routes.route('/create', methods=["POST"])
 def createCard():
-    print("REQUEST", request.json)
+    # print("REQUEST", request.json)
     form = CardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("FORM DATA", form.data)
+    # print("FORM DATA", form.data)
     if form.validate():
         question = form.data["question"]
         answer = form.data["answer"]
         set_id = request.json["setId"]
-        print("question", question)
+        # print("question", question)
         newCard = Card(
             question=question,
             answer=answer,
