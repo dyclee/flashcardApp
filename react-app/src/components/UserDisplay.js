@@ -49,6 +49,7 @@ export default function UserDisplay() {
     }
 
     return (<>
+    <main>
             <div className="setheader-everything">
                 <div className="setheader-container">
                     <div className="userheader-topline">
@@ -94,5 +95,6 @@ export default function UserDisplay() {
                         </>)
                     })}
                 </div>
+    </main>
     </>);
 }

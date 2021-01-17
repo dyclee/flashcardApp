@@ -54,51 +54,52 @@ const LoginForm = ({ authenticated, setAuthenticated}) => {
   if (authenticated) return <Redirect to="/" />
 
   return (<>
-    <SignUpForm open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} authenticated={authenticated} setAuthenticated={setAuthenticated} />
-   <div className="loginContainer">
-     <div>
-      <div>
-        {errors.map((error) => (
-          <div className="loginHeader errorHeader">{error}</div>
-        ))}
+      <div className="splashPageBackground overlay">
+        <SignUpForm open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        <div className="loginContainer">
+          <div>
+            <div>
+              {errors.map((error) => (
+                <div className="loginHeader errorHeader">{error}</div>
+              ))}
+            </div>
+            <h2 className="loginHeader">CardMe</h2>
+            <Button variant="contained" color="primary" onClick={demoLogin}>Demo</Button>
+            <form onSubmit={onLogin}>
+                <TextField
+                  autoFocus
+                  defaultValue={email}
+                  margin="dense"
+                  id="email"
+                  label="Email"
+                  type="text"
+                  fullWidth
+                  onChange={updateEmail}
+                  required
+                />
+              <TextField
+                    autoFocus
+                    defaultValue={password}
+                    margin="dense"
+                    id="password"
+                    label="Password"
+                    type="password"
+                    fullWidth
+                    onChange={updatePassword}
+                    required
+                  />
+                {/* <button type="submit">Login</button> */}
+                <Button onClick={onLogin} color="primary">
+                  Login
+                </Button>
+                <Button onClick={handleClickOpen} color="primary">
+                  Sign up
+                </Button>
+            </form>
+
+          </div>
+        </div>
       </div>
-      <h2 className="loginHeader">CardMe</h2>
-      <Button variant="contained" color="primary" onClick={demoLogin}>Demo</Button>
-      <form onSubmit={onLogin}>
-          <TextField
-            autoFocus
-            defaultValue={email}
-            margin="dense"
-            id="email"
-            label="Email"
-            type="text"
-            fullWidth
-            onChange={updateEmail}
-            required
-          />
-        <TextField
-              autoFocus
-              defaultValue={password}
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-              onChange={updatePassword}
-              required
-            />
-          {/* <button type="submit">Login</button> */}
-          <Button onClick={onLogin} color="primary">
-            Login
-          </Button>
-          <Button onClick={handleClickOpen} color="primary">
-            Sign up
-          </Button>
-      </form>
-
-     </div>
-   </div>
-
   </>);
 };
 

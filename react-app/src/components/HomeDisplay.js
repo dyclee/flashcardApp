@@ -36,6 +36,7 @@ const HomeDisplay = ({}) => {
     if (!setArr || !faves || !likes || !subjectArr) return null;
     // console.log("SET ARR", setArr)
     return (<>
+    <main>
             <article>
                 <div className="homedisplay__header">
                     <div id="welcome-container" className="homedisplay__welcome">Choose a set</div>
@@ -68,6 +69,7 @@ const HomeDisplay = ({}) => {
                     })}
                 </div>
             </article>
+    </main>
         </>
     )
 

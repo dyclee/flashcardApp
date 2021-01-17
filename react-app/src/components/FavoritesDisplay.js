@@ -34,6 +34,7 @@ export default function FavoritesDisplay(){
     if (!userFaves) return null;
 
     return (<>
+    <main>
         <article>
             <div className="homedisplay__header">
                 <div  id="welcome-favorites" className="homedisplay__welcome">Your favorites</div>
@@ -60,6 +61,7 @@ export default function FavoritesDisplay(){
                 })}
             </div>
         </article>
+    </main>
     </>
 )
 }

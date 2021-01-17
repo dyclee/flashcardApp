@@ -15,8 +15,11 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.background.paper,
   },
   appbar: {
+    position: 'relative',
     top: 'auto',
-    bottom: 0,
+  },
+  separator: {
+    height: "20px",
   }
 }));
 
@@ -37,6 +40,7 @@ export default function FullTabPanel({set}) {
             <Tab label="Quiz" value="2" />
           </TabList>
         </AppBar>
+        <div className={classes.separator}></div>
         <TabPanel value="1">
           <div className="cards-container">
             <FlashcardList set={set} hidden={set.hidden} />

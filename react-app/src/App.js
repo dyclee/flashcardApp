@@ -7,6 +7,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
+
+import LoadingPage from './components/LoadingPage';
+import Footer from './components/Footer';
 import LoadState from './components/LoadState';
 import HomeDisplay from './components/HomeDisplay';
 import SetDisplay from './components/SetDisplay';
@@ -44,7 +47,9 @@ function App() {
 
   // console.log(user)
   if (!loaded) {
-    return null;
+    return (<>
+      <LoadingPage />
+    </>);
   }
   return (
     <BrowserRouter>
@@ -53,12 +58,10 @@ function App() {
         {/* <NavBar setAuthenticated={setAuthenticated} /> */}
         <NavMUI authenticated={authenticated} setAuthenticated={setAuthenticated} />
         <Route path="/login" exact={true}>
-          <div className="splashPageBackground overlay">
             <LoginForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
             />
-          </div>
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
@@ -84,6 +87,8 @@ function App() {
         <ProtectedRoute path="/search" exact={true} authenticated={authenticated} >
           <LoadState user={user} component={<SearchDisplay />}/>
         </ProtectedRoute>
+
+        <Footer />
       {/* </UserContext.Provider> */}
     </BrowserRouter>
   );

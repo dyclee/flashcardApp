@@ -7,6 +7,9 @@ import { getFavorites } from '../store/actions/favorites';
 import { getSubjects } from '../store/actions/subjects';
 import { authenticate } from "../services/auth";
 
+import LoadingPage from './LoadingPage';
+
+
 import "../styles/random.css"
 
 export default function LoadState({component}) {
@@ -84,7 +87,11 @@ export default function LoadState({component}) {
         })();
       }, []);
 
-      if (!loaded) return null;
+      if (!loaded) {
+          return (<>
+            <LoadingPage />
+          </>)
+      }
 
       return (<>
         {component}

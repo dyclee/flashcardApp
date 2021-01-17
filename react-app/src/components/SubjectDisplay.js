@@ -51,6 +51,7 @@ export default function SubjectDisplay() {
     }
 
     return (<>
+    <main>
             <div className="setheader-everything">
                 <div className="subjectheader-container">
                     <div className="userheader-topline">
@@ -87,5 +88,6 @@ export default function SubjectDisplay() {
                         </>)
                     })}
                 </div>
+    </main>
     </>);
 }

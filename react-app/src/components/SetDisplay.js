@@ -41,9 +41,11 @@ export default function SetDisplay() {
     // console.log("FAVORITES", favorites)
     if (!set) return null;
     return (<>
+    <main>
         <SetHeader set={set} hidden={set.hidden} onDelete={onDelete} />
         <div>
             <TabPanel set={set}/>
         </div>
+    </main>
     </>)
 }

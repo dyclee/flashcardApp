@@ -30,7 +30,7 @@ export default function SearchDisplay() {
     const goHome = (e) => {
         return history.push('/');
     }
-    console.log("SEARCH OBJ", searchObj)
+    // console.log("SEARCH OBJ", searchObj)
     if (!searchObj.foundSets) {
         // console.log("THIS?")
         return (<>
@@ -56,8 +56,9 @@ export default function SearchDisplay() {
             </div>
         </>)
     }
-    console.log("WORKING", searchObj.foundSets[0].hidden && searchObj.foundSubjects[0].hidden && searchObj.foundUsers[0].hidden && searchObj.foundCards[0].hidden)
+    // console.log("WORKING", searchObj.foundSets[0].hidden && searchObj.foundSubjects[0].hidden && searchObj.foundUsers[0].hidden && searchObj.foundCards[0].hidden)
     return (<>
+    <main>
         {/* <div className="search-title">Search results for '{searchObj.searchTerm}'</div> */}
             <div className="search-title-container">
                 <div className="homedisplay__header">
@@ -107,5 +108,6 @@ export default function SearchDisplay() {
                 })}
             </div>
         </div>
+    </main>
     </>)
 }
