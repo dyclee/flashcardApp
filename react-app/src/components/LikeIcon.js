@@ -22,7 +22,7 @@ export default function LikeIcon ({count, id, isLike, user, disable }) {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({
-                    setId,
+                    setId: id,
                     userId: user.id
                 })
             })
@@ -36,7 +36,7 @@ export default function LikeIcon ({count, id, isLike, user, disable }) {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                setId,
+                setId: id,
                 userId: user.id
             })
         })
@@ -48,12 +48,12 @@ export default function LikeIcon ({count, id, isLike, user, disable }) {
     }
     if (isLike) {
         return (<>
-            <img className={id} src={like} name={"delete"} onClick={switchLike} />
+            <img className="likeIcon" src={like} name={"delete"} onClick={switchLike} />
             {/* <strong className="homedisplay__count">{count}</strong> */}
         </>)
     }
     return (<>
-        <img className={id} src={nolike} name={"create"} onClick={switchLike} />
+        <img className="likeIcon" src={nolike} name={"create"} onClick={switchLike} />
         {/* <strong className="homedisplay__count">{count}</strong> */}
     </>)
 }

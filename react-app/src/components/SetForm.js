@@ -100,7 +100,7 @@ export function DeleteSetForm({ set, hidden}) {
         return history.push('/')
     }
     return (<>
-        <img src={trashcan} hidden={hidden} name="delete" onClick={handleOpen} />
+        <img className="setheader-icon" src={trashcan} hidden={hidden} name="delete" onClick={handleOpen} />
         <Dialog open={open}
             onClose={handleClose}
             PaperProps={{

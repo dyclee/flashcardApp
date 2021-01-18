@@ -19,7 +19,7 @@ export default function FaveIcon ({id, isFave, user}) {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({
-                    setId,
+                    setId: id,
                     userId: user.id
                 })
             })
@@ -35,7 +35,7 @@ export default function FaveIcon ({id, isFave, user}) {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                setId,
+                setId: id,
                 userId: user.id
             })
         })
@@ -48,8 +48,8 @@ export default function FaveIcon ({id, isFave, user}) {
     }
 
     if (isFave) {
-        return (<img className={id} src={heart} name={"delete"} onClick={switchFav} />)
+        return (<img className={`faveIcon`} src={heart} name={"delete"} onClick={switchFav} />)
     }
-    return (<img className={id} src={noheart} name={"create"} onClick={switchFav}/>)
+    return (<img className={`faveIcon`} src={noheart} name={"create"} onClick={switchFav}/>)
 
 }

@@ -58,7 +58,7 @@ export default function SetHeader({set, hidden, onDelete}) {
                 <div className="setheader-topline">
                     <div className="setheader-title">{set.title}</div>
                     <div className="setheader-icons">
-                        <img src={pencil} hidden={hidden} name="edit" onClick={handleOpen} />
+                        <img className="setheader-icon" src={pencil} hidden={hidden} name="edit" onClick={handleOpen} />
                         <DeleteSetForm set={set} hidden={hidden} />
                     </div>
                 </div>
@@ -67,7 +67,7 @@ export default function SetHeader({set, hidden, onDelete}) {
                     Made by:
                     <div className="whitespace"></div>
                     {<Avatar alt={`${set.creator.username}`} src={set.creator.avatarUrl === "/user-circle.svg" ? userCircle : set.creator.avatarUrl} className={classes.small}/>}
-                    <Link to={`/users/${set.creator.id}`} style={{ color: '#00897b', textDecoration: 'none' }}><strong><i> {set.creator.username}</i></strong></Link>
+                    <Link to={`/users/${set.creator.id}`} style={{ color: '#00897b', textDecoration: 'none' }}><strong className="setheader-user" ><i> {set.creator.username}</i></strong></Link>
                 </div>
                 <div className="setheader-stats">
                     <CreateCardForm setId={id} hidden={hidden} />

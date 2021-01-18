@@ -53,6 +53,8 @@ const HomeDisplay = ({}) => {
                         // console.log(isLike)
                         return (<>
                             <div key={`${id}-container`} className="homedisplay__singleset-container">
+                                <div className="set-bg"></div>
+                                {/* <div className="set-dot"></div> */}
                                 <Link to={`/set/${id}`} className="homedisplay__links">
                                     <SetListItem set={setObj}></SetListItem>
                                 </Link>
@@ -67,6 +69,7 @@ const HomeDisplay = ({}) => {
                             </div>
                         </>)
                     })}
+
                 </div>
             </article>
     </main>
