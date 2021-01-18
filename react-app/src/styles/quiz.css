@@ -13,11 +13,11 @@
     background-color: #FFFEE3;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 800px;
-    min-height: 250px;
+    min-height: 300px;
     height: min-content;
     border-radius: 15px;
     padding: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     /* box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75); */
   }
 
@@ -37,6 +37,7 @@
   .quiz-question-section {
     width: 100%;
     position: relative;
+    /* text-align: center; */
     color: black;
     font-weight: bold;
     padding: 10px;
@@ -54,6 +55,8 @@
   .quiz-question-text {
     margin-bottom: 12px;
     font-size: 20px;
+    padding-top: 10px;
+    /* text-align: center; */
   }
 
   .timer-text {
