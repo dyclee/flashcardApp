@@ -9,8 +9,8 @@
   .quiz-app {
     display: flex;
     /* justify-content: flex-start; */
-    border: 7px solid#5f4339;
-    background-color: lightgoldenrodyellow;
+    border: 7px solid black;
+    background-color: #FFFEE3;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 800px;
     min-height: 250px;

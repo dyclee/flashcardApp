@@ -12,6 +12,7 @@ import SetQuestions from './SetQuestions';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor:"#E6E3B5",
     // backgroundColor: theme.palette.background.paper,
   },
   appbar: {
