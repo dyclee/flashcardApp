@@ -1,5 +1,6 @@
 body {
     background-color: rgb(240, 255, 175);
+    height: 100%;
     margin: 0;
 }
 .cards-container {
@@ -144,6 +145,16 @@ body {
 .setheader-cardcount {
     font-size:17px;
     padding: 5px;
+}
+
+.tabPanel-bg {
+    position: relative;
+    bottom: 0;
+    min-height: 55vh;
+    background-color: #fdf7b0;
+    /* background-color: #fff697; */
+    /* background-image: url("../icons/beige-arrow-background.jpg"); */
+    /* background-image: url("../icons/vector-abstract-pattern-background-with-green-shapes.jpg"); */
 }
 
 .setdisplay__question-list {

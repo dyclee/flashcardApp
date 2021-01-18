@@ -12,7 +12,8 @@ import SetQuestions from './SetQuestions';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor:"#E6E3B5",
+    // backgroundColor:"#E6E3B5",
+    // backgroundImage: ""
     // backgroundColor: theme.palette.background.paper,
   },
   appbar: {
@@ -32,7 +33,7 @@ export default function FullTabPanel({set}) {
     setValue(newValue);
   };
   return (
-    <div className={classes.root}>
+    <div className={`tabPanel-bg ${classes.root}`}>
       <TabContext value={value}>
         <AppBar className={classes.appbar} position="fixed" color="secondary">
           <TabList onChange={handleChange} centered aria-label="simple tabs example">

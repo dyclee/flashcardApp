@@ -43,9 +43,7 @@ export default function SetDisplay() {
     return (<>
     <main>
         <SetHeader set={set} hidden={set.hidden} onDelete={onDelete} />
-        <div>
-            <TabPanel set={set}/>
-        </div>
+        <TabPanel set={set}/>
     </main>
     </>)
 }

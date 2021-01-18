@@ -228,7 +228,7 @@ export default function PrimarySearchAppBar({authenticated, setAuthenticated}) {
 
 
   return (
-    <div className={classes.grow}>
+    <div className={`row navbar ${classes.grow}`}>
       <AppBar position="static">
         <Toolbar>
           <CreateSetForm

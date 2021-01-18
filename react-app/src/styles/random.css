@@ -48,9 +48,16 @@ body {
     opacity: 1%;
 }
 
+#root {
+    position: relative;
+    min-height: 100vh;
+}
+
 main {
+    /* height: 100%; */
     padding-bottom: 100px;
 }
+
 
 .footer {
     position: absolute;
@@ -59,11 +66,11 @@ main {
     width: 100%;
     height: 100px;
     box-sizing: border-box;
-    border-top: 5px solid black;
+    /* border-top: 5px solid black; */
 }
 
 .footer-header {
-    padding-top: 7px;
+    padding-top: 9px;
     font-size: 12px;
     font-family: 'Inconsolata', monospace;
 }
@@ -320,10 +327,25 @@ main {
 .filterMenu {
     text-decoration: none;
 }
+
+.userheader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 200px;
+    margin: 20px;
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    background-image: url('../icons/cardme-setBG\ \(2\).jpg');
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .userheader-topline{
     display: flex;
     justify-content: center;
-    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Inconsolata', monospace;
 }
 .userheader-icons {
     display: flex;
@@ -363,7 +385,7 @@ main {
     .search__filter {
         display: flex;
         position: relative;
-        background-color: lightgoldenrodyellow;
+        /* background-color: lightgoldenrodyellow; */
         width: 210px;
         height: 300px;
         box-sizing: border-box;
@@ -375,7 +397,7 @@ main {
 @media only screen and (min-width: 988px) {
     .search__filter {
         display: flex;
-        background-color: lightgoldenrodyellow;
+        /* background-color: lightgoldenrodyellow; */
         width: 210px;
         height: 300px;
         position: sticky;
@@ -388,6 +410,10 @@ main {
     }
 
 }
+
+.searchFilter-label {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .search-container {
     display: flex;
     flex-direction: column;
@@ -395,15 +421,15 @@ main {
     align-items: center;
     /* padding: 30px; */
     margin: 20px;
-    border: 4px solid #654321;
+    border-bottom: 4px solid #654321;
     height: 100%;
 }
 
 .search__item-container {
-    border-left: 3px solid#654321;
-    border-right: 3px solid#654321;
-    border-top: 3px solid#654321;
-    border-bottom: 3px solid#654321;
+    border-left: 5px solid#654321;
+    border-right: 5px solid#654321;
+    border-top: 5px solid#654321;
+    /* border-bottom: 3px solid#654321; */
     /* padding: 15px; */
     height: 90px;
     width: 700px;
@@ -414,9 +440,9 @@ main {
 }
 
 .search__item-container:hover {
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
     box-shadow: 0 0 5px 5px rgba(0,0,0, .5);
 }
 /* .user-color {
@@ -544,13 +570,13 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 470px;
+    width: 400px;
     height: 200px;
     margin: 20px;
     border: 5px solid black;
     padding: 10px;
     border-radius: 15px;
-    background-color: lightgoldenrodyellow;
+    background-image: url('../icons/cardme-setBG\ \(2\).jpg');
     font-family: 'Courier New', Courier, monospace;
 }
 .subjectheader-title {

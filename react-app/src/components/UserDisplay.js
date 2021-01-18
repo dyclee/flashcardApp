@@ -43,7 +43,7 @@ export default function UserDisplay() {
         })();
     }, [userId]);
 
-    console.log("USER", user)
+    // console.log("USER", user)
     if (!user || !setArr || !likes || !faves || !sessionUser) {
         return null;
     }
@@ -51,14 +51,10 @@ export default function UserDisplay() {
     return (<>
     <main>
             <div className="setheader-everything">
-                <div className="setheader-container">
+                <div className="userheader-container">
                     <div className="userheader-topline">
-                        {/* <Avatar alt={`${user.username}`} src={`${user.avatarUrl}`} /> */}
                         {<Avatar alt={`${user.username}`} src={user.avatarUrl === "/user-circle.svg" ? userCircle : user.avatarUrl}/>}
                         <div className="userheader-title">{user.username}</div>
-                        {/* <div className="userheader-icons">
-                            <img src={pencil} />
-                        </div> */}
                     </div>
                     <div className="userheader-description"><strong>{user.email}</strong></div>
                     <div className="userheader-creator">Created: <strong><i>{user.created_date}</i></strong></div>
@@ -71,7 +67,11 @@ export default function UserDisplay() {
                 </div>
             </div>
             <div className="homedisplay__header">
+                {sessionUser.id === user.id ?
+                <div className="headerdisplay__welcome">Your sets</div>
+                :
                 <div className="headerdisplay__welcome">{user.username}'s sets</div>
+                }
             </div>
             <div className="homedisplay__allsets-container">
                     {setArr.map(setObj => {

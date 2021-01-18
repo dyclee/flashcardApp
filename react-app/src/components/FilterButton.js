@@ -107,6 +107,9 @@ export default function FilterButton({sets, setSetArr}) {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            PaperProps={{
+              style: { backgroundColor: "#FFFFDE" }
+            }}
           >
             <MenuItem onClick={handleAlphabetical}>
               <Link to="/" style={{ color: '#00897b', textDecoration: 'none' }}>Alphabetical</Link>

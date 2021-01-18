@@ -12,10 +12,16 @@ import { switchHidden } from '../store/actions/search';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    backgroundColor: "#8a3324",
+    color: "white",
   },
   formControl: {
     margin: theme.spacing(3),
   },
+  formLabel: {
+    color: "white",
+  },
+
 }));
 
 export default function SearchFilter() {
@@ -45,30 +51,31 @@ export default function SearchFilter() {
   return (
     <div className={`${classes.root} search__filter`}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Type</FormLabel>
+        {/* <FormLabel className={classes.formLabel} >Type</FormLabel> */}
+        <div className="searchFilter-label">Type</div>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={all} onChange={handleChange} name="all" />}
+            control={<Checkbox color='secondary' checked={all} onChange={handleChange} name="all" />}
             label="All"
           />
           <FormControlLabel
-            control={<Checkbox checked={sets} onChange={handleChange} name="sets" />}
+            control={<Checkbox color='secondary' checked={sets} onChange={handleChange} name="sets" />}
             label="Sets"
           />
           <FormControlLabel
-            control={<Checkbox checked={subjects} onChange={handleChange} name="subjects" />}
+            control={<Checkbox color='secondary' checked={subjects} onChange={handleChange} name="subjects" />}
             label="Subjects"
           />
           <FormControlLabel
-            control={<Checkbox checked={users} onChange={handleChange} name="users" />}
+            control={<Checkbox color='secondary' checked={users} onChange={handleChange} name="users" />}
             label="Users"
           />
           <FormControlLabel
-            control={<Checkbox checked={cards} onChange={handleChange} name="cards" />}
+            control={<Checkbox color='secondary' checked={cards} onChange={handleChange} name="cards" />}
             label="Cards"
           />
         </FormGroup>
-        <FormHelperText>Select one or more</FormHelperText>
+        <FormHelperText className={classes.formLabel}>Select one or more</FormHelperText>
       </FormControl>
     </div>
   )
