@@ -212,8 +212,8 @@ with app.app_context():
         set_id=3,
     )
     card6 = Card(
-        question="time complexity of a merge sort",
-        answer="O(n*log(n))",
+        question="time and space complexities of a merge sort",
+        answer="O(n*log(n)), O(n)",
         set_id=3,
     )
     card16 = Card(
@@ -411,12 +411,191 @@ with app.app_context():
         answer="'||'",
         set_id=1,
     )
+    card46 = Card(
+        question="time and space complexities of heap sort",
+        answer="O(n*log(n)) , O(1)",
+        set_id=3,
+    )
+    card47 = Card(
+        question="linked list",
+        answer="a linear collection of data elements whose order is not given by their physical placement in memory, instead, each element points to the next",
+        set_id=2,
+    )
+    card48 = Card(
+        question="orphan node",
+        answer="a node that has been removed from a collection and has no reference",
+        set_id=2,
+    )
+    card49 = Card(
+        question="select element by ID",
+        answer="Document.getElementById(#value)",
+        set_id=1,
+    )
+    card50 = Card(
+        question="select element by class",
+        answer="Document.querySelector(.value)",
+        set_id=1,
+    )
+    card51 = Card(
+        question="method that cancels the default action of an event",
+        answer="e.preventDefault()",
+        set_id=1,
+    )
+    card52 = Card(
+        question="'AJAX'",
+        answer="'Aysynchrous JavaScript and XML', a technique used to create interactivity by using partial page updates",
+        set_id=1,
+    )
+    card53 = Card(
+        question="'DOM'",
+        answer="Document Object Model, cross-platform and language-independent interface using a tree structure",
+        set_id=1,
+    )
+    card54 = Card(
+        question="BOM",
+        answer="Browser Object Model, browser-specific convention referring to all the objects exposed by the web browser, no standard implementation",
+        set_id=1,
+    )
+    card55 = Card(
+        question="whitespace",
+        answer="used to structure code, must be aligned properly to prevent syntax errors",
+        set_id=6,
+    )
+    card56 = Card(
+        question="single-line comment",
+        answer="line begins with a number sign '#'",
+        set_id=6,
+    )
+    card57 = Card(
+        question="multi-line comment",
+        answer="lines surrounded by triple quotations",
+        set_id=6,
+    )
+    card58 = Card(
+        question="'**'",
+        answer="used for exponentiation",
+        set_id=6,
+    )
+    card59 = Card(
+        question="len(value)",
+        answer="used to calculate the length of an data structure (string, list, tuple, dictionary)",
+        set_id=6,
+    )
+    card60 = Card(
+        question="sequence data-types",
+        answer="string, bytes, tuple, list, range",
+        set_id=6,
+    )
+    card61 = Card(
+        question="collection data-types",
+        answer="dictionary, set, frozen set",
+        set_id=6,
+    )
+    card63 = Card(
+        question="lower(value)",
+        answer="makes all characters lowercase",
+        set_id=6,
+    )
+    card64 = Card(
+        question="upper(value)",
+        answer="makes all characters uppercase",
+        set_id=6,
+    )
+    card65 = Card(
+        question="str(value)",
+        answer="converts value into a string data-type",
+        set_id=6,
+    )
+    card66 = Card(
+        question="print(value)",
+        answer="a command that displays value onto the console",
+        set_id=6,
+    )
+    card67 = Card(
+        question="'=', equal sign",
+        answer="a symbol used to define variables",
+        set_id=6,
+    )
+    card68 = Card(
+        question="'===', triple equal sign",
+        answer="a symbol used to compare left and right values, results in a boolean",
+        set_id=6,
+    )
+    card69 = Card(
+        question="'append' method",
+        answer="adds a value onto the end of a list",
+        set_id=6,
+    )
+    card70 = Card(
+        question="index(value)",
+        answer="returns the position at the first occurrence of the specified value",
+        set_id=6,
+    )
+    card71 = Card(
+        question="max(value)",
+        answer="returns the greatest element in a list",
+        set_id=6,
+    )
+    card71 = Card(
+        question="min(value)",
+        answer="returns the smallest element in a list",
+        set_id=6,
+    )
+    card72 = Card(
+        question="slice method",
+        answer="returns specified elements within a list, arr[start : stop : step]",
+        set_id=6,
+    )
+    card73 = Card(
+        question="splice method",
+        answer="changes the contents of an array by removing or replacing existing elements or adding new elements in place, arr.splice(start, deleteCount, item1,..)",
+        set_id=1,
+    )
+    card74 = Card(
+        question="tuple",
+        answer="data-type used to store multiple items in a single variable, ('apple', 'banana', 'cherry')",
+        set_id=6,
+    )
+    card75 = Card(
+        question="dictionary",
+        answer="data-type used to store key-value pairs, unordered, changeable, and does not allow duplicate keys",
+        set_id=6,
+    )
+    card76 = Card(
+        question="set",
+        answer="data-type used to store unique items in a single variable, {'apple', 'banana', 'cherry'}",
+        set_id=6,
+    )
+    card77 = Card(
+        question="falsey values",
+        answer="undefined, null, NaN, 0, '', false",
+        set_id=1,
+    )
+    card78 = Card(
+        question="string interpolation",
+        answer="used to incorporate variables into value, `${variable }`",
+        set_id=1,
+    )
+    card62 = Card(
+        question="self-loop",
+        answer="an edge that links a vertex to itself",
+        set_id=2,
+    )
+    card79 = Card(
+        question="simple graph",
+        answer="a graph without self-loops",
+        set_id=2,
+    )
+
 
     cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, \
             card12, card13, card14, card15, card16, card17, card18, card19, card20, \
             card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, \
             card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, \
-            card41, card42, card43, card44, card45]
+            card41, card42, card43, card44, card45, card46, card47, card48, card49, card50, \
+            card51, card52, card53, card54, card55, card56, card57, card58, card59, card60, \
+            card61, card62, card63, card64, card65, card66, card67, card68, card69, card70, \
+            card71, card72, card73, card74, card75, card76, card77, card78, card79]
     for card in cards:
         db.session.add(card)
     db.session.commit()
