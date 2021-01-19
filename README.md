@@ -15,7 +15,7 @@
 * create MVP, database schema, backend and frontend routes
 * set up flask backend server using SQLAlchemy and alembic
 * set up frontend using React
-* complete authentic cation and CRUD for user
+* complete authentication and CRUD for user
 * CRUD for subject, card, and set compoenents
 * CRUD for set likes and favorites
 * search feature
@@ -31,6 +31,7 @@
 - SQLAlchemy
 - Alembic
 - React
+- Redux
 - HTML/CSS
 
 ## Feature List
