@@ -498,6 +498,8 @@ main {
     .search__item-container {
         width: 100%;
         border: 1px solid black;
+        border-radius: 15px;
+        margin: 2px;
     }
     .search__item-type {
         /* width: 0px; */
