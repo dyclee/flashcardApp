@@ -433,29 +433,143 @@ main {
 .searchFilter-label {
     font-family: Arial, Helvetica, sans-serif;
 }
-.search-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* padding: 30px; */
-    margin: 20px;
-    border-bottom: 4px solid #654321;
-    height: 100%;
-}
 
 .search__item-container {
-    border-left: 5px solid#654321;
-    border-right: 5px solid#654321;
-    border-top: 5px solid#654321;
     /* border-bottom: 3px solid#654321; */
     /* padding: 15px; */
     height: 90px;
-    width: 700px;
     box-sizing: border-box;
     /* border-radius: 15px; */
     display: flex;
     background-color: lightgoldenrodyellow;
+}
+
+@media only screen and (max-width: 700px) {
+    .search__item-headliner {
+        padding: 0px 10px;
+        font-size: 14px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+        color: #3d2622;
+        width: 100%;
+    }
+    .search__item-subheader {
+        font-size: 10px;
+        padding: 0px 10px;
+        font-family:'Courier New', Courier, monospace;
+        color: black;
+    }
+    .search__item-icons {
+        display: none;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left: auto;
+        width: 170px;
+        padding: 10px;
+    }
+    .icon__card-count {
+        display: flex;
+        align-items: center;
+        font-weight: bolder;
+        font-family:'Courier New', Courier, monospace;
+    }
+    .icon__like-count {
+        display: flex;
+        align-items: center;
+        /* font-weight: bolder; */
+        font-family:'Courier New', Courier, monospace;
+    }
+    .search-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        /* padding: 30px; */
+        margin: 20px;
+        /* border-bottom: 4px solid #654321; */
+        height: 100%;
+        width: 100%;
+    }
+    .search__item-container {
+        width: 100%;
+        border: 1px solid black;
+    }
+    .search__item-type {
+        /* width: 0px; */
+        display:none;
+    }
+    .type-line {
+        display: none;
+    }
+}
+@media only screen and (min-width: 701px) {
+    .type-line {
+        border-right: 3px solid black;
+        height: 90px;
+        display: fixed;
+        left: 100px
+    }
+    .search__item-type {
+        font-size: 20px;
+        width: 100px;
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .search-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding: 30px; */
+        margin: 20px;
+        border-bottom: 4px solid #654321;
+        height: 100%;
+        width: 100%;
+    }
+    .search__item-container {
+        border-left: 5px solid#654321;
+        border-right: 5px solid#654321;
+        border-top: 5px solid#654321;
+        width: 700px;
+    }
+    .search__item-headliner {
+        padding: 0px 10px;
+        font-size: 24px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+        color: #3d2622;
+    }
+    .search__item-subheader {
+        font-size: 18px;
+        padding: 0px 10px;
+        font-family:'Courier New', Courier, monospace;
+        color: black;
+    }
+    .search__item-icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left: auto;
+        width: 170px;
+        padding: 10px;
+    }
+    .icon__card-count {
+        display: flex;
+        align-items: center;
+        font-weight: bolder;
+        font-family:'Courier New', Courier, monospace;
+    }
+    .icon__like-count {
+        display: flex;
+        align-items: center;
+        /* font-weight: bolder; */
+        font-family:'Courier New', Courier, monospace;
+    }
 }
 
 .search__item-container:hover {
@@ -483,73 +597,22 @@ main {
     border-bottom: 1px solid#e73030;
 } */
 
-.search__item-type {
-    font-size: 20px;
-    width: 100px;
-    font-family:'Courier New', Courier, monospace;
-    font-weight: bolder;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
 .type-text {
     /* transform: rotate(-90deg);
     transform-origin: right bottom 0; */
 }
 
-.type-line {
-    border-right: 3px solid black;
-    height: 90px;
-    display: fixed;
-    left: 100px
-
-    /* transform: rotate(-90deg); */
-}
 .search__item-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
 }
-.search__item-headliner {
-    padding: 0px 10px;
-    font-size: 24px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bolder;
-    color: #3d2622;
-}
 
 .search__item-user {
     display: flex;
     align-items: center;
     /* flex-direction: row; */
-}
-.search__item-subheader {
-    font-size: 18px;
-    padding: 0px 10px;
-    font-family:'Courier New', Courier, monospace;
-    color: black;
-}
-.search__item-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-left: auto;
-    width: 170px;
-    padding: 10px;
-}
-.icon__card-count {
-    display: flex;
-    align-items: center;
-    font-weight: bolder;
-    font-family:'Courier New', Courier, monospace;
-}
-.icon__like-count {
-    display: flex;
-    align-items: center;
-    /* font-weight: bolder; */
-    font-family:'Courier New', Courier, monospace;
 }
 .search__icon-placement {
     display: flex;
