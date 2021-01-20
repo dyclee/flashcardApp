@@ -395,7 +395,7 @@ main {
 }
 
 
-@media only screen and (max-width: 988px) {
+@media only screen and (max-width: 987px) {
     .search-with-filter {
         display: flex;
         flex-direction:column;
