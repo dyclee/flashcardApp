@@ -159,7 +159,7 @@ body {
 
 .setdisplay__question-list {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* background-color:lightgoldenrodyellow; */
     /* margin-bottom: 60px; */
     /* border: 5px solid black; */
@@ -180,6 +180,7 @@ th {
 }
 td {
     height: 60px;
+
     border: 3px solid black;
     text-align: left;
     padding: 15px;

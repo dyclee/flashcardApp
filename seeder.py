@@ -548,7 +548,7 @@ with app.app_context():
     )
     card73 = Card(
         question="splice method",
-        answer="changes the contents of an array by removing or replacing existing elements or adding new elements in place, arr.splice(start, deleteCount, item1,..)",
+        answer="changes an array by removing existing elements and adding new elements in place, arr.splice(start, deleteCount, item1,..)",
         set_id=1,
     )
     card74 = Card(
