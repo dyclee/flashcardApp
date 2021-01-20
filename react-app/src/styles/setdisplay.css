@@ -157,6 +157,22 @@ body {
     /* background-image: url("../icons/vector-abstract-pattern-background-with-green-shapes.jpg"); */
 }
 
+@media only screen and (max-width: 415px) {
+    td {
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 416px) and (max-width:600px) {
+    td {
+        font-size: 17px;
+    }
+}
+@media only screen and (min-width:601px) {
+    td {
+        font-size: 20px;
+    }
+}
+
 .setdisplay__question-list {
     display: flex;
     /* flex-direction: column; */
@@ -174,17 +190,19 @@ table {
     border-collapse: collapse;
 }
 
+/* tr {
+    max-width: 100%;
+} */
+
 th {
     height: 60px;
     border: 3px solid black;
 }
 td {
     height: 60px;
-
     border: 3px solid black;
     text-align: left;
     padding: 15px;
-    font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
