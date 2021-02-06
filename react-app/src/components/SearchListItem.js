@@ -43,7 +43,9 @@ export default function SearchListItem({item}) {
                         <LikeIcon id={id} count={count} isLike={isLike} user={user} disable={true}/>
                         <strong className="search__icon-placement">{count}</strong>
                     </div>
-                    <FaveIcon id={id} isFave={isFave} user={user} disable={true}/>
+                    <div className="icon__fave">
+                        <FaveIcon id={id} isFave={isFave} user={user}/>
+                    </div>
                 </div>
             </div>
         </>)

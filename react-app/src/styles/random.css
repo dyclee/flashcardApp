@@ -483,6 +483,11 @@ main {
         /* font-weight: bolder; */
         font-family:'Courier New', Courier, monospace;
     }
+    .icon__fave {
+        display: flex;
+        align-items: center;
+    }
+
     .search-container {
         display: flex;
         flex-wrap: wrap;
@@ -575,6 +580,10 @@ main {
         align-items: center;
         /* font-weight: bolder; */
         font-family:'Courier New', Courier, monospace;
+    }
+    .icon__fave {
+        display: flex;
+        align-items: center;
     }
 }
 
