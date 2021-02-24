@@ -67,7 +67,18 @@ export default function SearchDisplay() {
             </div>
         <div className="search-with-filter">
             <SearchFilter />
-            <div className="search-container" hidden={searchObj.foundSets[0].hidden && searchObj.foundSubjects[0].hidden && searchObj.foundUsers[0].hidden && searchObj.foundCards[0].hidden}>
+            <div className="search-container"
+                hidden={
+                (searchObj.foundSets.length === 0 || searchObj.foundSets[0].hidden) &&
+                (searchObj.foundSubjects.length === 0 || searchObj.foundSubjects[0].hidden) &&
+                (searchObj.foundUsers.length === 0 || searchObj.foundUsers[0].hidden) &&
+                (searchObj.foundCards.length === 0 || searchObj.foundCards[0].hidden)
+                // searchObj.foundSets[0].hidden &&
+                // searchObj.foundSubjects[0].hidden &&
+                // searchObj.foundUsers[0].hidden &&
+                // searchObj.foundCards[0].hidden
+                }>
+
                 {searchObj.foundSets.length && searchObj.foundSets[0].hidden ? null : searchObj.foundSets.map((set) => {
                     return (<>
                         <Link to={`/set/${set.id}`} className="homedisplay__links">
