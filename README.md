@@ -29,7 +29,7 @@ David Lee
 
 CardMe is a flashcard / study application that allows users to create and maintain sets of flashcards or use sets created by other users. Users can like and favorite specific sets in order to refer to them at a later time. Features include a search bar that can filter particular subjects, sets, cards, and other users. Users may also participate in a randomized multiple-choice quiz specific to the contents of each set.
 
-<br clear="both">
+<!-- <br clear=""> -->
 
 ## Features
 </div>
