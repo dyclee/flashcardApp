@@ -47,7 +47,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 </div>
 <img src="readme/images/browse_dash.gif" alt="navigate homepage gif" width="70%" align="right">
 
-* Navigate all sets created by CardMe users
+* Navigate through all the sets created by CardMe users
 * Like and favorite sets in order to build a sets credibility or save it for future reference
 
 ---
@@ -60,7 +60,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 ---
 
-* Search and filter the existing database for specific sets, subjects, cards, and users
+* Use the search bar to quey and filter the existing database for related sets, subjects, cards, and users
 * Quiz yourself using the randomized, multiple-choice quiz specific to each set and constructed with the contents of its flashcards
 <img src="readme/images/quiz.gif" alt="quiz gif" width="100%" align="center">
 
