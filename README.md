@@ -19,16 +19,17 @@ David Lee
 
 **Table of Contents**
 
-[About](#about-cardme) | [Features](#features) | [Installation](#installation) | [Development](#development) | [Contact](#contact)
+[About](#about-cardme) | [Features](#features) | [Installation](#installation) | [Contact](#contact)
 
 </div>
+
 ---
 
 <div align="center">
 
 ## About CardMe
 
-CardMe is a flashcard / study application that allows users to create and maintain sets of flashcards or use sets created by other users. Users can like and favorite specific sets in order to refer to them at a later time. Features include a search bar that can filter particular subjects, sets, cards, and other users. Users may also participate in a randomized multiple-choice quiz specific to the contents of each set.
+CardMe is a flashcard / study application that allows users to create and maintain sets of flashcards or use sets created by other users. Users can like and favorite specific sets in order to refer to them at a later time. Features include a search bar that can filter particular subjects, sets, cards, and other users. Users may also participate in a randomized multiple-choice quiz specific to the contents of each set. Enjoy!
 </div>
 <br clear="both">
 
@@ -79,14 +80,18 @@ CardMe is a flashcard / study application that allows users to create and mainta
 6. To run the application in development, run `npm start` within the `react-app` directory
 
 
-## Technologies
-- JavaScript
-- Python 3
-- PostgreSQL
-- Psycopg2
-- Flask
-- SQLAlchemy
-- Alembic
-- React
-- Redux
-- HTML/CSS
+<div align="center">
+
+## Contact
+
+Please feel free to contact me!
+
+</div>
+
+### David Lee
+*(Full-stack developer, Open to work)*
+<a href="readme/Lee_David_Resume(v2.0).pdf" download>![Resume PDF](https://img.shields.io/badge/-Resume-f00?style=flat-square&logo=adobe-acrobat-reader&logoColor=white)</a>
+[![David Lee's email](https://img.shields.io/badge/dyclee@umich.edu-f4b400?style=flat-square&logo=gmail&logoColor=black&link=mailto:dyclee@umich.edu)](mailto:dyclee@umich.edu)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077b5?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/daveyclee/)](https://www.linkedin.com/in/daveyclee/)
+[![AngelList](https://img.shields.io/badge/-AngelList-black?style=flat-square&logo=AngelList&logoColor=white&link=https://angel.co/u/david-lee-332)](https://angel.co/u/david-lee-332)
+[![GitHub dyclee](https://img.shields.io/github/followers/dyclee?label=follow&style=social)](https://github.com/dyclee)
