@@ -60,7 +60,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 ---
 
-* Use the search bar to quey and filter the existing database for related sets, subjects, cards, and users
+* Use the search bar to query and filter the existing database for related sets, subjects, cards, and users
 * Quiz yourself using the randomized, multiple-choice quiz specific to each set and constructed with the contents of its flashcards
 <img src="readme/images/quiz.gif" alt="quiz gif" width="100%" align="center">
 
