@@ -33,7 +33,10 @@ CardMe is a flashcard / study application that allows users to create and mainta
 </div>
 <br clear="both">
 
+<div align="center">
+
 ## Features
+
 </div>
 
 * Navigate all sets created by CardMe users
@@ -42,8 +45,11 @@ CardMe is a flashcard / study application that allows users to create and mainta
 * Search and filter the existing database for specific sets, subjects, cards, and users
 * Quiz yourself using the randomized, multiple-choice quiz particular to each set and constructed with its contents
 
+<div align="center">
+
 ## Installation
 
+</div>
 
 1. Clone this repository
     ```bash
@@ -79,17 +85,19 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 6. To run the application in development, run `npm start` within the `react-app` directory
 
+---
 
 <div align="center">
 
 ## Contact
 
-Please feel free to contact me!
+Please feel free to react out!
 
 </div>
 
 ### David Lee
 *(Full-stack developer, Open to work)*
+
 <a href="readme/Lee_David_Resume(v2.0).pdf" download>![Resume PDF](https://img.shields.io/badge/-Resume-f00?style=flat-square&logo=adobe-acrobat-reader&logoColor=white)</a>
 [![David Lee's email](https://img.shields.io/badge/dyclee@umich.edu-f4b400?style=flat-square&logo=gmail&logoColor=black&link=mailto:dyclee@umich.edu)](mailto:dyclee@umich.edu)
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077b5?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/daveyclee/)](https://www.linkedin.com/in/daveyclee/)
