@@ -21,6 +21,7 @@ David Lee
 
 [About](#about-cardme) | [Features](#features) | [Installation](#installation) | [Development](#development) | [Contact](#contact)
 
+</div>
 ---
 
 <div align="center">
