@@ -50,6 +50,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 * Create a set and its corresponding cards (pin to an existing subject or create a new one)
 
+<br clear="both">
 ---
 
 * Search and filter the existing database for specific sets, subjects, cards, and users
