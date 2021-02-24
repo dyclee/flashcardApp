@@ -1,5 +1,14 @@
 <div align="center">
 
+![JavaScript](https://img.shields.io/badge/-JavaScript-f7df1e?style=flat-square&logo=JavaScript&logoColor=black)
+![React](https://img.shields.io/badge/-React-61dafb?style=flat-square&logo=React&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572b6?style=flat-square&logo=CSS3&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ed?style=flat-square&logo=Docker&logoColor=white)
+![Python](https://img.shields.io/badge/-Python-3776ab?style=flat-square&logo=Python&logoColor=white)
+![Flask](https://img.shields.io/badge/-Flask-black?style=flat-square&logo=Flask&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-d01f00?style=flat-square&logo=SQLAlchemy&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgreSQL&logoColor=white)
+
 # CardMe
 ## A Flashcard and Study Application
 
@@ -10,7 +19,7 @@ David Lee
 
 **Table of Contents**
 
-[About](#about-cardme) | [Features](#features) | [How It Works](#how-it-works) | [Installation](#installation) | [Development](#development) | [Contact](#contact)
+[About](#about-cardme) | [Features](#features) | [Installation](#installation) | [Development](#development) | [Contact](#contact)
 
 ---
 
@@ -24,30 +33,50 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 ## Features
 </div>
-- Navigate all sets created by CardMe users
-- Like and favorite sets in order to build a sets credibility or save it for future reference
-- Create a set and its corresponding cards (pin to an existing subject or create a new one)
-- Search and filter the existing database for specific sets, subjects, cards, and users
-- Quiz yourself using the randomized, multiple-choice quiz particular to each set and constructed with its contents
 
-**Goals**
-* user account CRUD and authentication
-* allow users to create sets, each with cards that contain a question and an answer
-* ability to give sets a subject to be sorted by
-* ability to like and 'favorite' a set or subject
-* search bar that allows users to find specific topics sets, or cards
-* ability to quiz oneself
+* Navigate all sets created by CardMe users
+* Like and favorite sets in order to build a sets credibility or save it for future reference
+* Create a set and its corresponding cards (pin to an existing subject or create a new one)
+* Search and filter the existing database for specific sets, subjects, cards, and users
+* Quiz yourself using the randomized, multiple-choice quiz particular to each set and constructed with its contents
 
-**Checklist**
-* create MVP, database schema, backend and frontend routes
-* set up flask backend server using SQLAlchemy and alembic
-* set up frontend using React
-* complete authentication and CRUD for user
-* CRUD for subject, card, and set compoenents
-* CRUD for set likes and favorites
-* search feature
-* quiz feature
-* general styling
+## Installation
+</div>
+
+1. Clone this repository
+    ```bash
+    git clone https://github.com/dyclee/flashcardApp.git
+    ```
+
+2. Install dependencies
+    ```bash
+    pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+    ```
+
+3. Create `.env` file (Example is provided within repo)
+
+4. Set up Postgres database based on `.env` credentials
+
+5. Enter pipenv environment, migrate associated database, and run the flask application
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   python seeder.py
+   ```
+
+   ```bash
+   flask run
+   ```
+
+6. To run the application in development, run `npm start` within the `react-app` directory
+
 
 ## Technologies
 - JavaScript
@@ -60,22 +89,3 @@ CardMe is a flashcard / study application that allows users to create and mainta
 - React
 - Redux
 - HTML/CSS
-
-## Feature List
-### User
-- Signup/login/logout
-- User Dashboard (display page with user sets)
-
-### Set / Card CRUD
-- Users can create sets containing cards
-- Sets can be pinned to a subject
-
-### Likes and Favorites CRUD
-- Users can like and favorite sets
-
-### Search Bar
-- Users can search for sets/cards/subjects/users using keywords
-- ability to filter search results
-
-### Quiz
-- Users can quiz themselves
