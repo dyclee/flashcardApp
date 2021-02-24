@@ -48,7 +48,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 <img src="readme/images/create.gif" alt="create set gif" width="55%" align="left">
 * Create a set and its corresponding cards (pin to an existing subject or create a new one)
-<img src="readme/images/search_cardme.PNG" alt="search picture" width="100%" align="center">
+<img src="readme/images/search_cardme.PNG" alt="search picture">
 * Search and filter the existing database for specific sets, subjects, cards, and users
 <img src="readme/images/quiz.gif" alt="quiz gif" width="100%" align="center">
 * Quiz yourself using the randomized, multiple-choice quiz particular to each set and constructed with its contents
