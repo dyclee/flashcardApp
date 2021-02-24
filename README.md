@@ -1,7 +1,13 @@
+# CardMe
+## A Flashcard / Study Application
+
 **Developer** David Lee
 
 **Description**
 * A flashcard app for studying that allow users to create or search for cards and sets categorized by subject, like and favorite sets, and quiz themselves
+
+**Table of Contents**
+[About](#about-cardme) | [Features](#features) | [How It Works](#how-it-works) | [Installation](#installation) | [Development](#development) | [Contact](#contact)
 
 **Goals**
 * user account CRUD and authentication
