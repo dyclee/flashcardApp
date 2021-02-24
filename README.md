@@ -45,10 +45,12 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 * Navigate all sets created by CardMe users
 * Like and favorite sets in order to build a sets credibility or save it for future reference
+
 ---
-* Create a set and its corresponding cards (pin to an existing subject or create a new one)
 
 <img src="readme/images/create.gif" alt="create set gif" width="70%" align="right">
+
+* Create a set and its corresponding cards (pin to an existing subject or create a new one)
 
 <br clear="both">
 
