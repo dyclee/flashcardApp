@@ -112,7 +112,7 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 ## Contact
 
-Please feel free to react out!
+Please feel free to reach out!
 
 </div>
 
