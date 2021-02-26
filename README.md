@@ -34,11 +34,14 @@ Demo the live site!
 ## About CardMe
 
 </div>
+
+<img src="readme/images/flip_cards.gif" alt="navigate homepage gif" width="50%" align="left">
+
 CardMe is a flashcard / study application that allows users to create and maintain sets of flashcards or use sets created by other users. Users can like and favorite specific sets in order to refer to them at a later time. Features include a search bar that can filter particular subjects, sets, cards, and other users. Users may also participate in a randomized multiple-choice quiz specific to the contents of each set. Enjoy!
 
-<img src="readme/images/flip_cards.gif" alt="navigate homepage gif" width="100%" align="center">
-
 <br clear="both">
+
+<img src="readme/images/cardmeDBschemaNEW.PNG" alt="DB schema">>
 
 <div align="center">
 
