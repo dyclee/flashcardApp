@@ -41,9 +41,11 @@ CardMe is a flashcard / study application that allows users to create and mainta
 
 <br clear="both">
 
+<div align="center">
+
+**Database Schema**
 <img src="readme/images/cardmeDBschemaNEW.PNG" alt="DB schema">>
 
-<div align="center">
 
 ## Features
 
