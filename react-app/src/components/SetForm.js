@@ -118,8 +118,7 @@ export function DeleteSetForm({ set, hidden}) {
 
 export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     const { setId } = useParams()
-    // const set = useSelector(state => state.setReducer[setId])
-    // console.log("SETID", setId, "--------SET,", set)
+
     const user = useSelector(state => state.userReducer.user)
     const subjectOptions = useSelector(state => state.subjectReducer.subjects)
 
@@ -129,9 +128,7 @@ export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     const [subject, setSubject] = useState(set.subject.name)
     const [description, setDescription] = useState(set.description)
     const [errors, setErrors] = useState([])
-    // const [open, setOpen] = useState(false)
 
-    // const handleOpen = (e) => setOpen(true)
     const handleClose = (e) => setOpen(false)
 
 
@@ -157,7 +154,7 @@ export function EditSetForm({set, hidden, open, setOpen, handleOpen}) {
     // console.log("SUBJECT OPTIONS", subjectOptions)
     return (<>
         <div>
-            {/* <button hidden={hidden} onClick={handleOpen}>Edit Set</button> */}
+
             <Dialog
                 open={open}
                 onClose={handleClose}
