@@ -5,9 +5,11 @@ from app.models import User
 
 
 def user_exists(form, field):
-    print("Checking if user exists", field.data)
+    # print("Checking if user exists", field.data)
     email = field.data
+    # print(User)
     user = User.query.filter(User.email == email).first()
+    # print("USER", user)
     if not user:
         raise ValidationError("Email provided not found.")
 
